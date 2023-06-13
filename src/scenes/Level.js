@@ -587,8 +587,8 @@ class Level extends Phaser.Scene {
 		this.input.on('pointerover', this.showpoint, this);
 		this.input.on('pointermove', this.showpoint, this);
 		this.input.on('pointerup', this.showpoint, this);
-		// this.input.on('pointerenter', this.showpoint, this);
-		// this.input.on('pointerleave', this.showpoint, this);
+		this.input.on('pointerenter', this.showpoint, this);
+		this.input.on('pointerleave', this.showpoint, this);
 
 		this.red0_5 = this.add.image(this.hoverX, this.hoverY, 'red');
 		this.red0_5.setAlpha(0.5)
