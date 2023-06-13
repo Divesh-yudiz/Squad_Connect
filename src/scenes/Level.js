@@ -585,7 +585,7 @@ class Level extends Phaser.Scene {
 		this.editorCreate();
 
 		this.input.on('pointerover', this.showpoint, this);
-		this.input.on('pointermove', this.showpoint, this);
+		// this.input.on('pointermove', this.showpoint, this);
 		this.input.on('pointerup', this.showpoint, this);
 		// this.input.on('pointerenter', this.showpoint, this);
 		// this.input.on('pointerleave', this.showpoint, this);
