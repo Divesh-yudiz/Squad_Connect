@@ -1,0 +1,114 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/images/bgImage.jpg",
+                "type": "image",
+                "key": "bgImage"
+            },
+            {
+                "url": "assets/images/Board (1).png",
+                "type": "image",
+                "key": "Board (1)"
+            },
+            {
+                "url": "assets/css/font.css",
+                "type": "css",
+                "key": "font"
+            },
+            {
+                "url": "src/Prefabs/GameBoardPrefab.js",
+                "type": "script",
+                "key": "GameBoardPrefab"
+            },
+            {
+                "url": "src/scripts/GameManager.js",
+                "type": "script",
+                "key": "GameManager"
+            },
+            {
+                "url": "assets/fonts/Halo3.ttf",
+                "type": "binary",
+                "key": "Halo3"
+            },
+            {
+                "url": "src/scripts/InputManager.js",
+                "type": "script",
+                "key": "InputManager"
+            },
+            {
+                "url": [
+                    "assets/sounds/mixkit-ethereal-fairy-win-sound-2019.wav"
+                ],
+                "type": "audio",
+                "key": "mixkit-ethereal-fairy-win-sound-2019"
+            },
+            {
+                "url": [
+                    "assets/sounds/mixkit-money-bag-drop-1989.wav"
+                ],
+                "type": "audio",
+                "key": "mixkit-money-bag-drop-1989"
+            },
+            {
+                "url": [
+                    "assets/sounds/mixkit-video-game-win-2016.wav"
+                ],
+                "type": "audio",
+                "key": "mixkit-video-game-win-2016"
+            },
+            {
+                "url": "assets/fonts/PAC-FONT.TTF",
+                "type": "binary",
+                "key": "PAC-FONT"
+            },
+            {
+                "url": "assets/images/playAgainButton2x.png",
+                "type": "image",
+                "key": "playAgainButton2x"
+            },
+            {
+                "url": "assets/images/player_1-removebg-preview.png",
+                "type": "image",
+                "key": "player_1"
+            },
+            {
+                "url": "assets/images/player_2-removebg-preview.png",
+                "type": "image",
+                "key": "player_2"
+            },
+            {
+                "url": "assets/images/red.png",
+                "type": "image",
+                "key": "red"
+            },
+            {
+                "url": "assets/images/resultbg.jpg",
+                "type": "image",
+                "key": "resultbg"
+            },
+            {
+                "url": "src/scripts/SocketManager.js",
+                "type": "script",
+                "key": "SocketManager"
+            },
+            {
+                "url": "src/scripts/SoundManager.js",
+                "type": "script",
+                "key": "SoundManager"
+            },
+            {
+                "url": "assets/images/yellow.png",
+                "type": "image",
+                "key": "yellow"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
