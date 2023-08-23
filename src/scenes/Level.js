@@ -433,7 +433,7 @@ class Level extends Phaser.Scene {
 					this.updateGridData(cellName);
 					// console.log(i)
 					// console.log(cellName)
-					console.log(this.checkSequence(this.gridData));
+					console.log(this.findFourOnes(this.gridData));
 				});
 			}
 		}
@@ -453,107 +453,62 @@ class Level extends Phaser.Scene {
 	}
 
 
-	checkSequence(matrix) {
-		console.log("in the check sequennce")
-		const rows = matrix.length;
-		const cols = matrix[0].length;
+	findFourOnes(grid) {
+		const rows = grid.length;
+		const cols = grid[0].length;
+	
+		// Helper function to check for four ones in a given direction
+		function checkDirection(row, col, dr, dc) {
+			for (let i = 0; i < 4; i++) {
+				const r = row + i * dr;
+				const c = col + i * dc;
+				if (r < 0 || r >= rows || c < 0 || c >= cols || grid[r][c] !== 1) {
+					return false;
+				}
+			}
+			return true;
+		}
 	
 		// Check rows
 		for (let row = 0; row < rows; row++) {
 			for (let col = 0; col <= cols - 4; col++) {
-				const current = matrix[row][col];
-				if (current === 0) continue;
-	
-				let count = 1;
-				let c = col + 1;
-				while (c < cols && matrix[row][c] === current) {
-					count++;
-					c++;
-				}
-	
-				if (count === 4) {
-					return {
-						sequence: current,
-						type: "row",
-						position: { row, col },
-					};
+				if (checkDirection(row, col, 0, 1)) {
+					return [[row, col], [row, col + 1], [row, col + 2], [row, col + 3]];
 				}
 			}
 		}
 	
 		// Check columns
-		for (let col = 0; col < cols; col++) {
-			for (let row = 0; row <= rows - 4; row++) {
-				const current = matrix[row][col];
-				if (current === 0) continue;
-	
-				let count = 1;
-				let r = row + 1;
-				while (r < rows && matrix[r][col] === current) {
-					count++;
-					r++;
-				}
-	
-				if (count === 4) {
-					return {
-						sequence: current,
-						type: "column",
-						position: { row, col },
-					};
+		for (let row = 0; row <= rows - 4; row++) {
+			for (let col = 0; col < cols; col++) {
+				if (checkDirection(row, col, 1, 0)) {
+					return [[row, col], [row + 1, col], [row + 2, col], [row + 3, col]];
 				}
 			}
 		}
 	
-		// Check diagonals
+		// Check diagonals (top-left to bottom-right)
 		for (let row = 0; row <= rows - 4; row++) {
 			for (let col = 0; col <= cols - 4; col++) {
-				const current = matrix[row][col];
-				if (current === 0) continue;
-	
-				// Check diagonal (top-left to bottom-right)
-				let count = 1;
-				let r = row + 1;
-				let c = col + 1;
-				while (r < rows && c < cols && matrix[r][c] === current) {
-					count++;
-					r++;
-					c++;
-				}
-	
-				if (count === 4) {
-					return {
-						sequence: current,
-						type: "diagonal",
-						position: { row, col },
-					};
-				}
-	
-				// Check diagonal (top-right to bottom-left)
-				count = 1;
-				r = row + 1;
-				c = col - 1;
-				while (r < rows && c >= 0 && matrix[r][c] === current) {
-					count++;
-					r++;
-					c--;
-				}
-	
-				if (count === 4) {
-					return {
-						sequence: current,
-						type: "diagonal",
-						position: { row, col: col + 3 },
-					};
+				if (checkDirection(row, col, 1, 1)) {
+					return [[row, col], [row + 1, col + 1], [row + 2, col + 2], [row + 3, col + 3]];
 				}
 			}
 		}
-		// No sequence found
-		return "no sequence";
+	
+		// Check diagonals (bottom-left to top-right)
+		for (let row = 3; row < rows; row++) {
+			for (let col = 0; col <= cols - 4; col++) {
+				if (checkDirection(row, col, -1, 1)) {
+					return [[row, col], [row - 1, col + 1], [row - 2, col + 2], [row - 3, col + 3]];
+				}
+			}
+		}
+	
+		// If no sequence of four ones is found, return null
+		return null;
 	}
 	
-	
-	
-
 
 
 
