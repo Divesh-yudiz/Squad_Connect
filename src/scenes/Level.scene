@@ -1,0 +1,650 @@
+{
+    "id": "01aefa93-6044-4159-8358-7e91310aa05f",
+    "sceneType": "SCENE",
+    "settings": {
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Level",
+        "borderWidth": 1920,
+        "borderHeight": 1080
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "5b73fcaf-305f-48e1-bf73-e6b4243605f1",
+            "label": "background",
+            "components": [],
+            "texture": {
+                "key": "Background"
+            },
+            "x": 960,
+            "y": 540
+        },
+        {
+            "type": "Image",
+            "id": "628bdad9-2a4e-44f7-ad43-b70b4133a028",
+            "label": "game_Board",
+            "components": [],
+            "texture": {
+                "key": "Game-Board"
+            },
+            "x": 960,
+            "y": 540,
+            "scaleX": 0.9,
+            "scaleY": 0.9
+        },
+        {
+            "type": "Image",
+            "id": "40786e05-8b1f-439f-942b-a9524d110056",
+            "label": "silver_Stone",
+            "components": [],
+            "texture": {
+                "key": "Silver-Stone"
+            },
+            "x": 291,
+            "y": 533,
+            "scaleX": 0.8,
+            "scaleY": 0.8
+        },
+        {
+            "type": "Image",
+            "id": "e4e82cf5-9f12-43bc-a4ee-fe100722146c",
+            "label": "brown_Stone",
+            "components": [],
+            "texture": {
+                "key": "Brown-Stone"
+            },
+            "x": 1609,
+            "y": 533,
+            "scaleX": 0.8,
+            "scaleY": 0.8
+        },
+        {
+            "type": "Image",
+            "id": "a9271c7e-d0d9-456c-85e7-2aa02f376958",
+            "label": "brown_Stone_Cover",
+            "components": [],
+            "texture": {
+                "key": "Brown-Stone-Cover"
+            },
+            "x": 1609,
+            "y": 533,
+            "scaleX": 0.55,
+            "scaleY": 0.55
+        },
+        {
+            "type": "Image",
+            "id": "e25c3443-5a80-4416-84e2-661b9487fcb7",
+            "label": "silver_Stone_Cover",
+            "components": [],
+            "texture": {
+                "key": "Silver-Stone-Cover"
+            },
+            "x": 291,
+            "y": 533,
+            "scaleX": 0.55,
+            "scaleY": 0.55
+        },
+        {
+            "type": "Image",
+            "id": "f964b8ac-ec31-41a0-bb71-367324a1f6c4",
+            "label": "character_1",
+            "components": [],
+            "texture": {
+                "key": "Character-1"
+            },
+            "x": 289,
+            "y": 534,
+            "scaleX": 0.5,
+            "scaleY": 0.5
+        },
+        {
+            "type": "Image",
+            "id": "8702c001-3094-4bf0-88d3-8c6475952e61",
+            "label": "character_2",
+            "components": [],
+            "texture": {
+                "key": "Character-2"
+            },
+            "x": 1612,
+            "y": 536,
+            "scaleX": 0.5,
+            "scaleY": 0.5
+        },
+        {
+            "type": "Ellipse",
+            "id": "0b3618a1-4cf1-4d73-95f7-55e1ecd01c14",
+            "label": "cell_1",
+            "components": [],
+            "x": 604,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "e04468ce-1daf-4838-9575-48e355197de9",
+            "label": "cell_2",
+            "components": [],
+            "x": 717,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "6ae0593c-2d5d-4aca-b2cb-49e4526bb329",
+            "label": "cell_3",
+            "components": [],
+            "x": 828,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "28b5eaca-a9ef-4d9d-9910-6ab24b1befce",
+            "label": "cell_4",
+            "components": [],
+            "x": 929,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "8ea6519f-942c-4533-9ef3-dba869d39313",
+            "label": "cell_5",
+            "components": [],
+            "x": 1030,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "adb0bf16-7c18-4a32-97f3-4feab0f05c48",
+            "label": "cell_6",
+            "components": [],
+            "x": 1129,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "a51dd67b-e780-4890-ab29-e80525e1ed80",
+            "label": "cell_7",
+            "components": [],
+            "x": 1231,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "6bd8db8f-30c4-4c0d-a889-d7ecbef05fab",
+            "label": "cell_8",
+            "components": [],
+            "x": 1334,
+            "y": 833,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "daf3432b-b804-4b0b-acf8-4f5f3fe8c76a",
+            "label": "cell_9",
+            "components": [],
+            "x": 604,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "9c664c3a-314d-4bba-9c59-17561f71de00",
+            "label": "cell_10",
+            "components": [],
+            "x": 717,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "b6d3392c-72da-450d-bda8-efd2358e6433",
+            "label": "cell_11",
+            "components": [],
+            "x": 827,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "b58d2268-506e-440a-bb10-4d468d0d9a3c",
+            "label": "cell_12",
+            "components": [],
+            "x": 928,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "79fa39ed-eaa5-4162-8764-83d3ee1ad5df",
+            "label": "cell_13",
+            "components": [],
+            "x": 1030,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "fb27a208-3078-4e5d-9768-2b4476c4f067",
+            "label": "cell_14",
+            "components": [],
+            "x": 1130,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "aed18150-c57e-4e3c-bcca-5654a29f8435",
+            "label": "cell_15",
+            "components": [],
+            "x": 1230,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "56d8ccb0-ca54-42a1-9d79-51ec2cccebe2",
+            "label": "cell_16",
+            "components": [],
+            "x": 1335,
+            "y": 723,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "ac38045a-1bcb-4802-845a-6116e4ee841a",
+            "label": "cell_17",
+            "components": [],
+            "x": 603,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "19196466-257a-4159-9a3f-5fe630dfa6a7",
+            "label": "cell_18",
+            "components": [],
+            "x": 717.1530300535503,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "c17c7f78-49f6-419b-ba71-139fffd6073d",
+            "label": "cell_19",
+            "components": [],
+            "x": 828.2526274214182,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "adf62e57-befb-4ab9-b2de-1cddecdae62d",
+            "label": "cell_20",
+            "components": [],
+            "x": 928,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "17faac95-2635-483a-aeec-d1dbbcae8374",
+            "label": "cell_21",
+            "components": [],
+            "x": 1031,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "988d6d22-dd5a-42cc-aee7-5d9575b76500",
+            "label": "cell_22",
+            "components": [],
+            "x": 1130,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "b3f5d813-b14a-4eaa-881e-2d0826770bc6",
+            "label": "cell_23",
+            "components": [],
+            "x": 1230,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "aa5df7c8-1618-4ec7-87a4-b69dbf7ddfa3",
+            "label": "cell_24",
+            "components": [],
+            "x": 1334.2659222450707,
+            "y": 614,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "15ece457-117c-44fb-85e5-e2f808f3732d",
+            "label": "cell_25",
+            "components": [],
+            "x": 603,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "1d9fa17b-f871-4b7b-aa68-9dde04ddde91",
+            "label": "cell_26",
+            "components": [],
+            "x": 715.6757463743146,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "f50552ef-3073-4273-98bb-32391370cc2e",
+            "label": "cell_27",
+            "components": [],
+            "x": 828,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "16ab6dd6-2acc-4752-90a6-e27d76379819",
+            "label": "cell_28",
+            "components": [],
+            "x": 928,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "09c60f99-e730-4be2-b704-7613db215f48",
+            "label": "cell_29",
+            "components": [],
+            "x": 1030.7499940584848,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "642d3cdf-d942-4c92-8bb0-be437a6ef7e5",
+            "label": "cell_30",
+            "components": [],
+            "x": 1130,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "3eb4f460-78c7-42d3-8d57-471daf86e79e",
+            "label": "cell_31",
+            "components": [],
+            "x": 1230,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "29c6dbc3-64c5-4081-8d4c-8c5e3220ed5f",
+            "label": "cell_32",
+            "components": [],
+            "x": 1333.6037994216217,
+            "y": 506,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "42bce07c-84d1-4b9e-9caa-27230a7741aa",
+            "label": "cell_33",
+            "components": [],
+            "x": 603,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "29d0e6d1-e161-44dd-9746-6b0c396fd9c8",
+            "label": "cell_34",
+            "components": [],
+            "x": 716,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "782b8629-c89f-4866-a42e-f1aac8d218ac",
+            "label": "cell_35",
+            "components": [],
+            "x": 826,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "a6ff3562-0fdc-4b29-801b-b651cf0e1ee2",
+            "label": "cell_36",
+            "components": [],
+            "x": 927.8851166703676,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "a9da76d5-95e5-4df7-997d-027c52e6ba0c",
+            "label": "cell_37",
+            "components": [],
+            "x": 1030.497770780217,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "ec58a400-d367-4b9a-862d-572f70668ef8",
+            "label": "cell_38",
+            "components": [],
+            "x": 1130.453690169301,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "99e5c21e-676f-44d5-b0ce-0f639bd80909",
+            "label": "cell_39",
+            "components": [],
+            "x": 1231,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "f28e5a68-9439-4454-9396-ccdb014df1f4",
+            "label": "cell_40",
+            "components": [],
+            "x": 1334,
+            "y": 394,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "40d7ff4e-2bb4-42e9-8c0e-0ec702a3ab89",
+            "label": "cell_41",
+            "components": [],
+            "x": 603,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "487d5c8b-d71a-47e3-9170-a3531e3fb342",
+            "label": "cell_42",
+            "components": [],
+            "x": 716,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "0bf8e1da-a3d5-4036-aac8-91e7635d46f7",
+            "label": "cell_43",
+            "components": [],
+            "x": 826,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "e51c14e5-77f6-49e6-bb61-cee1ac744db4",
+            "label": "cell_44",
+            "components": [],
+            "x": 927,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "3c4da0d1-6075-4a4f-a77e-fd621287ea67",
+            "label": "cell_45",
+            "components": [],
+            "x": 1031.2593721979433,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "0b42e93b-d943-4792-9851-e6400ebb6e89",
+            "label": "cell_46",
+            "components": [],
+            "x": 1130.3154399145712,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "5b881464-7e05-4901-9038-2dba9ea16b3e",
+            "label": "cell_47",
+            "components": [],
+            "x": 1231,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        },
+        {
+            "type": "Ellipse",
+            "id": "113acc2c-d8bf-4355-b232-732071c6c109",
+            "label": "cell_48",
+            "components": [],
+            "x": 1334,
+            "y": 277,
+            "isFilled": true,
+            "width": 70,
+            "height": 70
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor 2D - Scene Editor",
+        "url": "https://phasereditor2d.com",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 3
+    }
+}

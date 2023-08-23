@@ -1,0 +1,83 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/images/Background.png",
+                "type": "image",
+                "key": "Background"
+            },
+            {
+                "url": "assets/images/Brown-Stone.png",
+                "type": "image",
+                "key": "Brown-Stone"
+            },
+            {
+                "url": "assets/images/Brown-Stone-Cover.png",
+                "type": "image",
+                "key": "Brown-Stone-Cover"
+            },
+            {
+                "url": "assets/images/Character-1.png",
+                "type": "image",
+                "key": "Character-1"
+            },
+            {
+                "url": "assets/images/Character-2.png",
+                "type": "image",
+                "key": "Character-2"
+            },
+            {
+                "url": "assets/images/Clipping-Mask-For-Character.png",
+                "type": "image",
+                "key": "Clipping-Mask-For-Character"
+            },
+            {
+                "url": "assets/images/Game-Board.png",
+                "type": "image",
+                "key": "Game-Board"
+            },
+            {
+                "url": "src/scripts/GameManager.js",
+                "type": "script",
+                "key": "GameManager"
+            },
+            {
+                "url": "assets/images/Highlighted-Ring.png",
+                "type": "image",
+                "key": "Highlighted-Ring"
+            },
+            {
+                "url": "src/scripts/InputManager.js",
+                "type": "script",
+                "key": "InputManager"
+            },
+            {
+                "url": "assets/images/Silver-Stone.png",
+                "type": "image",
+                "key": "Silver-Stone"
+            },
+            {
+                "url": "assets/images/Silver-Stone-Cover.png",
+                "type": "image",
+                "key": "Silver-Stone-Cover"
+            },
+            {
+                "url": "src/scripts/SocketManager.js",
+                "type": "script",
+                "key": "SocketManager"
+            },
+            {
+                "url": "src/scripts/SoundManager.js",
+                "type": "script",
+                "key": "SoundManager"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}
