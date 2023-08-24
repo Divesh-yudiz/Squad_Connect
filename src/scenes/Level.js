@@ -371,9 +371,6 @@ class Level extends Phaser.Scene {
 		box1.isFilled = true;
 		boxContainer.add(box1);
 
-		// yellow
-		this.add.image(1333, -78, "yellow");
-
 		// gameTitle
 		const gameTitle = this.add.text(960, 46, "", {});
 		gameTitle.setOrigin(0.5, 0.5);
@@ -434,11 +431,6 @@ class Level extends Phaser.Scene {
 		const row1_Space_6 = this.add.rectangle(1299, 570, 100, 910);
 		row1_Space_6.isFilled = true;
 
-		// red
-		const red = this.add.image(631, -88, "Brown-Stone");
-		red.scaleX = 0.33;
-		red.scaleY = 0.33;
-
 		this.boxContainer = boxContainer;
 		this.box49 = box49;
 		this.box48 = box48;
@@ -497,7 +489,6 @@ class Level extends Phaser.Scene {
 		this.row1_Space_4 = row1_Space_4;
 		this.row1_Space_5 = row1_Space_5;
 		this.row1_Space_6 = row1_Space_6;
-		this.red = red;
 
 		this.events.emit("scene-awake");
 	}
@@ -618,8 +609,6 @@ class Level extends Phaser.Scene {
 	row1_Space_5;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	row1_Space_6;
-	/** @type {Phaser.GameObjects.Image} */
-	red;
 
 	/* START-USER-CODE */
 
@@ -698,17 +687,19 @@ class Level extends Phaser.Scene {
 		const sequence = this.checkSequence(this.resultMatrix);
 		if (sequence) {
 			if (sequence.sequence == 2) {
+				this.scene.pause('Level')
 				setTimeout(() => {
 					playerWon = "player_1_Won"
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 1000);
+				}, 4000);
 			} else if (sequence.sequence == 1) {
+				this.scene.pause('Level')
 				setTimeout(() => {
 					playerWon = "player_2_Won"
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 1000);
+				}, 4000);
 			}
 
 		} else {

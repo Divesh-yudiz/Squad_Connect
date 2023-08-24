@@ -739,17 +739,6 @@
             ]
         },
         {
-            "type": "Image",
-            "id": "0478d301-c638-4400-a0e1-cd3bfaaaceeb",
-            "label": "yellow",
-            "components": [],
-            "texture": {
-                "key": "yellow"
-            },
-            "x": 1333,
-            "y": -78
-        },
-        {
             "type": "Text",
             "id": "d5173860-5299-4af6-9c11-44124bd4d66e",
             "label": "gameTitle",
@@ -921,20 +910,6 @@
             "isFilled": true,
             "width": 100,
             "height": 910
-        },
-        {
-            "type": "Image",
-            "id": "02bbfd71-4de7-4096-aa0a-aec3b215451d",
-            "label": "red",
-            "scope": "CLASS",
-            "components": [],
-            "texture": {
-                "key": "Brown-Stone"
-            },
-            "x": 631,
-            "y": -88,
-            "scaleX": 0.33,
-            "scaleY": 0.33
         }
     ],
     "plainObjects": [],
