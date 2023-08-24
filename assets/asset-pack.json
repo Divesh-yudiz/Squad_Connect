@@ -2,6 +2,11 @@
     "section1": {
         "files": [
             {
+                "url": "assets/images/Background.png",
+                "type": "image",
+                "key": "Background"
+            },
+            {
                 "url": "assets/images/bgImage.jpg",
                 "type": "image",
                 "key": "bgImage"
@@ -12,9 +17,39 @@
                 "key": "Board (1)"
             },
             {
+                "url": "assets/images/Brown-Stone.png",
+                "type": "image",
+                "key": "Brown-Stone"
+            },
+            {
+                "url": "assets/images/Brown-Stone-Cover.png",
+                "type": "image",
+                "key": "Brown-Stone-Cover"
+            },
+            {
+                "url": "assets/images/Character-1.png",
+                "type": "image",
+                "key": "Character-1"
+            },
+            {
+                "url": "assets/images/Character-2.png",
+                "type": "image",
+                "key": "Character-2"
+            },
+            {
+                "url": "assets/images/Clipping-Mask-For-Character.png",
+                "type": "image",
+                "key": "Clipping-Mask-For-Character"
+            },
+            {
                 "url": "assets/css/font.css",
                 "type": "css",
                 "key": "font"
+            },
+            {
+                "url": "assets/images/Game-Board-2.png",
+                "type": "image",
+                "key": "Game-Board-2"
             },
             {
                 "url": "src/Prefabs/GameBoardPrefab.js",
@@ -30,6 +65,11 @@
                 "url": "assets/fonts/Halo3.ttf",
                 "type": "binary",
                 "key": "Halo3"
+            },
+            {
+                "url": "assets/images/Highlighted-Ring.png",
+                "type": "image",
+                "key": "Highlighted-Ring"
             },
             {
                 "url": "src/scripts/InputManager.js",
@@ -86,6 +126,16 @@
                 "url": "assets/images/resultbg.jpg",
                 "type": "image",
                 "key": "resultbg"
+            },
+            {
+                "url": "assets/images/Silver-Stone.png",
+                "type": "image",
+                "key": "Silver-Stone"
+            },
+            {
+                "url": "assets/images/Silver-Stone-Cover.png",
+                "type": "image",
+                "key": "Silver-Stone-Cover"
             },
             {
                 "url": "src/scripts/SocketManager.js",
