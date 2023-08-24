@@ -16,28 +16,17 @@ class ResultScene extends Phaser.Scene {
 	/** @returns {void} */
 	editorCreate() {
 
-		// resultbg
-		const resultbg = this.add.image(960, 540, "resultbg");
-		resultbg.scaleX = 0.35;
-		resultbg.scaleY = 0.35;
-
-		// ResultDeclaration
-		const resultDeclaration = this.add.text(960, 540, "", {});
-		resultDeclaration.setOrigin(0.5, 0.5);
-		resultDeclaration.text = "New text";
-		resultDeclaration.setStyle({ "align": "center", "fontSize": "80px" });
+		// background
+		this.add.image(960, 540, "Background");
 
 		// playAgainBtn
-		const playAgainBtn = this.add.image(949, 834, "playAgainButton2x");
+		const playAgainBtn = this.add.image(960, 893, "Re-Play-Button");
 
-		this.resultDeclaration = resultDeclaration;
 		this.playAgainBtn = playAgainBtn;
 
 		this.events.emit("scene-awake");
 	}
 
-	/** @type {Phaser.GameObjects.Text} */
-	resultDeclaration;
 	/** @type {Phaser.GameObjects.Image} */
 	playAgainBtn;
 
@@ -50,8 +39,13 @@ class ResultScene extends Phaser.Scene {
 		this.editorCreate();
 		this.soundObj = new SoundManager(this);
 		this.soundObj.playSound(this.soundObj.winningSound, false);
-		this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
-		this.resultDeclaration.setText(`${playerWon} Won...`)
+		// this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
+		console.log(playerWon)
+		if(playerWon=="player_1_Won"){
+			var image = this.add.image(960, 540, 'Player-1-Won');
+		}else{
+			var image = this.add.image(960, 540, 'Player-2-Won');
+		}
 		this.playAgainBtn.setInteractive();
 		this.playAgainBtn.on('pointerdown',()=>{
 			location.reload();

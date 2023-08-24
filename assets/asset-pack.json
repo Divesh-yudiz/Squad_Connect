@@ -2,11 +2,6 @@
     "section1": {
         "files": [
             {
-                "url": "assets/images/Background.png",
-                "type": "image",
-                "key": "Background"
-            },
-            {
                 "url": "assets/images/bgImage.jpg",
                 "type": "image",
                 "key": "bgImage"
@@ -19,7 +14,7 @@
             {
                 "url": "assets/images/Brown-Stone.png",
                 "type": "image",
-                "key": "Brown-Stone"
+                "key": "red"
             },
             {
                 "url": "assets/images/Brown-Stone-Cover.png",
@@ -118,6 +113,21 @@
                 "key": "player_2"
             },
             {
+                "url": "assets/images/Player-1-Won.png",
+                "type": "image",
+                "key": "Player-1-Won"
+            },
+            {
+                "url": "assets/images/Player-2-Won.png",
+                "type": "image",
+                "key": "Player-2-Won"
+            },
+            {
+                "url": "assets/images/Re-Play-Button.png",
+                "type": "image",
+                "key": "Re-Play-Button"
+            },
+            {
                 "url": "assets/images/red.png",
                 "type": "image",
                 "key": "red"
@@ -130,7 +140,7 @@
             {
                 "url": "assets/images/Silver-Stone.png",
                 "type": "image",
-                "key": "Silver-Stone"
+                "key": "yellow"
             },
             {
                 "url": "assets/images/Silver-Stone-Cover.png",
@@ -146,11 +156,6 @@
                 "url": "src/scripts/SoundManager.js",
                 "type": "script",
                 "key": "SoundManager"
-            },
-            {
-                "url": "assets/images/yellow.png",
-                "type": "image",
-                "key": "yellow"
             }
         ]
     },

@@ -371,9 +371,6 @@ class Level extends Phaser.Scene {
 		box1.isFilled = true;
 		boxContainer.add(box1);
 
-		// red
-		const red = this.add.image(516, -89, "red");
-
 		// yellow
 		this.add.image(1333, -78, "yellow");
 
@@ -383,16 +380,16 @@ class Level extends Phaser.Scene {
 		gameTitle.text = "Connect 4";
 		gameTitle.setStyle({ "align": "right", "color": "#190b0bff", "fontSize": "40px" });
 
-		// silver_Stone
-		this.add.image(300, 546, "Silver-Stone");
-
-		// brown_Stone
-		this.add.image(1602, 541, "Brown-Stone");
+		// yellow_1
+		this.add.image(300, 546, "yellow");
 
 		// silver_Stone_Cover
 		const silver_Stone_Cover = this.add.image(300, 546, "Silver-Stone-Cover");
 		silver_Stone_Cover.scaleX = 0.7;
 		silver_Stone_Cover.scaleY = 0.7;
+
+		// red_1
+		this.add.image(1599, 541, "red");
 
 		// brown_Stone_Cover
 		const brown_Stone_Cover = this.add.image(1599, 541, "Brown-Stone-Cover");
@@ -436,6 +433,11 @@ class Level extends Phaser.Scene {
 		// row1_Space_6
 		const row1_Space_6 = this.add.rectangle(1299, 570, 100, 910);
 		row1_Space_6.isFilled = true;
+
+		// red
+		const red = this.add.image(631, -88, "Brown-Stone");
+		red.scaleX = 0.33;
+		red.scaleY = 0.33;
 
 		this.boxContainer = boxContainer;
 		this.box49 = box49;
@@ -487,7 +489,6 @@ class Level extends Phaser.Scene {
 		this.box3 = box3;
 		this.box2 = box2;
 		this.box1 = box1;
-		this.red = red;
 		this.gameTitle = gameTitle;
 		this.row1_Space = row1_Space;
 		this.row1_Space_1 = row1_Space_1;
@@ -496,6 +497,7 @@ class Level extends Phaser.Scene {
 		this.row1_Space_4 = row1_Space_4;
 		this.row1_Space_5 = row1_Space_5;
 		this.row1_Space_6 = row1_Space_6;
+		this.red = red;
 
 		this.events.emit("scene-awake");
 	}
@@ -600,8 +602,6 @@ class Level extends Phaser.Scene {
 	box2;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	box1;
-	/** @type {Phaser.GameObjects.Image} */
-	red;
 	/** @type {Phaser.GameObjects.Text} */
 	gameTitle;
 	/** @type {Phaser.GameObjects.Rectangle} */
@@ -618,6 +618,8 @@ class Level extends Phaser.Scene {
 	row1_Space_5;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	row1_Space_6;
+	/** @type {Phaser.GameObjects.Image} */
+	red;
 
 	/* START-USER-CODE */
 
@@ -654,8 +656,10 @@ class Level extends Phaser.Scene {
 		// this.input.on('pointerleave', this.showpoint, this);
 
 		this.red0_5 = this.add.image(656, 892, 'red');
+		this.red0_5.setScale(0.33,0.33)
 		this.red0_5.setAlpha(0.5)
 		this.yellow0_5 = this.add.image(773, 892, 'yellow');
+		this.yellow0_5.setScale(0.33,0.33)
 		this.yellow0_5.setAlpha(0.5)
 
 		this.gameTitle.setStyle({ 'fontFamily': 'GameFont1' })
@@ -695,13 +699,13 @@ class Level extends Phaser.Scene {
 		if (sequence) {
 			if (sequence.sequence == 2) {
 				setTimeout(() => {
-					playerWon = "Player 1"
+					playerWon = "player_1_Won"
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
 				}, 1000);
 			} else if (sequence.sequence == 1) {
 				setTimeout(() => {
-					playerWon = "Player 2"
+					playerWon = "player_2_Won"
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
 				}, 1000);
@@ -1013,7 +1017,9 @@ class Level extends Phaser.Scene {
 	addCoin(place, arrayIndex) {
 		// console.log(place);
 		this.redCoin = this.add.image(this.intialposX, this.intialposY, 'red');
+		this.redCoin.setScale(0.33,0.33)
 		this.yellowCoin = this.add.image(this.intialposX, this.intialposY, 'yellow');
+		this.yellowCoin.setScale(0.33,0.33)
 
 		if (this.count == 0) {
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);

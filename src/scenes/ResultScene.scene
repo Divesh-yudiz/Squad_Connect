@@ -11,42 +11,26 @@
     "displayList": [
         {
             "type": "Image",
-            "id": "eee2c35f-8452-4be1-9d77-d085a9923e8f",
-            "label": "resultbg",
+            "id": "ff71db47-b448-46bb-91e9-8bc8423b99db",
+            "label": "background",
             "components": [],
             "texture": {
-                "key": "resultbg"
+                "key": "Background"
             },
             "x": 960,
-            "y": 540,
-            "scaleX": 0.35,
-            "scaleY": 0.35
-        },
-        {
-            "type": "Text",
-            "id": "af8ecc19-158c-4dd3-a2b1-1684f092c6b0",
-            "label": "ResultDeclaration",
-            "scope": "CLASS",
-            "components": [],
-            "x": 960,
-            "y": 540,
-            "originX": 0.5,
-            "originY": 0.5,
-            "text": "New text",
-            "align": "center",
-            "fontSize": "80px"
+            "y": 540
         },
         {
             "type": "Image",
-            "id": "1595627b-431d-4fbf-bd11-0708ba8a2f8d",
+            "id": "84b2da9e-3eeb-4c2a-a99d-2713401c2682",
             "label": "playAgainBtn",
             "scope": "CLASS",
             "components": [],
             "texture": {
-                "key": "playAgainButton2x"
+                "key": "Re-Play-Button"
             },
-            "x": 949,
-            "y": 834
+            "x": 960,
+            "y": 893
         }
     ],
     "plainObjects": [],

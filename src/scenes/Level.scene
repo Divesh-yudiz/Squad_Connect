@@ -740,18 +740,6 @@
         },
         {
             "type": "Image",
-            "id": "3d15e13b-1a31-4906-aa18-f6422b234c0c",
-            "label": "red",
-            "scope": "CLASS",
-            "components": [],
-            "texture": {
-                "key": "red"
-            },
-            "x": 516,
-            "y": -89
-        },
-        {
-            "type": "Image",
             "id": "0478d301-c638-4400-a0e1-cd3bfaaaceeb",
             "label": "yellow",
             "components": [],
@@ -778,25 +766,14 @@
         },
         {
             "type": "Image",
-            "id": "9214a545-d91d-4a5a-bbea-99337e9254c7",
-            "label": "silver_Stone",
+            "id": "8c8e40fc-f929-4e22-a25e-69d99195bb27",
+            "label": "yellow_1",
             "components": [],
             "texture": {
-                "key": "Silver-Stone"
+                "key": "yellow"
             },
             "x": 300,
             "y": 546
-        },
-        {
-            "type": "Image",
-            "id": "3923bd51-3780-4fed-8ee9-325e0fce1e8a",
-            "label": "brown_Stone",
-            "components": [],
-            "texture": {
-                "key": "Brown-Stone"
-            },
-            "x": 1602,
-            "y": 541
         },
         {
             "type": "Image",
@@ -810,6 +787,17 @@
             "y": 546,
             "scaleX": 0.7,
             "scaleY": 0.7
+        },
+        {
+            "type": "Image",
+            "id": "1c139c56-ed61-43ae-85fb-2ca11705ceae",
+            "label": "red_1",
+            "components": [],
+            "texture": {
+                "key": "red"
+            },
+            "x": 1599,
+            "y": 541
         },
         {
             "type": "Image",
@@ -933,6 +921,20 @@
             "isFilled": true,
             "width": 100,
             "height": 910
+        },
+        {
+            "type": "Image",
+            "id": "02bbfd71-4de7-4096-aa0a-aec3b215451d",
+            "label": "red",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Brown-Stone"
+            },
+            "x": 631,
+            "y": -88,
+            "scaleX": 0.33,
+            "scaleY": 0.33
         }
     ],
     "plainObjects": [],

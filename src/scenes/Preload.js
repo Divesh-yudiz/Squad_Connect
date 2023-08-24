@@ -28,21 +28,17 @@ class Preload extends Phaser.Scene {
 		progress.text = "0%";
 		progress.setStyle({ "fontSize": "54px" });
 
-		// splashScreen
-		const splashScreen = this.add.image(960, 540, "SplashScreen");
-		splashScreen.scaleX = 1.6;
-		splashScreen.scaleY = 1.7;
+		// background
+		this.add.image(960, 540, "Background");
+
+		// logo
+		this.add.image(960, 540, "Logo");
 
 		// progress (components)
 		new PreloadText(progress);
 
-		this.splashScreen = splashScreen;
-
 		this.events.emit("scene-awake");
 	}
-
-	/** @type {Phaser.GameObjects.Image} */
-	splashScreen;
 
 	/* START-USER-CODE */
 
