@@ -28,17 +28,6 @@
         },
         {
             "type": "Image",
-            "id": "c83dfcd8-a5b4-4b2e-9c68-6b6a926c45d7",
-            "label": "background",
-            "components": [],
-            "texture": {
-                "key": "Background"
-            },
-            "x": 960,
-            "y": 540
-        },
-        {
-            "type": "Image",
             "id": "223d7741-c8bf-4a32-993a-da3db6002808",
             "label": "logo",
             "components": [],

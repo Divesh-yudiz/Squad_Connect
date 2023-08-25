@@ -15,12 +15,20 @@ class Level extends Phaser.Scene {
 	/** @returns {void} */
 	editorCreate() {
 
-		// background
-		this.add.image(960, 540, "Background");
-
 		// board__1_
 		const board__1_ = this.add.image(927.5499956645881, 568.9043206682622, "Board (1)");
 		board__1_.visible = false;
+
+		// glowLeft
+		const glowLeft = this.add.image(306, 547, "Glow");
+		glowLeft.scaleX = 1.5;
+		glowLeft.scaleY = 1.5;
+		glowLeft.visible = false;
+
+		// glowRight
+		const glowRight = this.add.image(1604, 542, "Glow");
+		glowRight.scaleX = 1.5;
+		glowRight.scaleY = 1.5;
 
 		// game_Board_2
 		this.add.image(960, 540, "Game-Board-2");
@@ -371,12 +379,6 @@ class Level extends Phaser.Scene {
 		box1.isFilled = true;
 		boxContainer.add(box1);
 
-		// gameTitle
-		const gameTitle = this.add.text(960, 46, "", {});
-		gameTitle.setOrigin(0.5, 0.5);
-		gameTitle.text = "Connect 4";
-		gameTitle.setStyle({ "align": "right", "color": "#190b0bff", "fontSize": "40px" });
-
 		// yellow_1
 		this.add.image(300, 546, "yellow");
 
@@ -436,6 +438,8 @@ class Level extends Phaser.Scene {
 		hoverCoin.scaleX = 0.44;
 		hoverCoin.scaleY = 0.44;
 
+		this.glowLeft = glowLeft;
+		this.glowRight = glowRight;
 		this.boxContainer = boxContainer;
 		this.box49 = box49;
 		this.box48 = box48;
@@ -486,7 +490,6 @@ class Level extends Phaser.Scene {
 		this.box3 = box3;
 		this.box2 = box2;
 		this.box1 = box1;
-		this.gameTitle = gameTitle;
 		this.row1_Space = row1_Space;
 		this.row1_Space_1 = row1_Space_1;
 		this.row1_Space_2 = row1_Space_2;
@@ -499,6 +502,10 @@ class Level extends Phaser.Scene {
 		this.events.emit("scene-awake");
 	}
 
+	/** @type {Phaser.GameObjects.Image} */
+	glowLeft;
+	/** @type {Phaser.GameObjects.Image} */
+	glowRight;
 	/** @type {Phaser.GameObjects.Container} */
 	boxContainer;
 	/** @type {Phaser.GameObjects.Ellipse} */
@@ -599,8 +606,6 @@ class Level extends Phaser.Scene {
 	box2;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	box1;
-	/** @type {Phaser.GameObjects.Text} */
-	gameTitle;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	row1_Space;
 	/** @type {Phaser.GameObjects.Rectangle} */
@@ -653,13 +658,13 @@ class Level extends Phaser.Scene {
 		// this.input.on('pointerleave', this.showpoint, this);
 
 		this.red0_5 = this.add.image(656, 892, 'red');
-		this.red0_5.setScale(0.33,0.33)
+		this.red0_5.setScale(0.33, 0.33)
 		this.red0_5.setAlpha(0.5)
 		this.yellow0_5 = this.add.image(773, 892, 'yellow');
-		this.yellow0_5.setScale(0.33,0.33)
+		this.yellow0_5.setScale(0.33, 0.33)
 		this.yellow0_5.setAlpha(0.5)
 
-		this.gameTitle.setStyle({ 'fontFamily': 'GameFont1' })
+		// this.gameTitle.setStyle({ 'fontFamily': 'GameFont1' })
 		// Populate the matrix
 		for (let i = 0; i < 7; i++) {
 			this.matrix[i] = [];
@@ -697,24 +702,28 @@ class Level extends Phaser.Scene {
 			console.log(sequence)
 			if (sequence.sequence == 2) {
 				this.glowCoins();
-				setTimeout(()=>{
+				this.red0_5.setVisible(false);
+			this.yellow0_5.setVisible(false);
+				setTimeout(() => {
 					this.scene.pause('Level')
-				},700)
+				}, 700)
 				playerWon = "player_1_Won"
 				setTimeout(() => {
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 8000);
+				}, 5000);
 			} else if (sequence.sequence == 1) {
 				this.glowCoins();
-				setTimeout(()=>{
+				this.red0_5.setVisible(false);
+			this.yellow0_5.setVisible(false);
+				setTimeout(() => {
 					this.scene.pause('Level')
-				},1000)
+				}, 1000)
 				playerWon = "player_2_Won"
 				setTimeout(() => {
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 8000);
+				}, 5000);
 			}
 
 		} else {
@@ -771,9 +780,10 @@ class Level extends Phaser.Scene {
 			}
 		}
 
-		// Check diagonals
-		for (let row = 0; row <= rows - 4; row++) {
-			for (let col = 0; col <= cols - 4; col++) {
+
+		//check diagonal
+		for (let row = 0; row < rows; row++) {
+			for (let col = 0; col < cols; col++) {
 				const current = matrix[row][col];
 				if (current === 0) continue;
 
@@ -787,11 +797,13 @@ class Level extends Phaser.Scene {
 					c++;
 				}
 
-				if (count === 4) {
+				if (count >= 4) {
+					console.log("top-left to bottom-right")
 					return {
 						sequence: current,
 						type: "diagonal",
 						position: { row, col },
+						direction:"top-left to bottom-right"
 					};
 				}
 
@@ -805,11 +817,13 @@ class Level extends Phaser.Scene {
 					c--;
 				}
 
-				if (count === 4) {
+				if (count >= 4) {
+					console.log("top-right to bottom-left")
 					return {
 						sequence: current,
 						type: "diagonal",
-						position: { row, col: col + 3 },
+						position: { row, col },
+						direction:"top-right to bottom-left"
 					};
 				}
 			}
@@ -1024,10 +1038,10 @@ class Level extends Phaser.Scene {
 		// console.log(place);
 		this.redCoin = this.add.sprite(this.intialposX, this.intialposY, 'red');
 		this.redCoin.setDepth(2)
-		this.redCoin.setScale(0.33,0.33)
+		this.redCoin.setScale(0.33, 0.33)
 		this.yellowCoin = this.add.sprite(this.intialposX, this.intialposY, 'yellow');
 		this.yellowCoin.setDepth(2)
-		this.yellowCoin.setScale(0.33,0.33)
+		this.yellowCoin.setScale(0.33, 0.33)
 
 		if (this.count == 0) {
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
@@ -1041,7 +1055,9 @@ class Level extends Phaser.Scene {
 				onComplete: () => {
 					this.count++
 					this.hoverCoin.setTexture("yellow");
-					if(this[`array${arrayIndex + 1}Y`]<7){
+					this.glowRight.setVisible(false)
+					this.glowLeft.setVisible(true)
+					if (this[`array${arrayIndex + 1}Y`] < 7) {
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
 					place.packedCoin = "red";
@@ -1062,7 +1078,9 @@ class Level extends Phaser.Scene {
 				onComplete: () => {
 					this.count = 0
 					this.hoverCoin.setTexture("red");
-					if(this[`array${arrayIndex + 1}Y`]<7){
+					this.glowRight.setVisible(true)
+					this.glowLeft.setVisible(false)
+					if (this[`array${arrayIndex + 1}Y`] < 7) {
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
 					console.log(this.targets == this.coin);
@@ -1076,51 +1094,57 @@ class Level extends Phaser.Scene {
 	}
 
 
-	glowCoins(){
+	glowCoins() {
 		const sequence = this.checkSequence(this.resultMatrix);
 		console.log(sequence)
-		if(sequence){
+		if (sequence) {
 			// let oCoinGlow =this.add.image(0,0,"Highlighted-Ring")
-			if(sequence.type=="row"){
-				let row=sequence.position.row;
-				let col=sequence.position.col;
+			if (sequence.type == "row") {
+				let row = sequence.position.row;
+				let col = sequence.position.col;
 
 				// this.mainArray[row][col].y
-
-				for(let i = col; i<4; i++){
-					console.log("row: ",row,"Cols: ", col)
-
-					console.log("hhhhhhh")
-					let leafCircle =this.add.sprite(this.mainArray[row][i].x,this.mainArray[row][i].y,"Leaf-Circle")
-					leafCircle.setScale(.44,.44)
-					// leafCircle.setAlpha(0.5)
+				for (let i = col; i < col + 4; i++) {
+					console.log("row: ", row, "Cols: ", col)
+					console.log(i)
+					let leafCircle = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Leaf-Circle")
+					leafCircle.setScale(.44, .44)
 					leafCircle.setDepth(1)
-					let oCoinGlow =this.add.sprite(this.mainArray[row][i].x,this.mainArray[row][i].y,"Glow")
-					oCoinGlow.setScale(.55,.55)
-					oCoinGlow.setAlpha(0.2)
-					// oCoinGlow.setDepth(1)
 				}
 
 			}
-			else if(sequence.type=="column"){
-				let row=sequence.position.row;
-				let col=sequence.position.col;
+			else if (sequence.type == "column") {
+				let row = sequence.position.row;
+				let col = sequence.position.col;
 
-				for(let i = row; i<4; i++){
+				for (let i = row; i < row + 4; i++) {
 					console.log("hhhhhhh")
-					let leafCircle =this.add.sprite(this.mainArray[i][col].x,this.mainArray[i][col].y,"Leaf-Circle")
-					leafCircle.setScale(.44,.44)
+					let leafCircle = this.add.sprite(this.mainArray[i][col].x, this.mainArray[i][col].y, "Leaf-Circle")
+					leafCircle.setScale(.44, .44)
 					// leafCircle.setAlpha(0.5)
 					leafCircle.setDepth(1)
-					let oCoinGlow =this.add.sprite(this.mainArray[i][col].x,this.mainArray[i][col].y,"Glow")
-					oCoinGlow.setScale(.55,.55)
-					oCoinGlow.setAlpha(0.2)
-					oCoinGlow.setDepth(1)
 				}
 			}
-			else if(sequence.type=="diagonal"){
-				let row=sequence.position.row;
-				let col=sequence.position.col;
+			else if (sequence.type == "diagonal") {
+				let row = sequence.position.row;
+				let col = sequence.position.col;
+
+				// Code for diagonals
+				if(sequence.direction=="top-left to bottom-right"){
+					for (let i = 0; i < 4; i++) {
+						console.log("Diagonal: ", i);
+						let leafCircle = this.add.sprite(this.mainArray[row + i][col + i].x, this.mainArray[row + i][col + i].y, "Leaf-Circle");
+						leafCircle.setScale(.44, .44);
+						leafCircle.setDepth(1);
+					}
+				}else{
+					for (let i = 0; i < 4; i++) {
+						console.log("Backward Diagonal: ", i);
+						let leafCircle = this.add.sprite(this.mainArray[row + i][col - i].x, this.mainArray[row + i][col - i].y, "Leaf-Circle");
+						leafCircle.setScale(.44, .44);
+						leafCircle.setDepth(1);
+					}
+				}
 			}
 		}
 	}
@@ -1162,18 +1186,13 @@ class Level extends Phaser.Scene {
 	}
 
 	update() {
-		// this.hover(this.mainArray);
+
+		//for Column Indicator
 		const mouseX = this.input.x;
-
-    // Define the X-axis limits
-    const minX = 656;
-    const maxX = 1299;
-
-    // Clamp the mouseX value within the defined range
-    const clampedX = Phaser.Math.Clamp(mouseX, minX, maxX);
-
-    // Update the image position
-    this.hoverCoin.x = clampedX;
+		const minX = 656;
+		const maxX = 1299;
+		const clampedX = Phaser.Math.Clamp(mouseX, minX, maxX);
+		this.hoverCoin.x = clampedX;
 
 
 		if (this.count == 0) {

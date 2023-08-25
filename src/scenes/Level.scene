@@ -11,17 +11,6 @@
     "displayList": [
         {
             "type": "Image",
-            "id": "68fefffa-3d9c-4670-9879-e6e47c1c9099",
-            "label": "background",
-            "components": [],
-            "texture": {
-                "key": "Background"
-            },
-            "x": 960,
-            "y": 540
-        },
-        {
-            "type": "Image",
             "id": "27474e94-4d19-49c5-bae2-20475a591c1a",
             "label": "board__1_",
             "components": [],
@@ -31,6 +20,35 @@
             "x": 927.5499956645881,
             "y": 568.9043206682622,
             "visible": false
+        },
+        {
+            "type": "Image",
+            "id": "969f7769-8f32-478b-8985-70d663844101",
+            "label": "glowLeft",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Glow"
+            },
+            "x": 306,
+            "y": 547,
+            "scaleX": 1.5,
+            "scaleY": 1.5,
+            "visible": false
+        },
+        {
+            "type": "Image",
+            "id": "65d21c79-d645-46dc-aea6-a8e223513c50",
+            "label": "glowRight",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Glow"
+            },
+            "x": 1604,
+            "y": 542,
+            "scaleX": 1.5,
+            "scaleY": 1.5
         },
         {
             "type": "Image",
@@ -737,21 +755,6 @@
                     "height": 50
                 }
             ]
-        },
-        {
-            "type": "Text",
-            "id": "d5173860-5299-4af6-9c11-44124bd4d66e",
-            "label": "gameTitle",
-            "scope": "CLASS",
-            "components": [],
-            "x": 960,
-            "y": 46,
-            "originX": 0.5,
-            "originY": 0.5,
-            "text": "Connect 4",
-            "align": "right",
-            "fontSize": "40px",
-            "color": "#190b0bff"
         },
         {
             "type": "Image",

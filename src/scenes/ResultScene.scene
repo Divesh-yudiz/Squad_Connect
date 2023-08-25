@@ -11,17 +11,6 @@
     "displayList": [
         {
             "type": "Image",
-            "id": "ff71db47-b448-46bb-91e9-8bc8423b99db",
-            "label": "background",
-            "components": [],
-            "texture": {
-                "key": "Background"
-            },
-            "x": 960,
-            "y": 540
-        },
-        {
-            "type": "Image",
             "id": "84b2da9e-3eeb-4c2a-a99d-2713401c2682",
             "label": "playAgainBtn",
             "scope": "CLASS",

@@ -16,9 +16,6 @@ class ResultScene extends Phaser.Scene {
 	/** @returns {void} */
 	editorCreate() {
 
-		// background
-		this.add.image(960, 540, "Background");
-
 		// playAgainBtn
 		const playAgainBtn = this.add.image(960, 893, "Re-Play-Button");
 
@@ -42,9 +39,9 @@ class ResultScene extends Phaser.Scene {
 		// this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
 		console.log(playerWon)
 		if(playerWon=="player_1_Won"){
-			var image = this.add.image(960, 540, 'Player-1-Won');
+			var image = this.add.image(960, 500, 'Player-1-Won');
 		}else{
-			var image = this.add.image(960, 540, 'Player-2-Won');
+			var image = this.add.image(960, 500, 'Player-2-Won');
 		}
 		this.playAgainBtn.setInteractive();
 		this.playAgainBtn.on('pointerdown',()=>{
