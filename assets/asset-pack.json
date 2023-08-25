@@ -12,11 +12,6 @@
                 "key": "Board (1)"
             },
             {
-                "url": "assets/images/Brown-Stone.png",
-                "type": "image",
-                "key": "red"
-            },
-            {
                 "url": "assets/images/Brown-Stone-Cover.png",
                 "type": "image",
                 "key": "Brown-Stone-Cover"
@@ -57,6 +52,11 @@
                 "key": "GameManager"
             },
             {
+                "url": "assets/images/Glow.png",
+                "type": "image",
+                "key": "Glow"
+            },
+            {
                 "url": "assets/fonts/Halo3.ttf",
                 "type": "binary",
                 "key": "Halo3"
@@ -70,6 +70,11 @@
                 "url": "src/scripts/InputManager.js",
                 "type": "script",
                 "key": "InputManager"
+            },
+            {
+                "url": "assets/images/Leaf-Circle.png",
+                "type": "image",
+                "key": "Leaf-Circle"
             },
             {
                 "url": [
@@ -128,6 +133,11 @@
                 "key": "Re-Play-Button"
             },
             {
+                "url": "assets/images/Brown-Stone.png",
+                "type": "image",
+                "key": "red"
+            },
+            {
                 "url": "assets/images/red.png",
                 "type": "image",
                 "key": "red"
@@ -136,11 +146,6 @@
                 "url": "assets/images/resultbg.jpg",
                 "type": "image",
                 "key": "resultbg"
-            },
-            {
-                "url": "assets/images/Silver-Stone.png",
-                "type": "image",
-                "key": "yellow"
             },
             {
                 "url": "assets/images/Silver-Stone-Cover.png",
@@ -156,6 +161,11 @@
                 "url": "src/scripts/SoundManager.js",
                 "type": "script",
                 "key": "SoundManager"
+            },
+            {
+                "url": "assets/images/Silver-Stone.png",
+                "type": "image",
+                "key": "yellow"
             }
         ]
     },

@@ -431,6 +431,11 @@ class Level extends Phaser.Scene {
 		const row1_Space_6 = this.add.rectangle(1299, 570, 100, 910);
 		row1_Space_6.isFilled = true;
 
+		// hoverCoin
+		const hoverCoin = this.add.image(652, 99, "red");
+		hoverCoin.scaleX = 0.44;
+		hoverCoin.scaleY = 0.44;
+
 		this.boxContainer = boxContainer;
 		this.box49 = box49;
 		this.box48 = box48;
@@ -489,6 +494,7 @@ class Level extends Phaser.Scene {
 		this.row1_Space_4 = row1_Space_4;
 		this.row1_Space_5 = row1_Space_5;
 		this.row1_Space_6 = row1_Space_6;
+		this.hoverCoin = hoverCoin;
 
 		this.events.emit("scene-awake");
 	}
@@ -609,6 +615,8 @@ class Level extends Phaser.Scene {
 	row1_Space_5;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	row1_Space_6;
+	/** @type {Phaser.GameObjects.Image} */
+	hoverCoin;
 
 	/* START-USER-CODE */
 
@@ -686,20 +694,27 @@ class Level extends Phaser.Scene {
 
 		const sequence = this.checkSequence(this.resultMatrix);
 		if (sequence) {
+			console.log(sequence)
 			if (sequence.sequence == 2) {
-				this.scene.pause('Level')
+				this.glowCoins();
+				setTimeout(()=>{
+					this.scene.pause('Level')
+				},700)
+				playerWon = "player_1_Won"
 				setTimeout(() => {
-					playerWon = "player_1_Won"
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 4000);
+				}, 8000);
 			} else if (sequence.sequence == 1) {
-				this.scene.pause('Level')
+				this.glowCoins();
+				setTimeout(()=>{
+					this.scene.pause('Level')
+				},1000)
+				playerWon = "player_2_Won"
 				setTimeout(() => {
-					playerWon = "player_2_Won"
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 4000);
+				}, 8000);
 			}
 
 		} else {
@@ -898,7 +913,7 @@ class Level extends Phaser.Scene {
 				element.isFilled = false;
 				element.setInteractive();
 				element.on('pointerdown', () => {
-					console.log("row: ", row, "column: ", col)
+					// console.log("row: ", row, "column: ", col)
 				});
 
 			}
@@ -909,7 +924,7 @@ class Level extends Phaser.Scene {
 
 	coinHover(currentColumnX, currentColumnY) {
 
-		console.log("coinHover called")
+		// console.log("coinHover called")
 		// console.log("coinHover Called...")
 		if (this.count == 0) {
 			this.tweens.add({
@@ -957,15 +972,15 @@ class Level extends Phaser.Scene {
 
 		rows.forEach((row, index) => {
 			row.setInteractive().on('pointerover', () => {
-				console.log(rowHandlers[index]);
-				console.log("row", this["array" + (index + 1) + "Y"])
+				// console.log(rowHandlers[index]);
+				// console.log("row", this["array" + (index + 1) + "Y"])
 				if (this["array" + (index + 1) + "Y"] <= 6) {
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
 					this.intialposY = -78;
 				}
 			}).on('pointermove', () => {
-				console.log(rowHandlers[index]);
+				// console.log(rowHandlers[index]);
 				if (this["array" + (index + 1) + "Y"] <= 6) {
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
@@ -1007,9 +1022,11 @@ class Level extends Phaser.Scene {
 
 	addCoin(place, arrayIndex) {
 		// console.log(place);
-		this.redCoin = this.add.image(this.intialposX, this.intialposY, 'red');
+		this.redCoin = this.add.sprite(this.intialposX, this.intialposY, 'red');
+		this.redCoin.setDepth(2)
 		this.redCoin.setScale(0.33,0.33)
-		this.yellowCoin = this.add.image(this.intialposX, this.intialposY, 'yellow');
+		this.yellowCoin = this.add.sprite(this.intialposX, this.intialposY, 'yellow');
+		this.yellowCoin.setDepth(2)
 		this.yellowCoin.setScale(0.33,0.33)
 
 		if (this.count == 0) {
@@ -1023,6 +1040,7 @@ class Level extends Phaser.Scene {
 				duration: 500,
 				onComplete: () => {
 					this.count++
+					this.hoverCoin.setTexture("yellow");
 					if(this[`array${arrayIndex + 1}Y`]<7){
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
@@ -1043,6 +1061,7 @@ class Level extends Phaser.Scene {
 				duration: 500,
 				onComplete: () => {
 					this.count = 0
+					this.hoverCoin.setTexture("red");
 					if(this[`array${arrayIndex + 1}Y`]<7){
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
@@ -1053,6 +1072,56 @@ class Level extends Phaser.Scene {
 					// console.log(place);
 				}
 			});
+		}
+	}
+
+
+	glowCoins(){
+		const sequence = this.checkSequence(this.resultMatrix);
+		console.log(sequence)
+		if(sequence){
+			// let oCoinGlow =this.add.image(0,0,"Highlighted-Ring")
+			if(sequence.type=="row"){
+				let row=sequence.position.row;
+				let col=sequence.position.col;
+
+				// this.mainArray[row][col].y
+
+				for(let i = col; i<4; i++){
+					console.log("row: ",row,"Cols: ", col)
+
+					console.log("hhhhhhh")
+					let leafCircle =this.add.sprite(this.mainArray[row][i].x,this.mainArray[row][i].y,"Leaf-Circle")
+					leafCircle.setScale(.44,.44)
+					// leafCircle.setAlpha(0.5)
+					leafCircle.setDepth(1)
+					let oCoinGlow =this.add.sprite(this.mainArray[row][i].x,this.mainArray[row][i].y,"Glow")
+					oCoinGlow.setScale(.55,.55)
+					oCoinGlow.setAlpha(0.2)
+					// oCoinGlow.setDepth(1)
+				}
+
+			}
+			else if(sequence.type=="column"){
+				let row=sequence.position.row;
+				let col=sequence.position.col;
+
+				for(let i = row; i<4; i++){
+					console.log("hhhhhhh")
+					let leafCircle =this.add.sprite(this.mainArray[i][col].x,this.mainArray[i][col].y,"Leaf-Circle")
+					leafCircle.setScale(.44,.44)
+					// leafCircle.setAlpha(0.5)
+					leafCircle.setDepth(1)
+					let oCoinGlow =this.add.sprite(this.mainArray[i][col].x,this.mainArray[i][col].y,"Glow")
+					oCoinGlow.setScale(.55,.55)
+					oCoinGlow.setAlpha(0.2)
+					oCoinGlow.setDepth(1)
+				}
+			}
+			else if(sequence.type=="diagonal"){
+				let row=sequence.position.row;
+				let col=sequence.position.col;
+			}
 		}
 	}
 
@@ -1094,6 +1163,19 @@ class Level extends Phaser.Scene {
 
 	update() {
 		// this.hover(this.mainArray);
+		const mouseX = this.input.x;
+
+    // Define the X-axis limits
+    const minX = 656;
+    const maxX = 1299;
+
+    // Clamp the mouseX value within the defined range
+    const clampedX = Phaser.Math.Clamp(mouseX, minX, maxX);
+
+    // Update the image position
+    this.hoverCoin.x = clampedX;
+
+
 		if (this.count == 0) {
 			this.red0_5.setVisible(true);
 			this.yellow0_5.setVisible(false);

@@ -38,7 +38,7 @@ class ResultScene extends Phaser.Scene {
 
 		this.editorCreate();
 		this.soundObj = new SoundManager(this);
-		this.soundObj.playSound(this.soundObj.winningSound, false);
+		// this.soundObj.playSound(this.soundObj.winningSound, false);
 		// this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
 		console.log(playerWon)
 		if(playerWon=="player_1_Won"){

@@ -910,6 +910,20 @@
             "isFilled": true,
             "width": 100,
             "height": 910
+        },
+        {
+            "type": "Image",
+            "id": "4cf94b17-f284-4057-a1ec-c1c97b736b75",
+            "label": "hoverCoin",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "red"
+            },
+            "x": 652,
+            "y": 99,
+            "scaleX": 0.44,
+            "scaleY": 0.44
         }
     ],
     "plainObjects": [],
