@@ -687,7 +687,7 @@ class Level extends Phaser.Scene {
 			this.resultMatrix.push(column);
 		}
 		// this.findConclusion();
-		this.glowPlayer()
+		// this.glowPlayer()
 		this.findPos();
 		this.coinHover(-200, -200);
 		this.coinUpdate();
@@ -707,11 +707,12 @@ class Level extends Phaser.Scene {
 				setTimeout(() => {
 					this.scene.pause('Level')
 				}, 700)
-				playerWon = "player_1_Won"
+				
+				playerWon = "player_2_Won"
 				setTimeout(() => {
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 5000);
+				}, 3000);
 			} else if (sequence.sequence == 1) {
 				this.glowCoins();
 				this.red0_5.setVisible(false);
@@ -719,11 +720,11 @@ class Level extends Phaser.Scene {
 				setTimeout(() => {
 					this.scene.pause('Level')
 				}, 1000)
-				playerWon = "player_2_Won"
+				playerWon = "player_1_Won"
 				setTimeout(() => {
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
-				}, 5000);
+				}, 3000);
 			}
 
 		} else {
@@ -1026,7 +1027,7 @@ class Level extends Phaser.Scene {
 			this.resultMatrix[arrayIndex][this[`array${arrayIndex + 1}Y`]] = this.colorCode;
 			this[`array${arrayIndex + 1}Y`]++;
 			console.log(arrayIndex)
-			this.glowPlayer();
+			// this.glowPlayer();
 			this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 			console.log(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
@@ -1149,48 +1150,12 @@ class Level extends Phaser.Scene {
 		}
 	}
 
-	glowPlayer() {
-		if (this.count == 0) {
-			this.tweens.add({
-				targets: this.player_1,
-				scaleX: 1.2,
-				scaleY: 1.2,
-				onComplete: () => {
-					this.tweens.add({
-						targets: this.player_1,
-						scaleX: 1,
-						scaleY: 1,
-						onComplete: () => {
-							this.glowPlayer();
-						}
-					})
-				}
-			})
-		} else if (this.count == 1) {
-			this.tweens.add({
-				targets: this.player_2,
-				scaleX: 1.2,
-				scaleY: 1.2,
-				onComplete: () => {
-					this.tweens.add({
-						targets: this.player_2,
-						scaleX: 1,
-						scaleY: 1,
-						onComplete: () => {
-							this.glowPlayer();
-						}
-					})
-				}
-			})
-		}
-	}
-
 	update() {
 
 		//for Column Indicator
 		const mouseX = this.input.x;
 		const minX = 656;
-		const maxX = 1299;
+		const maxX = 1305;
 		const clampedX = Phaser.Math.Clamp(mouseX, minX, maxX);
 		this.hoverCoin.x = clampedX;
 
