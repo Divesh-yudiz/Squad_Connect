@@ -38,17 +38,62 @@ class ResultScene extends Phaser.Scene {
 		// this.soundObj.playSound(this.soundObj.winningSound, false);
 		// this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
 		console.log(playerWon)
-		if(playerWon=="player_1_Won"){
+		if (playerWon == "player_1_Won") {
 			var image = this.add.image(960, 500, 'Player-1-Won');
-		}else{
+		} else {
 			var image = this.add.image(960, 500, 'Player-2-Won');
 		}
+
+		this.confetti()
+
 		this.playAgainBtn.setInteractive();
-		this.playAgainBtn.on('pointerdown',()=>{
+		this.playAgainBtn.on('pointerdown', () => {
 			location.reload();
 		})
 
 
+	}
+
+	confetti() {
+		const count = 100,
+			defaults = {
+				origin: { y: 0.7 },
+			};
+
+		function fire(particleRatio, opts) {
+			confetti(
+				Object.assign({}, defaults, opts, {
+					particleCount: Math.floor(count * particleRatio),
+				})
+			);
+		}
+
+		fire(0.5, {
+			spread: 10,
+			startVelocity: 55,
+		});
+
+		fire(0.4, {
+			spread: 30,
+		});
+
+		fire(0.7, {
+			spread: 50,
+			decay: 0.91,
+			scalar: 0.8,
+		});
+
+		fire(0.2, {
+			spread: 60,
+			startVelocity: 25,
+			decay: 0.92,
+			scalar: 1.2,
+		});
+
+		fire(0.2, {
+			spread: 60,
+			startVelocity: 45,
+		});
 	}
 
 	/* END-USER-CODE */
