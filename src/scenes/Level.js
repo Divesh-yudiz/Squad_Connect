@@ -379,16 +379,16 @@ class Level extends Phaser.Scene {
 		box1.isFilled = true;
 		boxContainer.add(box1);
 
-		// yellow_1
-		this.add.image(300, 546, "yellow");
+		// player1bg
+		const player1bg = this.add.image(300, 546, "yellow");
 
 		// silver_Stone_Cover
 		const silver_Stone_Cover = this.add.image(300, 546, "Silver-Stone-Cover");
 		silver_Stone_Cover.scaleX = 0.7;
 		silver_Stone_Cover.scaleY = 0.7;
 
-		// red_1
-		this.add.image(1599, 541, "red");
+		// player2bg
+		const player2bg = this.add.image(1599, 541, "red");
 
 		// brown_Stone_Cover
 		const brown_Stone_Cover = this.add.image(1599, 541, "Brown-Stone-Cover");
@@ -406,7 +406,7 @@ class Level extends Phaser.Scene {
 		character_2.scaleY = 0.6;
 
 		// row1_Space
-		const row1_Space = this.add.rectangle(656, 579, 128, 910);
+		const row1_Space = this.add.rectangle(656, 576, 128, 910);
 		row1_Space.isFilled = true;
 
 		// row1_Space_1
@@ -437,6 +437,9 @@ class Level extends Phaser.Scene {
 		const hoverCoin = this.add.image(652, 99, "red");
 		hoverCoin.scaleX = 0.44;
 		hoverCoin.scaleY = 0.44;
+
+		// spritesheet0
+		const spritesheet0 = this.add.sprite(-224, -111, "spritesheet", 0);
 
 		this.glowLeft = glowLeft;
 		this.glowRight = glowRight;
@@ -490,6 +493,8 @@ class Level extends Phaser.Scene {
 		this.box3 = box3;
 		this.box2 = box2;
 		this.box1 = box1;
+		this.player1bg = player1bg;
+		this.player2bg = player2bg;
 		this.row1_Space = row1_Space;
 		this.row1_Space_1 = row1_Space_1;
 		this.row1_Space_2 = row1_Space_2;
@@ -498,6 +503,7 @@ class Level extends Phaser.Scene {
 		this.row1_Space_5 = row1_Space_5;
 		this.row1_Space_6 = row1_Space_6;
 		this.hoverCoin = hoverCoin;
+		this.spritesheet0 = spritesheet0;
 
 		this.events.emit("scene-awake");
 	}
@@ -606,6 +612,10 @@ class Level extends Phaser.Scene {
 	box2;
 	/** @type {Phaser.GameObjects.Ellipse} */
 	box1;
+	/** @type {Phaser.GameObjects.Image} */
+	player1bg;
+	/** @type {Phaser.GameObjects.Image} */
+	player2bg;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	row1_Space;
 	/** @type {Phaser.GameObjects.Rectangle} */
@@ -622,6 +632,8 @@ class Level extends Phaser.Scene {
 	row1_Space_6;
 	/** @type {Phaser.GameObjects.Image} */
 	hoverCoin;
+	/** @type {Phaser.GameObjects.Sprite} */
+	spritesheet0;
 
 	/* START-USER-CODE */
 
@@ -663,6 +675,7 @@ class Level extends Phaser.Scene {
 		this.yellow0_5 = this.add.image(773, 892, 'yellow');
 		this.yellow0_5.setScale(0.33, 0.33)
 		this.yellow0_5.setAlpha(0.5)
+		this.rotateCoin2 = this.rotateCoin(this.player2bg)
 
 		// this.gameTitle.setStyle({ 'fontFamily': 'GameFont1' })
 		// Populate the matrix
@@ -692,6 +705,8 @@ class Level extends Phaser.Scene {
 		this.coinHover(-200, -200);
 		this.coinUpdate();
 		this.stripHover()
+
+		this.spritesheet0.play("coinAddAnims")
 	}
 
 	findConclusion() {
@@ -703,11 +718,11 @@ class Level extends Phaser.Scene {
 			if (sequence.sequence == 2) {
 				this.glowCoins();
 				this.red0_5.setVisible(false);
-			this.yellow0_5.setVisible(false);
+				this.yellow0_5.setVisible(false);
 				setTimeout(() => {
 					this.scene.pause('Level')
 				}, 700)
-				
+
 				playerWon = "player_2_Won"
 				setTimeout(() => {
 					this.scene.stop('Level');
@@ -716,7 +731,7 @@ class Level extends Phaser.Scene {
 			} else if (sequence.sequence == 1) {
 				this.glowCoins();
 				this.red0_5.setVisible(false);
-			this.yellow0_5.setVisible(false);
+				this.yellow0_5.setVisible(false);
 				setTimeout(() => {
 					this.scene.pause('Level')
 				}, 1000)
@@ -804,7 +819,7 @@ class Level extends Phaser.Scene {
 						sequence: current,
 						type: "diagonal",
 						position: { row, col },
-						direction:"top-left to bottom-right"
+						direction: "top-left to bottom-right"
 					};
 				}
 
@@ -824,7 +839,7 @@ class Level extends Phaser.Scene {
 						sequence: current,
 						type: "diagonal",
 						position: { row, col },
-						direction:"top-right to bottom-left"
+						direction: "top-right to bottom-left"
 					};
 				}
 			}
@@ -1035,6 +1050,10 @@ class Level extends Phaser.Scene {
 	}
 
 
+	rotateCoin1;
+	rotateCoin2;
+
+
 	addCoin(place, arrayIndex) {
 		// console.log(place);
 		this.redCoin = this.add.sprite(this.intialposX, this.intialposY, 'red');
@@ -1046,6 +1065,8 @@ class Level extends Phaser.Scene {
 
 		if (this.count == 0) {
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
+
 			this.tweens.add({
 				targets: this.redCoin,
 				x: this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x,
@@ -1054,11 +1075,16 @@ class Level extends Phaser.Scene {
 				bounce: 0.05,
 				duration: 500,
 				onComplete: () => {
+					console.log(this.mainArray[arrayIndex])
 					this.count++
 					this.hoverCoin.setTexture("yellow");
+					this.rotateCoin("player1")
+					// this.rotateCoin2.stop();
+					// this.rotateCoin2.rotationTween.stop();
 					this.glowRight.setVisible(false)
 					this.glowLeft.setVisible(true)
 					if (this[`array${arrayIndex + 1}Y`] < 7) {
+						console.log(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]])
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
 					place.packedCoin = "red";
@@ -1069,6 +1095,7 @@ class Level extends Phaser.Scene {
 			});
 		} else {
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 			this.tweens.add({
 				targets: this.yellowCoin,
 				x: this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x,
@@ -1079,6 +1106,13 @@ class Level extends Phaser.Scene {
 				onComplete: () => {
 					this.count = 0
 					this.hoverCoin.setTexture("red");
+
+					// this.rotateCoin1.stop();
+					this.rotateCoin("player2")
+					// this.rotateCoin1.stop();
+					// this.rotateCoin1.rotationTween.pause();
+
+
 					this.glowRight.setVisible(true)
 					this.glowLeft.setVisible(false)
 					if (this[`array${arrayIndex + 1}Y`] < 7) {
@@ -1094,6 +1128,20 @@ class Level extends Phaser.Scene {
 		}
 	}
 
+	glowBlast(x, y) {
+		setTimeout(() => {
+			this.spritesheet0.setVisible(true)
+			// console.log(this.mainArray[arrayIndex][this[`array${arrayIndex}Y`]])
+			this.spritesheet0.x = x
+			this.spritesheet0.y = y
+			this.spritesheet0.play("coinAddAnims")
+			this.spritesheet0.on('animationcomplete', function () {
+				// This function will be called when the 'walk' animation completes
+				this.setVisible(false)
+			});
+		}, 350)
+	}
+
 
 	glowCoins() {
 		const sequence = this.checkSequence(this.resultMatrix);
@@ -1104,51 +1152,96 @@ class Level extends Phaser.Scene {
 				let row = sequence.position.row;
 				let col = sequence.position.col;
 
-				// this.mainArray[row][col].y
-				for (let i = col; i < col + 4; i++) {
-					console.log("row: ", row, "Cols: ", col)
-					console.log(i)
-					let leafCircle = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Leaf-Circle")
-					leafCircle.setScale(.44, .44)
-					leafCircle.setDepth(1)
-				}
+				setTimeout(() => {
+					// this.mainArray[row][col].y
+					for (let i = col; i < col + 4; i++) {
+						console.log("row: ", row, "Cols: ", col)
+						console.log(i)
+						let leafCircle = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Leaf-Circle")
+						// let leafglow = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Glow")
+						// leafglow.setScale(0.44,0.44)
+
+						leafCircle.setScale(.44, .44)
+						leafCircle.setDepth(1)
+					}
+				}, 700)
 
 			}
 			else if (sequence.type == "column") {
 				let row = sequence.position.row;
 				let col = sequence.position.col;
 
-				for (let i = row; i < row + 4; i++) {
-					console.log("hhhhhhh")
-					let leafCircle = this.add.sprite(this.mainArray[i][col].x, this.mainArray[i][col].y, "Leaf-Circle")
-					leafCircle.setScale(.44, .44)
-					// leafCircle.setAlpha(0.5)
-					leafCircle.setDepth(1)
-				}
+				setTimeout(() => {
+					for (let i = row; i < row + 4; i++) {
+						console.log("hhhhhhh")
+						let leafCircle = this.add.sprite(this.mainArray[i][col].x, this.mainArray[i][col].y, "Leaf-Circle")
+						// let leafglow = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Glow")
+						// leafglow.setScale(0.44,0.44)
+						leafCircle.setScale(.44, .44)
+						// leafCircle.setAlpha(0.5)
+						leafCircle.setDepth(1)
+					}
+				}, 700)
+
 			}
 			else if (sequence.type == "diagonal") {
 				let row = sequence.position.row;
 				let col = sequence.position.col;
 
 				// Code for diagonals
-				if(sequence.direction=="top-left to bottom-right"){
-					for (let i = 0; i < 4; i++) {
-						console.log("Diagonal: ", i);
-						let leafCircle = this.add.sprite(this.mainArray[row + i][col + i].x, this.mainArray[row + i][col + i].y, "Leaf-Circle");
-						leafCircle.setScale(.44, .44);
-						leafCircle.setDepth(1);
+				setTimeout(() => {
+					if (sequence.direction == "top-left to bottom-right") {
+						for (let i = 0; i < 4; i++) {
+							console.log("Diagonal: ", i);
+							let leafCircle = this.add.sprite(this.mainArray[row + i][col + i].x, this.mainArray[row + i][col + i].y, "Leaf-Circle");
+							leafCircle.setScale(.44, .44);
+							leafCircle.setDepth(1);
+						}
+					} else {
+						for (let i = 0; i < 4; i++) {
+							console.log("Backward Diagonal: ", i);
+							let leafCircle = this.add.sprite(this.mainArray[row + i][col - i].x, this.mainArray[row + i][col - i].y, "Leaf-Circle");
+							leafCircle.setScale(.44, .44);
+							leafCircle.setDepth(1);
+						}
 					}
-				}else{
-					for (let i = 0; i < 4; i++) {
-						console.log("Backward Diagonal: ", i);
-						let leafCircle = this.add.sprite(this.mainArray[row + i][col - i].x, this.mainArray[row + i][col - i].y, "Leaf-Circle");
-						leafCircle.setScale(.44, .44);
-						leafCircle.setDepth(1);
-					}
-				}
+				}, 700)
 			}
 		}
 	}
+
+
+	rotationTween1;
+	rotationTween2;
+
+	rotateCoin(player) {
+		if (player == "player1") {
+			if (this.rotationTween2) {
+				this.rotationTween2.stop();
+			}
+
+			this.rotationTween1 = this.tweens.add({
+				targets: this.player1bg,
+				duration: 2000, // Duration in milliseconds
+				angle: 360, // Rotate 360 degrees
+				ease: 'Linear', // Linear easing
+				repeat: -1, // -1 means loop indefinitely
+			});
+		} else {
+			if (this.rotationTween1) {
+				this.rotationTween1.stop();
+			}
+
+			this.rotationTween2 = this.tweens.add({
+				targets: this.player2bg,
+				duration: 2000, // Duration in milliseconds
+				angle: 360, // Rotate 360 degrees
+				ease: 'Linear', // Linear easing
+				repeat: -1, // -1 means loop indefinitely
+			});
+		}
+	}
+
 
 	update() {
 

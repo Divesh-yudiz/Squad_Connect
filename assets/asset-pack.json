@@ -32,6 +32,11 @@
                 "key": "Clipping-Mask-For-Character"
             },
             {
+                "url": "assets/animations/coinAdd.json",
+                "type": "animation",
+                "key": "coinAdd"
+            },
+            {
                 "url": "assets/css/font.css",
                 "type": "css",
                 "key": "font"
@@ -161,6 +166,19 @@
                 "url": "src/scripts/SoundManager.js",
                 "type": "script",
                 "key": "SoundManager"
+            },
+            {
+                "url": "assets/sprites/spritesheet.png",
+                "frameConfig": {
+                    "frameWidth": 132,
+                    "frameHeight": 132,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet"
             },
             {
                 "url": "assets/images/Silver-Stone.png",

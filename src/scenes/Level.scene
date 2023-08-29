@@ -759,7 +759,8 @@
         {
             "type": "Image",
             "id": "8c8e40fc-f929-4e22-a25e-69d99195bb27",
-            "label": "yellow_1",
+            "label": "player1bg",
+            "scope": "CLASS",
             "components": [],
             "texture": {
                 "key": "yellow"
@@ -783,7 +784,8 @@
         {
             "type": "Image",
             "id": "1c139c56-ed61-43ae-85fb-2ca11705ceae",
-            "label": "red_1",
+            "label": "player2bg",
+            "scope": "CLASS",
             "components": [],
             "texture": {
                 "key": "red"
@@ -837,7 +839,7 @@
             "scope": "CLASS",
             "components": [],
             "x": 656,
-            "y": 579,
+            "y": 576,
             "isFilled": true,
             "width": 128,
             "height": 910
@@ -927,6 +929,19 @@
             "y": 99,
             "scaleX": 0.44,
             "scaleY": 0.44
+        },
+        {
+            "type": "Sprite",
+            "id": "3e03af00-ed79-44e2-a7b8-e977567d6b4e",
+            "label": "spritesheet0",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "spritesheet",
+                "frame": 0
+            },
+            "x": -224,
+            "y": -111
         }
     ],
     "plainObjects": [],
