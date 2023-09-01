@@ -380,30 +380,24 @@ class Level extends Phaser.Scene {
 		boxContainer.add(box1);
 
 		// player1bg
-		const player1bg = this.add.image(300, 546, "yellow");
+		const player1bg = this.add.image(300, 545, "Silver-Stone(for player)");
+		player1bg.scaleX = 0.9;
+		player1bg.scaleY = 0.9;
+
+		// player2bg
+		const player2bg = this.add.image(1600, 542, "Brown-Stone(for player)");
+		player2bg.scaleX = 0.9;
+		player2bg.scaleY = 0.9;
 
 		// silver_Stone_Cover
 		const silver_Stone_Cover = this.add.image(300, 546, "Silver-Stone-Cover");
 		silver_Stone_Cover.scaleX = 0.7;
 		silver_Stone_Cover.scaleY = 0.7;
 
-		// player2bg
-		const player2bg = this.add.image(1599, 541, "red");
-
 		// brown_Stone_Cover
 		const brown_Stone_Cover = this.add.image(1599, 541, "Brown-Stone-Cover");
 		brown_Stone_Cover.scaleX = 0.7;
 		brown_Stone_Cover.scaleY = 0.7;
-
-		// character_1
-		const character_1 = this.add.image(300, 543, "Character-1");
-		character_1.scaleX = 0.6;
-		character_1.scaleY = 0.6;
-
-		// character_2
-		const character_2 = this.add.image(1604, 542, "Character-2");
-		character_2.scaleX = 0.6;
-		character_2.scaleY = 0.6;
 
 		// row1_Space
 		const row1_Space = this.add.rectangle(656, 576, 128, 910);
@@ -440,6 +434,41 @@ class Level extends Phaser.Scene {
 
 		// spritesheet0
 		const spritesheet0 = this.add.sprite(-224, -111, "spritesheet", 0);
+
+		// you
+		this.add.image(304, 711, "You");
+
+		// opponent
+		this.add.image(1614, 711, "Opponent");
+
+		// character_1
+		const character_1 = this.add.image(300, 545, "Character-1");
+		character_1.scaleX = 0.7;
+		character_1.scaleY = 0.7;
+
+		// character_2
+		const character_2 = this.add.image(1599, 541, "Character-2");
+		character_2.scaleX = 0.7;
+		character_2.scaleY = 0.7;
+
+		// button_Holder
+		const button_Holder = this.add.image(1509, 172, "Button-Holder");
+		button_Holder.scaleX = 1.15;
+		button_Holder.scaleY = 1.2;
+
+		// setting_Button
+		const setting_Button = this.add.image(1509, 135, "Setting-Button");
+		setting_Button.scaleX = 0.5;
+		setting_Button.scaleY = 0.5;
+
+		// info_Button
+		const info_Button = this.add.image(1509, 207, "Info-Button");
+
+		// setting_Button (components)
+		new PushOnClick(setting_Button);
+
+		// info_Button (components)
+		new PushOnClick(info_Button);
 
 		this.glowLeft = glowLeft;
 		this.glowRight = glowRight;
@@ -659,15 +688,10 @@ class Level extends Phaser.Scene {
 	cursor;
 	hoverX;
 	hoverY;
+	isHumanTurn = false;
 	//this is comment
 	create() {
 		this.editorCreate();
-
-		// this.input.on('pointerover', this.showpoint, this);
-		// this.input.on('pointermove', this.showpoint, this);
-		// this.input.on('pointerup', this.showpoint, this);
-		// this.input.on('pointerenter', this.showpoint, this);
-		// this.input.on('pointerleave', this.showpoint, this);
 
 		this.red0_5 = this.add.image(656, 892, 'red');
 		this.red0_5.setScale(0.33, 0.33)
@@ -676,8 +700,6 @@ class Level extends Phaser.Scene {
 		this.yellow0_5.setScale(0.33, 0.33)
 		this.yellow0_5.setAlpha(0.5)
 		this.rotateCoin2 = this.rotateCoin(this.player2bg)
-
-		// this.gameTitle.setStyle({ 'fontFamily': 'GameFont1' })
 		// Populate the matrix
 		for (let i = 0; i < 7; i++) {
 			this.matrix[i] = [];
@@ -702,16 +724,15 @@ class Level extends Phaser.Scene {
 		// this.findConclusion();
 		// this.glowPlayer()
 		this.findPos();
-		this.coinHover(-200, -200);
+		this.coinHover(-300, -300);
 		this.coinUpdate();
 		this.stripHover()
+		this.botMove();
 
-		this.spritesheet0.play("coinAddAnims")
+		// this.spritesheet0.play("sparkleAnims")
 	}
 
 	findConclusion() {
-		// console.log(this.resultMatrix);
-
 		const sequence = this.checkSequence(this.resultMatrix);
 		if (sequence) {
 			console.log(sequence)
@@ -953,9 +974,6 @@ class Level extends Phaser.Scene {
 
 
 	coinHover(currentColumnX, currentColumnY) {
-
-		// console.log("coinHover called")
-		// console.log("coinHover Called...")
 		if (this.count == 0) {
 			this.tweens.add({
 				targets: this.red0_5,
@@ -1002,8 +1020,6 @@ class Level extends Phaser.Scene {
 
 		rows.forEach((row, index) => {
 			row.setInteractive().on('pointerover', () => {
-				// console.log(rowHandlers[index]);
-				// console.log("row", this["array" + (index + 1) + "Y"])
 				if (this["array" + (index + 1) + "Y"] <= 6) {
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
@@ -1028,11 +1044,12 @@ class Level extends Phaser.Scene {
 	}
 
 	coinUpdate() {
+		// if(this.count!=0){
 		this[`row1_Space`].setInteractive().on('pointerdown', () => this.coinUpdate1(0), this);
 		for (let i = 1; i <= 6; i++) {
 			this[`row1_Space_${i}`].setInteractive().on('pointerdown', () => this.coinUpdate1(i), this);
-			// this[`row1_Space_${i}`].setInteractive().on('pointerup', () => this.coinUpdate1(i), this);
 		}
+		// }
 	}
 
 	coinUpdate1(arrayIndex) {
@@ -1042,7 +1059,6 @@ class Level extends Phaser.Scene {
 			this.resultMatrix[arrayIndex][this[`array${arrayIndex + 1}Y`]] = this.colorCode;
 			this[`array${arrayIndex + 1}Y`]++;
 			console.log(arrayIndex)
-			// this.glowPlayer();
 			this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 			console.log(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
@@ -1064,6 +1080,8 @@ class Level extends Phaser.Scene {
 		this.yellowCoin.setScale(0.33, 0.33)
 
 		if (this.count == 0) {
+			this.count++
+			console.log("player 2")
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 
@@ -1076,11 +1094,8 @@ class Level extends Phaser.Scene {
 				duration: 500,
 				onComplete: () => {
 					console.log(this.mainArray[arrayIndex])
-					this.count++
 					this.hoverCoin.setTexture("yellow");
 					this.rotateCoin("player1")
-					// this.rotateCoin2.stop();
-					// this.rotateCoin2.rotationTween.stop();
 					this.glowRight.setVisible(false)
 					this.glowLeft.setVisible(true)
 					if (this[`array${arrayIndex + 1}Y`] < 7) {
@@ -1091,9 +1106,17 @@ class Level extends Phaser.Scene {
 					this.colorCode = 1;
 					place.packed = true;
 					console.log(place);
+					this[`row1_Space`].setInteractive()
+					for (let i = 1; i <= 6; i++) {
+						this[`row1_Space_${i}`].setInteractive()
+					}
 				}
 			});
 		} else {
+			this.count = 0
+			console.log("player1")
+			this.botMove()
+
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 			this.tweens.add({
@@ -1104,15 +1127,8 @@ class Level extends Phaser.Scene {
 				bounce: 0.1,
 				duration: 500,
 				onComplete: () => {
-					this.count = 0
 					this.hoverCoin.setTexture("red");
-
-					// this.rotateCoin1.stop();
 					this.rotateCoin("player2")
-					// this.rotateCoin1.stop();
-					// this.rotateCoin1.rotationTween.pause();
-
-
 					this.glowRight.setVisible(true)
 					this.glowLeft.setVisible(false)
 					if (this[`array${arrayIndex + 1}Y`] < 7) {
@@ -1123,23 +1139,42 @@ class Level extends Phaser.Scene {
 					this.colorCode = 2;
 					place.packed = true;
 					// console.log(place);
+
 				}
 			});
 		}
 	}
 
+	botMove() {
+		console.log("im in bot move")
+		this[`row1_Space`].disableInteractive()
+		for (let i = 1; i <= 6; i++) {
+			this[`row1_Space_${i}`].disableInteractive();
+		}
+		var sequence = this.checkSequence(this.resultMatrix)
+		if (!sequence) {
+			const columnIndex = Math.floor(Math.random() * 7);
+			if (this.array1Y < 6) {
+				setTimeout(() => {
+					this.coinUpdate1(columnIndex);
+				}, 1000)
+			}
+		}
+		this.isHumanTurn = true;
+
+
+	}
+
 	glowBlast(x, y) {
 		setTimeout(() => {
 			this.spritesheet0.setVisible(true)
-			// console.log(this.mainArray[arrayIndex][this[`array${arrayIndex}Y`]])
 			this.spritesheet0.x = x
 			this.spritesheet0.y = y
-			this.spritesheet0.play("coinAddAnims")
+			this.spritesheet0.play("sparkleAnims")
 			this.spritesheet0.on('animationcomplete', function () {
-				// This function will be called when the 'walk' animation completes
 				this.setVisible(false)
 			});
-		}, 350)
+		}, 450)
 	}
 
 
@@ -1147,7 +1182,6 @@ class Level extends Phaser.Scene {
 		const sequence = this.checkSequence(this.resultMatrix);
 		console.log(sequence)
 		if (sequence) {
-			// let oCoinGlow =this.add.image(0,0,"Highlighted-Ring")
 			if (sequence.type == "row") {
 				let row = sequence.position.row;
 				let col = sequence.position.col;
@@ -1158,9 +1192,6 @@ class Level extends Phaser.Scene {
 						console.log("row: ", row, "Cols: ", col)
 						console.log(i)
 						let leafCircle = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Leaf-Circle")
-						// let leafglow = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Glow")
-						// leafglow.setScale(0.44,0.44)
-
 						leafCircle.setScale(.44, .44)
 						leafCircle.setDepth(1)
 					}
@@ -1175,10 +1206,7 @@ class Level extends Phaser.Scene {
 					for (let i = row; i < row + 4; i++) {
 						console.log("hhhhhhh")
 						let leafCircle = this.add.sprite(this.mainArray[i][col].x, this.mainArray[i][col].y, "Leaf-Circle")
-						// let leafglow = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Glow")
-						// leafglow.setScale(0.44,0.44)
 						leafCircle.setScale(.44, .44)
-						// leafCircle.setAlpha(0.5)
 						leafCircle.setDepth(1)
 					}
 				}, 700)
@@ -1210,7 +1238,6 @@ class Level extends Phaser.Scene {
 		}
 	}
 
-
 	rotationTween1;
 	rotationTween2;
 
@@ -1222,7 +1249,7 @@ class Level extends Phaser.Scene {
 
 			this.rotationTween1 = this.tweens.add({
 				targets: this.player1bg,
-				duration: 2000, // Duration in milliseconds
+				duration: 1500, // Duration in milliseconds
 				angle: 360, // Rotate 360 degrees
 				ease: 'Linear', // Linear easing
 				repeat: -1, // -1 means loop indefinitely
@@ -1234,7 +1261,7 @@ class Level extends Phaser.Scene {
 
 			this.rotationTween2 = this.tweens.add({
 				targets: this.player2bg,
-				duration: 2000, // Duration in milliseconds
+				duration: 1500, // Duration in milliseconds
 				angle: 360, // Rotate 360 degrees
 				ease: 'Linear', // Linear easing
 				repeat: -1, // -1 means loop indefinitely
@@ -1244,6 +1271,8 @@ class Level extends Phaser.Scene {
 
 
 	update() {
+
+		console.log(this.count)
 
 		//for Column Indicator
 		const mouseX = this.input.x;

@@ -17,6 +17,11 @@
                 "key": "Brown-Stone-Cover"
             },
             {
+                "url": "assets/images/Button-Holder.png",
+                "type": "image",
+                "key": "Button-Holder"
+            },
+            {
                 "url": "assets/images/Character-1.png",
                 "type": "image",
                 "key": "Character-1"
@@ -72,6 +77,11 @@
                 "key": "Highlighted-Ring"
             },
             {
+                "url": "assets/images/Info-Button.png",
+                "type": "image",
+                "key": "Info-Button"
+            },
+            {
                 "url": "src/scripts/InputManager.js",
                 "type": "script",
                 "key": "InputManager"
@@ -101,6 +111,16 @@
                 ],
                 "type": "audio",
                 "key": "mixkit-video-game-win-2016"
+            },
+            {
+                "url": "assets/images/Opponent.png",
+                "type": "image",
+                "key": "Opponent"
+            },
+            {
+                "url": "assets/images/Opponent-Won.png",
+                "type": "image",
+                "key": "Opponent-Won"
             },
             {
                 "url": "assets/fonts/PAC-FONT.TTF",
@@ -153,14 +173,29 @@
                 "key": "resultbg"
             },
             {
+                "url": "assets/images/Setting-Button.png",
+                "type": "image",
+                "key": "Setting-Button"
+            },
+            {
                 "url": "assets/images/Silver-Stone-Cover.png",
                 "type": "image",
                 "key": "Silver-Stone-Cover"
             },
             {
+                "url": "assets/images/Silver-Stone(for player).png",
+                "type": "image",
+                "key": "Silver-Stone(for player)"
+            },
+            {
                 "url": "src/scripts/SocketManager.js",
                 "type": "script",
                 "key": "SocketManager"
+            },
+            {
+                "url": "assets/images/Sound-Button.png",
+                "type": "image",
+                "key": "Sound-Button"
             },
             {
                 "url": "src/scripts/SoundManager.js",
@@ -181,9 +216,32 @@
                 "key": "spritesheet"
             },
             {
+                "url": "assets/images/spritesheet (1).png",
+                "frameConfig": {
+                    "frameWidth": 278,
+                    "frameHeight": 278,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet (1)"
+            },
+            {
                 "url": "assets/images/Silver-Stone.png",
                 "type": "image",
                 "key": "yellow"
+            },
+            {
+                "url": "assets/images/You.png",
+                "type": "image",
+                "key": "You"
+            },
+            {
+                "url": "assets/images/You-Won.png",
+                "type": "image",
+                "key": "You-Won"
             }
         ]
     },

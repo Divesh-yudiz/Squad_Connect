@@ -7,6 +7,11 @@
                 "key": "Background"
             },
             {
+                "url": "assets/images/Brown-Stone(for player).png",
+                "type": "image",
+                "key": "Brown-Stone(for player)"
+            },
+            {
                 "url": "assets/images/Logo.png",
                 "type": "image",
                 "key": "Logo"

@@ -758,15 +758,31 @@
         },
         {
             "type": "Image",
-            "id": "8c8e40fc-f929-4e22-a25e-69d99195bb27",
+            "id": "886798a9-aa9d-4e50-81d1-7a9f5b808946",
             "label": "player1bg",
             "scope": "CLASS",
             "components": [],
             "texture": {
-                "key": "yellow"
+                "key": "Silver-Stone(for player)"
             },
             "x": 300,
-            "y": 546
+            "y": 545,
+            "scaleX": 0.9,
+            "scaleY": 0.9
+        },
+        {
+            "type": "Image",
+            "id": "cac111a9-d226-4d3a-b44f-9ab39d9190b3",
+            "label": "player2bg",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Brown-Stone(for player)"
+            },
+            "x": 1600,
+            "y": 542,
+            "scaleX": 0.9,
+            "scaleY": 0.9
         },
         {
             "type": "Image",
@@ -783,18 +799,6 @@
         },
         {
             "type": "Image",
-            "id": "1c139c56-ed61-43ae-85fb-2ca11705ceae",
-            "label": "player2bg",
-            "scope": "CLASS",
-            "components": [],
-            "texture": {
-                "key": "red"
-            },
-            "x": 1599,
-            "y": 541
-        },
-        {
-            "type": "Image",
             "id": "61dd601c-4be9-4cf6-bcd8-2441dc6e1d56",
             "label": "brown_Stone_Cover",
             "components": [],
@@ -805,32 +809,6 @@
             "y": 541,
             "scaleX": 0.7,
             "scaleY": 0.7
-        },
-        {
-            "type": "Image",
-            "id": "44bfb2d0-d0e4-475e-8198-40cccf5324b2",
-            "label": "character_1",
-            "components": [],
-            "texture": {
-                "key": "Character-1"
-            },
-            "x": 300,
-            "y": 543,
-            "scaleX": 0.6,
-            "scaleY": 0.6
-        },
-        {
-            "type": "Image",
-            "id": "d7a0920b-008f-423d-856f-86debf0a8429",
-            "label": "character_2",
-            "components": [],
-            "texture": {
-                "key": "Character-2"
-            },
-            "x": 1604,
-            "y": 542,
-            "scaleX": 0.6,
-            "scaleY": 0.6
         },
         {
             "type": "Rectangle",
@@ -942,6 +920,95 @@
             },
             "x": -224,
             "y": -111
+        },
+        {
+            "type": "Image",
+            "id": "41736e77-c7c0-487a-8f04-aeceb68317b1",
+            "label": "you",
+            "components": [],
+            "texture": {
+                "key": "You"
+            },
+            "x": 304,
+            "y": 711
+        },
+        {
+            "type": "Image",
+            "id": "cb2622e0-886f-4cf3-b135-8bf4573dcc0a",
+            "label": "opponent",
+            "components": [],
+            "texture": {
+                "key": "Opponent"
+            },
+            "x": 1614,
+            "y": 711
+        },
+        {
+            "type": "Image",
+            "id": "d9b8e071-f110-4e8c-88c2-faa1271bbade",
+            "label": "character_1",
+            "components": [],
+            "texture": {
+                "key": "Character-1"
+            },
+            "x": 300,
+            "y": 545,
+            "scaleX": 0.7,
+            "scaleY": 0.7
+        },
+        {
+            "type": "Image",
+            "id": "6c72b76a-6274-4557-91c0-5439fcca2c70",
+            "label": "character_2",
+            "components": [],
+            "texture": {
+                "key": "Character-2"
+            },
+            "x": 1599,
+            "y": 541,
+            "scaleX": 0.7,
+            "scaleY": 0.7
+        },
+        {
+            "type": "Image",
+            "id": "5a512ca6-50a8-414a-aa4a-da9ee90fd4e9",
+            "label": "button_Holder",
+            "components": [],
+            "texture": {
+                "key": "Button-Holder"
+            },
+            "x": 1509,
+            "y": 172,
+            "scaleX": 1.15,
+            "scaleY": 1.2
+        },
+        {
+            "type": "Image",
+            "id": "8210d6e6-1bff-44ea-b19c-3856fcded939",
+            "label": "setting_Button",
+            "components": [
+                "PushOnClick"
+            ],
+            "texture": {
+                "key": "Setting-Button"
+            },
+            "x": 1509,
+            "y": 135,
+            "scaleX": 0.5,
+            "scaleY": 0.5
+        },
+        {
+            "type": "Image",
+            "id": "4c05f909-a15a-48a1-9647-4ec7e2e03f33",
+            "label": "info_Button",
+            "components": [
+                "PushOnClick"
+            ],
+            "texture": {
+                "key": "Info-Button"
+            },
+            "x": 1509,
+            "y": 207
         }
     ],
     "plainObjects": [],

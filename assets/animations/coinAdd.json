@@ -59,8 +59,41 @@
                     "keyframe": false
                 }
             ],
-            "frameRate": 28,
+            "frameRate": 24,
             "skipMissedFrames": true
+        },
+        {
+            "key": "sparkleAnims",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "spritesheet (1)",
+                    "frame": 0,
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "spritesheet (1)",
+                    "frame": 1,
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "spritesheet (1)",
+                    "frame": 2,
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "spritesheet (1)",
+                    "frame": 3,
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true,
+            "repeat": 1
         }
     ],
     "globalTimeScale": 1,
