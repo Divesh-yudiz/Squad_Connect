@@ -1115,10 +1115,12 @@ class Level extends Phaser.Scene {
 		} else {
 			this.count = 0
 			console.log("player1")
-			this.botMove()
+			this.botMove();
 
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
+
 			this.tweens.add({
 				targets: this.yellowCoin,
 				x: this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x,
@@ -1146,7 +1148,6 @@ class Level extends Phaser.Scene {
 	}
 
 	botMove() {
-		console.log("im in bot move")
 		this[`row1_Space`].disableInteractive()
 		for (let i = 1; i <= 6; i++) {
 			this[`row1_Space_${i}`].disableInteractive();
@@ -1156,25 +1157,27 @@ class Level extends Phaser.Scene {
 			const columnIndex = Math.floor(Math.random() * 7);
 			if (this.array1Y < 6) {
 				setTimeout(() => {
+					console.log(columnIndex)
 					this.coinUpdate1(columnIndex);
 				}, 1000)
 			}
 		}
 		this.isHumanTurn = true;
-
-
 	}
 
 	glowBlast(x, y) {
-		setTimeout(() => {
-			this.spritesheet0.setVisible(true)
-			this.spritesheet0.x = x
-			this.spritesheet0.y = y
-			this.spritesheet0.play("sparkleAnims")
-			this.spritesheet0.on('animationcomplete', function () {
-				this.setVisible(false)
-			});
-		}, 450)
+		var sequence = this.checkSequence(this.resultMatrix)
+		if (!sequence) {
+			setTimeout(() => {
+				this.spritesheet0.setVisible(true)
+				this.spritesheet0.x = x
+				this.spritesheet0.y = y
+				this.spritesheet0.play("sparkleAnims")
+				this.spritesheet0.on('animationcomplete', function () {
+					this.setVisible(false)
+				});
+			}, 450)
+		}
 	}
 
 
