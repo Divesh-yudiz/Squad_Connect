@@ -11,6 +11,36 @@
     "displayList": [
         {
             "type": "Image",
+            "id": "ca7ce44b-c564-493b-8b07-6cdf62eecfa8",
+            "label": "PvsP_Highlight",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "White-Highlight"
+            },
+            "x": 763,
+            "y": 830,
+            "scaleX": 0.9,
+            "scaleY": 0.9,
+            "visible": false
+        },
+        {
+            "type": "Image",
+            "id": "6b4ee7c1-6c17-445d-ab27-e51eb6f2183c",
+            "label": "PvsC_Highlight",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "White-Highlight"
+            },
+            "x": 1214,
+            "y": 827,
+            "scaleX": 0.9,
+            "scaleY": 0.9,
+            "visible": false
+        },
+        {
+            "type": "Image",
             "id": "efa3d7fa-b202-49a2-8e03-bd2dc43db844",
             "label": "logo_With_Roap",
             "components": [],

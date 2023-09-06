@@ -244,6 +244,11 @@
                 "key": "spritesheet (1)"
             },
             {
+                "url": "assets/images/White-Highlight.png",
+                "type": "image",
+                "key": "White-Highlight"
+            },
+            {
                 "url": "assets/images/Silver-Stone.png",
                 "type": "image",
                 "key": "yellow"
