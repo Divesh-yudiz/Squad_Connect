@@ -727,7 +727,9 @@ class Level extends Phaser.Scene {
 		this.coinHover(-300, -300);
 		this.coinUpdate();
 		this.stripHover()
-		this.botMove();
+		if(enableBot==true){
+			this.botMove();
+		}
 
 		// this.spritesheet0.play("sparkleAnims")
 	}
@@ -1115,7 +1117,10 @@ class Level extends Phaser.Scene {
 		} else {
 			this.count = 0
 			console.log("player1")
-			this.botMove();
+			console.log(enableBot)
+			if(enableBot==true){
+				this.botMove();
+			}
 
 			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 

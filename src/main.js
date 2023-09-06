@@ -29,6 +29,7 @@ const init = () => {
 	game.scene.add("Preload", Preload);
 	game.scene.add("SplashScreenScene", SplashScreenScene);
 	game.scene.add("Level", Level);
+	game.scene.add("MenuScene", MenuScene);
 	game.scene.add("ResultScene", ResultScene);
 	game.scene.add("Boot", Boot, true);
 };
