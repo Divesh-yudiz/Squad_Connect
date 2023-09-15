@@ -42,6 +42,11 @@
                 "key": "coinAdd"
             },
             {
+                "url": "assets/images/Draw.png",
+                "type": "image",
+                "key": "Draw"
+            },
+            {
                 "url": "assets/css/font.css",
                 "type": "css",
                 "key": "font"

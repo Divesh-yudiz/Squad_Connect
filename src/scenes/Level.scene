@@ -33,8 +33,7 @@
             "x": 306,
             "y": 547,
             "scaleX": 1.5,
-            "scaleY": 1.5,
-            "visible": false
+            "scaleY": 1.5
         },
         {
             "type": "Image",
@@ -48,7 +47,8 @@
             "x": 1604,
             "y": 542,
             "scaleX": 1.5,
-            "scaleY": 1.5
+            "scaleY": 1.5,
+            "visible": false
         },
         {
             "type": "Image",
@@ -817,9 +817,9 @@
             "scope": "CLASS",
             "components": [],
             "x": 656,
-            "y": 576,
+            "y": 608,
             "isFilled": true,
-            "width": 128,
+            "width": 95,
             "height": 910
         },
         {
@@ -828,10 +828,10 @@
             "label": "row1_Space_1",
             "scope": "CLASS",
             "components": [],
-            "x": 777,
-            "y": 579,
+            "x": 772,
+            "y": 608,
             "isFilled": true,
-            "width": 112,
+            "width": 90,
             "height": 910
         },
         {
@@ -840,10 +840,10 @@
             "label": "row1_Space_2",
             "scope": "CLASS",
             "components": [],
-            "x": 886,
-            "y": 577,
+            "x": 880,
+            "y": 608,
             "isFilled": true,
-            "width": 101,
+            "width": 90,
             "height": 910
         },
         {
@@ -852,10 +852,10 @@
             "label": "row1_Space_3",
             "scope": "CLASS",
             "components": [],
-            "x": 991,
-            "y": 575,
+            "x": 990,
+            "y": 608,
             "isFilled": true,
-            "width": 105,
+            "width": 90,
             "height": 910
         },
         {
@@ -865,9 +865,9 @@
             "scope": "CLASS",
             "components": [],
             "x": 1095,
-            "y": 578,
+            "y": 608,
             "isFilled": true,
-            "width": 100,
+            "width": 85,
             "height": 910
         },
         {
@@ -877,9 +877,9 @@
             "scope": "CLASS",
             "components": [],
             "x": 1197,
-            "y": 577,
+            "y": 608,
             "isFilled": true,
-            "width": 100,
+            "width": 85,
             "height": 910
         },
         {
@@ -889,9 +889,9 @@
             "scope": "CLASS",
             "components": [],
             "x": 1299,
-            "y": 570,
+            "y": 608,
             "isFilled": true,
-            "width": 100,
+            "width": 85,
             "height": 910
         },
         {
@@ -901,9 +901,9 @@
             "scope": "CLASS",
             "components": [],
             "texture": {
-                "key": "red"
+                "key": "yellow"
             },
-            "x": 652,
+            "x": 778,
             "y": 99,
             "scaleX": 0.44,
             "scaleY": 0.44

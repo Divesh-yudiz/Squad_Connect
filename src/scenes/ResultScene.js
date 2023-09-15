@@ -42,8 +42,12 @@ class ResultScene extends Phaser.Scene {
 			this.image = this.add.image(960, 500, 'You-Won');
 			this.image.setScale(0.5, 0.5)
 			this.callTween();
-		} else {
+		} else if(playerWon == "player_2_Won"){
 			this.image = this.add.image(960, 500, 'Opponent-Won');
+			this.image.setScale(0.5, 0.5)
+			this.callTween();
+		}else if(playerWon == "player_Draw"){
+			this.image = this.add.image(960, 500, 'Draw');
 			this.image.setScale(0.5, 0.5)
 			this.callTween();
 		}
@@ -70,13 +74,19 @@ class ResultScene extends Phaser.Scene {
 	confetti() {
 		const defaults = {
 			spread: 360,
-			ticks: 100,
+			ticks: 50,
 			gravity: 0,
 			decay: 0.94,
 			startVelocity: 30,
 			shapes: ["star"],
 			colors: ["FFFF8F", "FFBF00", "FFEA00", "E4D00A"],
 		};
+
+		confetti({
+			...defaults,
+			particleCount: 1,
+			scalar: 1,
+		});
 
 		confetti({
 			...defaults,
@@ -88,12 +98,6 @@ class ResultScene extends Phaser.Scene {
 			...defaults,
 			particleCount: 1,
 			scalar: 3,
-		});
-
-		confetti({
-			...defaults,
-			particleCount: 1,
-			scalar: 4,
 		});
 	}
 
