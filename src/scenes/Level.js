@@ -451,21 +451,32 @@ class Level extends Phaser.Scene {
 		character_2.scaleX = 0.7;
 		character_2.scaleY = 0.7;
 
-		// button_Holder
-		const button_Holder = this.add.image(1509, 172, "Button-Holder");
-		button_Holder.scaleX = 1.15;
-		button_Holder.scaleY = 1.2;
+		// settingContainer
+		const settingContainer = this.add.container(0, 0);
 
-		// setting_Button
-		const setting_Button = this.add.image(1509, 135, "Setting-Button");
-		setting_Button.scaleX = 0.5;
-		setting_Button.scaleY = 0.5;
+		// button_Holder
+		const button_Holder = this.add.image(1645, 74, "Button-Holder");
+		settingContainer.add(button_Holder);
+
+		// sound_Button
+		const sound_Button = this.add.image(1645, 42, "Sound-Button");
+		sound_Button.scaleX = 0.9;
+		sound_Button.scaleY = 0.9;
+		settingContainer.add(sound_Button);
 
 		// info_Button
-		const info_Button = this.add.image(1509, 207, "Info-Button");
+		const info_Button = this.add.image(1645, 105, "Info-Button");
+		info_Button.scaleX = 0.9;
+		info_Button.scaleY = 0.9;
+		settingContainer.add(info_Button);
 
-		// setting_Button (components)
-		new PushOnClick(setting_Button);
+		// setting_Button
+		const setting_Button = this.add.image(1644, 100, "Setting-Button");
+		setting_Button.scaleX = 0.7;
+		setting_Button.scaleY = 0.7;
+
+		// sound_Button (components)
+		new PushOnClick(sound_Button);
 
 		// info_Button (components)
 		new PushOnClick(info_Button);
@@ -533,6 +544,10 @@ class Level extends Phaser.Scene {
 		this.row1_Space_6 = row1_Space_6;
 		this.hoverCoin = hoverCoin;
 		this.spritesheet0 = spritesheet0;
+		this.settingContainer = settingContainer;
+		this.sound_Button = sound_Button;
+		this.info_Button = info_Button;
+		this.setting_Button = setting_Button;
 
 		this.events.emit("scene-awake");
 	}
@@ -663,6 +678,14 @@ class Level extends Phaser.Scene {
 	hoverCoin;
 	/** @type {Phaser.GameObjects.Sprite} */
 	spritesheet0;
+	/** @type {Phaser.GameObjects.Container} */
+	settingContainer;
+	/** @type {Phaser.GameObjects.Image} */
+	sound_Button;
+	/** @type {Phaser.GameObjects.Image} */
+	info_Button;
+	/** @type {Phaser.GameObjects.Image} */
+	setting_Button;
 
 	/* START-USER-CODE */
 
@@ -689,6 +712,7 @@ class Level extends Phaser.Scene {
 	hoverX;
 	hoverY;
 	isHumanTurn = false;
+	isSound=true;
 	//this is comment
 	create() {
 		this.editorCreate();
@@ -727,6 +751,7 @@ class Level extends Phaser.Scene {
 		this.coinHover(-300, -300);
 		this.coinUpdate();
 		this.stripHover()
+		this.settingMaskAnimation()
 		if (enableBot == true) {
 			// this.botMove();
 		}
@@ -982,14 +1007,17 @@ class Level extends Phaser.Scene {
 
 	coinHover(currentColumnX, currentColumnY) {
 		if (this.count == 0) {
-			this.tweens.add({
-				targets: this.red0_5,
-				x: currentColumnX,
-				y: currentColumnY,
-				duration: 50,
-				ease: 'Power3',
-			});
+			if (!enableBot) {
+				this.tweens.add({
+					targets: this.red0_5,
+					x: currentColumnX,
+					y: currentColumnY,
+					duration: 50,
+					ease: 'Power3',
+				});
+			}
 		} else {
+
 			this.tweens.add({
 				targets: this.yellow0_5,
 				x: currentColumnX,
@@ -997,6 +1025,7 @@ class Level extends Phaser.Scene {
 				duration: 50,
 				ease: 'Power3',
 			});
+
 		}
 	}
 
@@ -1069,7 +1098,10 @@ class Level extends Phaser.Scene {
 			// console.log(arrayIndex)
 			this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 
-			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			if(this.isSound==true){
+				console.log("in the sound")
+				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			}
 		}
 	}
 
@@ -1092,7 +1124,10 @@ class Level extends Phaser.Scene {
 
 		if (this.count == 0) {
 			// console.log("player 2")
-			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			if(this.isSound==true){
+				console.log("in the sound")
+				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			}
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 
 			this.tweens.add({
@@ -1107,7 +1142,7 @@ class Level extends Phaser.Scene {
 					this.count++
 					this.hoverCoin.setTexture("yellow");
 					var sequence = this.checkSequence(this.resultMatrix);
-					if(!sequence){
+					if (!sequence) {
 						this.rotateCoin("player1")
 						this.glowRight.setVisible(false)
 						this.glowLeft.setVisible(true)
@@ -1131,8 +1166,10 @@ class Level extends Phaser.Scene {
 			if (enableBot == true) {
 				this.botMove();
 			}
-
-			this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			if(this.isSound==true){
+				console.log("in the sound")
+				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			}
 
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 
@@ -1149,7 +1186,7 @@ class Level extends Phaser.Scene {
 					// console.log("coin updated");
 					this.hoverCoin.setTexture("red");
 					var sequence = this.checkSequence(this.resultMatrix);
-					if(!sequence){
+					if (!sequence) {
 						this.rotateCoin("player2")
 						this.glowRight.setVisible(true)
 						this.glowLeft.setVisible(false)
@@ -1167,23 +1204,7 @@ class Level extends Phaser.Scene {
 		}
 	}
 
-	// botMove() {
-	// 	this[`row1_Space`].disableInteractive()
-	// 	for (let i = 1; i <= 7; i++) {
-	// 		this[`row1_Space_${i}`].disableInteractive();
-	// 	}
-	// 	var sequence = this.checkSequence(this.resultMatrix)
-	// 	if (!sequence) {
-	// 		const columnIndex = Math.floor(Math.random() * 7);
-	// 		if (this.array1Y < 6) {
-	// 			setTimeout(() => {
-	// console.log(columnIndex)
-	// 				this.coinUpdate1(columnIndex);
-	// 			}, 1000)
-	// 		}
-	// 	}
-	// 	this.isHumanTurn = true;
-	// }
+
 
 	botMove() {
 		this[`row1_Space`].disableInteractive();
@@ -1224,9 +1245,10 @@ class Level extends Phaser.Scene {
 		var sequence = this.checkSequence(this.resultMatrix)
 		if (!sequence) {
 			setTimeout(() => {
+				this.spritesheet0.setScale(0.65, 0.65)
 				this.spritesheet0.setVisible(true)
 				this.spritesheet0.x = x
-				this.spritesheet0.y = y
+				this.spritesheet0.y = y - 10
 				this.spritesheet0.play("sparkleAnims")
 				this.spritesheet0.on('animationcomplete', function () {
 					this.setVisible(false)
@@ -1322,16 +1344,6 @@ class Level extends Phaser.Scene {
 				}, 700)
 			}
 		}
-
-		// function leafRotation(target) {
-		// 	this.tweens.add({
-		// 		targets: target,
-		// 		duration: 1500, // Duration in milliseconds
-		// 		angle: '+=360', // Rotate by 360 degrees relative to the current angle
-		// 		ease: 'Linear', // Linear easing
-		// 		repeat: -1, // -1 means loop indefinitely
-		// 	});
-		// }
 	}
 
 	rotationTween1;
@@ -1370,6 +1382,69 @@ class Level extends Phaser.Scene {
 		} else {
 			// console.log("Invalid player:", player);
 		}
+	}
+
+	// settingButtonFun() {
+	// }
+	settingMaskAnimation() {
+
+		let settingShape = this.make.graphics();
+		settingShape.fillEllipse(1615, 200, 200, 180, 32);
+		const settingMask = settingShape.createGeometryMask();
+		this.settingContainer.setMask(settingMask);
+
+		this.setting_Button.setInteractive();
+		this.setting_Button.on("pointerdown", () => {
+			if (this.settingContainer.y == 145) {
+				this.y = -18;
+				this.angle = 360;
+			}
+			else {
+				this.y = 145;
+				this.angle = -360;
+			}
+
+			this.add.tween({
+				targets: this.setting_Button,
+				angle: this.angle,
+				ease: "Power2",
+				duration: 100,
+				onComplete: () => {
+					this.setting_Button.setInteractive();
+				}
+			});
+
+			this.add.tween({
+				targets: this.settingContainer,
+				y: this.y,
+				ease: "Power2",
+				duration: 300,
+				onComplete: () => {
+					this.info_Button.setInteractive();
+					var flag=0;
+					this.sound_Button.setInteractive().on("pointerdown", () => {
+
+						if (this.sound_Button.texture.key == "Sound-Button") {
+							this.sound_Button.setScale(0.9,0.9)
+							this.sound_Button.setTexture("Sound-Button-Off");
+							this.isSound=false;
+							flag++
+							console.log("im in buttonnnnnnnn")
+						}
+						else {
+							this.sound_Button.setScale(0.9,0.9)
+							this.sound_Button.setTexture("Sound-Button");
+							this.isSound=true;
+						}
+					});
+				}
+			});
+		})
+
+
+		this.sound_Button.on("pointerdown",()=>{
+
+		})
 	}
 
 

@@ -218,6 +218,11 @@
                 "key": "Sound-Button"
             },
             {
+                "url": "assets/images/Sound-Button-Off.png",
+                "type": "image",
+                "key": "Sound-Button-Off"
+            },
+            {
                 "url": "src/scripts/SoundManager.js",
                 "type": "script",
                 "key": "SoundManager"

@@ -970,45 +970,70 @@
             "scaleY": 0.7
         },
         {
-            "type": "Image",
-            "id": "5a512ca6-50a8-414a-aa4a-da9ee90fd4e9",
-            "label": "button_Holder",
+            "type": "Container",
+            "id": "759621ea-2267-42ef-9f1d-2c44b807c108",
+            "label": "settingContainer",
+            "scope": "CLASS",
             "components": [],
-            "texture": {
-                "key": "Button-Holder"
-            },
-            "x": 1509,
-            "y": 172,
-            "scaleX": 1.15,
-            "scaleY": 1.2
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "7a9b62d0-dd4c-4835-82ab-4f268f9f6923",
+                    "label": "button_Holder",
+                    "components": [],
+                    "texture": {
+                        "key": "Button-Holder"
+                    },
+                    "x": 1645,
+                    "y": 74
+                },
+                {
+                    "type": "Image",
+                    "id": "0c125ca4-e914-4719-b591-ccfac9d6ae8e",
+                    "label": "sound_Button",
+                    "scope": "CLASS",
+                    "components": [
+                        "PushOnClick"
+                    ],
+                    "texture": {
+                        "key": "Sound-Button"
+                    },
+                    "x": 1645,
+                    "y": 42,
+                    "scaleX": 0.9,
+                    "scaleY": 0.9
+                },
+                {
+                    "type": "Image",
+                    "id": "3bf65a41-9d7e-44e8-8cdf-11d20172dbc9",
+                    "label": "info_Button",
+                    "scope": "CLASS",
+                    "components": [
+                        "PushOnClick"
+                    ],
+                    "texture": {
+                        "key": "Info-Button"
+                    },
+                    "x": 1645,
+                    "y": 105,
+                    "scaleX": 0.9,
+                    "scaleY": 0.9
+                }
+            ]
         },
         {
             "type": "Image",
-            "id": "8210d6e6-1bff-44ea-b19c-3856fcded939",
+            "id": "79e9b676-12bc-46ec-ae69-932c764caab5",
             "label": "setting_Button",
-            "components": [
-                "PushOnClick"
-            ],
+            "scope": "CLASS",
+            "components": [],
             "texture": {
                 "key": "Setting-Button"
             },
-            "x": 1509,
-            "y": 135,
-            "scaleX": 0.5,
-            "scaleY": 0.5
-        },
-        {
-            "type": "Image",
-            "id": "4c05f909-a15a-48a1-9647-4ec7e2e03f33",
-            "label": "info_Button",
-            "components": [
-                "PushOnClick"
-            ],
-            "texture": {
-                "key": "Info-Button"
-            },
-            "x": 1509,
-            "y": 207
+            "x": 1644,
+            "y": 100,
+            "scaleX": 0.7,
+            "scaleY": 0.7
         }
     ],
     "plainObjects": [],

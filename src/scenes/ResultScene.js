@@ -37,23 +37,32 @@ class ResultScene extends Phaser.Scene {
 		this.soundObj = new SoundManager(this);
 		// this.soundObj.playSound(this.soundObj.winningSound, false);
 		// this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
-		console.log(playerWon)
-		if (playerWon == "player_1_Won") {
-			var image = this.add.image(960, 500, 'You-Won');
-			image.setScale(0.5, 0.5)
-			this.callTween(image);
-			// this.confetti()
-		} else if(playerWon == "player_2_Won"){
-			var image = this.add.image(960, 500, 'Opponent-Won');
-			image.setScale(0.5, 0.5)
-			this.callTween(image);
-			// this.confetti()
-		}else if(playerWon == "player_Draw"){
-			var image = this.add.image(960, 500, 'Draw');
-			image.setScale(0.5, 0.5)
-			this.callTween(image);
-			// this.confetti()
-		}
+		switch (playerWon) {
+			case "player_1_Won":
+			  var image = this.add.image(960, 500, 'You-Won');
+			  console.log("calling tween");
+			  image.setVisible(false);
+			  this.callTween(image);
+			  this.confetti();
+			  break;
+			case "player_2_Won":
+			  var image = this.add.image(960, 500, 'Opponent-Won');
+			  console.log("calling tween");
+			  image.setVisible(false);
+			  this.callTween(image);
+			  this.confetti();
+			  break;
+			case "player_Draw":
+			  console.log("calling tween");
+			  var image = this.add.image(960, 500, 'Draw');
+			  image.setVisible(false);
+			  this.callTween(image);
+			  this.confetti();
+			  break;
+			default:
+			  break;
+		  }
+		  
 		// if(playerWon!="player_Draw"){
 			
 		// }
@@ -67,10 +76,12 @@ class ResultScene extends Phaser.Scene {
 	}
 
 	callTween(target) {
+		console.log("calling tween")
+		target.setVisible(true)
 		this.add.tween({
 			targets: target,
-			scaleX: 1,
-			scaleY: 1,
+			scaleX: { from: 0, to: 1 },
+            scaleY: { from: 0, to: 1 },
 			duration: 100,
 			ease:"ease-in"
 		});
