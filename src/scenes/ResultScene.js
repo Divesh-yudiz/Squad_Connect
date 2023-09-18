@@ -39,20 +39,24 @@ class ResultScene extends Phaser.Scene {
 		// this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
 		console.log(playerWon)
 		if (playerWon == "player_1_Won") {
-			this.image = this.add.image(960, 500, 'You-Won');
-			this.image.setScale(0.5, 0.5)
-			this.callTween();
+			var image = this.add.image(960, 500, 'You-Won');
+			image.setScale(0.5, 0.5)
+			this.callTween(image);
+			// this.confetti()
 		} else if(playerWon == "player_2_Won"){
-			this.image = this.add.image(960, 500, 'Opponent-Won');
-			this.image.setScale(0.5, 0.5)
-			this.callTween();
+			var image = this.add.image(960, 500, 'Opponent-Won');
+			image.setScale(0.5, 0.5)
+			this.callTween(image);
+			// this.confetti()
 		}else if(playerWon == "player_Draw"){
-			this.image = this.add.image(960, 500, 'Draw');
-			this.image.setScale(0.5, 0.5)
-			this.callTween();
+			var image = this.add.image(960, 500, 'Draw');
+			image.setScale(0.5, 0.5)
+			this.callTween(image);
+			// this.confetti()
 		}
-
-		this.confetti()
+		// if(playerWon!="player_Draw"){
+			
+		// }
 
 		this.playAgainBtn.setInteractive();
 		this.playAgainBtn.on('pointerdown', () => {
@@ -62,12 +66,13 @@ class ResultScene extends Phaser.Scene {
 
 	}
 
-	callTween() {
+	callTween(target) {
 		this.add.tween({
-			targets: this.image,
+			targets: target,
 			scaleX: 1,
 			scaleY: 1,
-			duration: 300,
+			duration: 100,
+			ease:"ease-in"
 		});
 	}
 
