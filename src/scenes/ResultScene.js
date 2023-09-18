@@ -19,6 +19,9 @@ class ResultScene extends Phaser.Scene {
 		// playAgainBtn
 		const playAgainBtn = this.add.image(960, 893, "Re-Play-Button");
 
+		// playAgainBtn (components)
+		new PushOnClick(playAgainBtn);
+
 		this.playAgainBtn = playAgainBtn;
 
 		this.events.emit("scene-awake");
@@ -26,7 +29,7 @@ class ResultScene extends Phaser.Scene {
 
 	/** @type {Phaser.GameObjects.Image} */
 	playAgainBtn;
-	image
+
 	/* START-USER-CODE */
 
 	// Write your code here
@@ -41,35 +44,47 @@ class ResultScene extends Phaser.Scene {
 			case "player_1_Won":
 			  var image = this.add.image(960, 500, 'You-Won');
 			  console.log("calling tween");
-			  image.setVisible(false);
+			//   image.setVisible(false);
 			  this.callTween(image);
-			  this.confetti();
+			//   this.confetti();
+			this.startConfettiAnimation()
 			  break;
 			case "player_2_Won":
 			  var image = this.add.image(960, 500, 'Opponent-Won');
 			  console.log("calling tween");
-			  image.setVisible(false);
+			//   image.setVisible(false);
 			  this.callTween(image);
-			  this.confetti();
+			//   this.confetti();
+			this.startConfettiAnimation()
 			  break;
 			case "player_Draw":
 			  console.log("calling tween");
 			  var image = this.add.image(960, 500, 'Draw');
-			  image.setVisible(false);
+			//   image.setVisible(false);
 			  this.callTween(image);
-			  this.confetti();
+			//   this.confetti();
+			this.startConfettiAnimation()
 			  break;
 			default:
 			  break;
 		  }
-		  
+
 		// if(playerWon!="player_Draw"){
-			
+
 		// }
 
 		this.playAgainBtn.setInteractive();
 		this.playAgainBtn.on('pointerdown', () => {
-			location.reload();
+			this.add.tween({
+				targets: this.playAgainBtn,
+				scaleX: "*=0.8",
+				scaleY: "*=0.8",
+				duration: 80,
+				yoyo: true,
+				onComplete:()=>{
+					location.reload();
+				}
+			});
 		})
 
 
@@ -87,35 +102,68 @@ class ResultScene extends Phaser.Scene {
 		});
 	}
 
-	confetti() {
-		const defaults = {
-			spread: 360,
-			ticks: 50,
-			gravity: 0,
-			decay: 0.94,
-			startVelocity: 30,
-			shapes: ["star"],
-			colors: ["FFFF8F", "FFBF00", "FFEA00", "E4D00A"],
-		};
+	// confetti() {
+	// 	const defaults = {
+	// 		spread: 360,
+	// 		ticks: 50,
+	// 		gravity: 0,
+	// 		decay: 0.94,
+	// 		startVelocity: 30,
+	// 		shapes: ["star"],
+	// 		colors: ["FFFF8F", "FFBF00", "FFEA00", "E4D00A"],
+	// 	};
 
-		confetti({
-			...defaults,
-			particleCount: 1,
-			scalar: 1,
-		});
+	// 	confetti({
+	// 		...defaults,
+	// 		particleCount: 1,
+	// 		scalar: 1,
+	// 	});
 
-		confetti({
-			...defaults,
-			particleCount: 1,
-			scalar: 2,
-		});
+	// 	confetti({
+	// 		...defaults,
+	// 		particleCount: 1,
+	// 		scalar: 2,
+	// 	});
 
-		confetti({
-			...defaults,
-			particleCount: 1,
-			scalar: 3,
-		});
-	}
+	// 	confetti({
+	// 		...defaults,
+	// 		particleCount: 1,
+	// 		scalar: 3,
+	// 	});
+	// }
+
+	startConfettiAnimation() {
+		console.log("in the confetti")
+		var duration = 2 * 1000;
+		var animationEnd = Date.now() + duration;
+		var defaults = { startVelocity: 10, spread: 360, ticks: 2, zIndex: 0 };
+	
+		function randomInRange(min, max) {
+		  return Math.random() * (max - min) + min;
+		}
+	
+		this.interval = setInterval(function() {
+		  var timeLeft = animationEnd - Date.now();
+	
+		  if (timeLeft <= 0) {
+			return clearInterval(this.interval);
+		  }
+	
+		  var particleCount = 2 * (timeLeft / duration);
+		  confetti(
+			Object.assign({}, defaults, {
+			  particleCount,
+			  origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+			})
+		  );
+		  confetti(
+			Object.assign({}, defaults, {
+			  particleCount,
+			  origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+			})
+		  );
+		}, 250);
+	  }
 
 	/* END-USER-CODE */
 }

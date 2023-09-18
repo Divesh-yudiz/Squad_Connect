@@ -436,10 +436,10 @@ class Level extends Phaser.Scene {
 		const spritesheet0 = this.add.sprite(-224, -111, "spritesheet", 0);
 
 		// you
-		this.add.image(304, 711, "You");
+		const you = this.add.image(304, 711, "You");
 
 		// opponent
-		this.add.image(1614, 711, "Opponent");
+		const opponent = this.add.image(1614, 711, "Opponent");
 
 		// character_1
 		const character_1 = this.add.image(300, 545, "Character-1");
@@ -544,6 +544,8 @@ class Level extends Phaser.Scene {
 		this.row1_Space_6 = row1_Space_6;
 		this.hoverCoin = hoverCoin;
 		this.spritesheet0 = spritesheet0;
+		this.you = you;
+		this.opponent = opponent;
 		this.settingContainer = settingContainer;
 		this.sound_Button = sound_Button;
 		this.info_Button = info_Button;
@@ -678,6 +680,10 @@ class Level extends Phaser.Scene {
 	hoverCoin;
 	/** @type {Phaser.GameObjects.Sprite} */
 	spritesheet0;
+	/** @type {Phaser.GameObjects.Image} */
+	you;
+	/** @type {Phaser.GameObjects.Image} */
+	opponent;
 	/** @type {Phaser.GameObjects.Container} */
 	settingContainer;
 	/** @type {Phaser.GameObjects.Image} */
@@ -712,7 +718,7 @@ class Level extends Phaser.Scene {
 	hoverX;
 	hoverY;
 	isHumanTurn = false;
-	isSound=true;
+	isSound = true;
 	//this is comment
 	create() {
 		this.editorCreate();
@@ -752,10 +758,11 @@ class Level extends Phaser.Scene {
 		this.coinUpdate();
 		this.stripHover()
 		this.settingMaskAnimation()
-		if (enableBot == true) {
+		if (enableBot == false) {
+			this.you.setTexture("Player-1")
+			this.opponent.setTexture("Player-2")
 			// this.botMove();
 		}
-
 		// this.spritesheet0.play("sparkleAnims")
 	}
 
@@ -1079,6 +1086,9 @@ class Level extends Phaser.Scene {
 		});
 	}
 
+	currentStrip;
+	previoStrip
+
 	coinUpdate() {
 		// if(this.count!=0){
 		this[`row1_Space`].setInteractive().on('pointerdown', () => this.coinUpdate1(0), this);
@@ -1089,16 +1099,23 @@ class Level extends Phaser.Scene {
 	}
 
 	coinUpdate1(arrayIndex) {
+		this[`row1_Space`].disableInteractive();
+		for (let i = 1; i <= 6; i++) {
+			this[`row1_Space_${i}`].disableInteractive();
+		}
 		console.log(this)
+		this.currentStrip = arrayIndex;
+		this.intialposX = 650 + (arrayIndex * 110);
+		this.intialposY = -78;
 		// console.log(arrayIndex)
 		if (this["array" + (arrayIndex + 1) + "Y"] <= 6) {
 			this.addCoin(this, arrayIndex);
 			this.resultMatrix[arrayIndex][this[`array${arrayIndex + 1}Y`]] = this.colorCode;
 			this[`array${arrayIndex + 1}Y`]++;
 			// console.log(arrayIndex)
-			this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
+			// this.coinHover(this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].x, this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].y);
 
-			if(this.isSound==true){
+			if (this.isSound == true) {
 				console.log("in the sound")
 				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			}
@@ -1108,6 +1125,7 @@ class Level extends Phaser.Scene {
 
 	rotateCoin1;
 	rotateCoin2;
+
 
 
 	addCoin(place, arrayIndex) {
@@ -1123,8 +1141,9 @@ class Level extends Phaser.Scene {
 		this.yellowCoin.setScale(0.33, 0.33)
 
 		if (this.count == 0) {
+			this.count++
 			// console.log("player 2")
-			if(this.isSound==true){
+			if (this.isSound == true) {
 				console.log("in the sound")
 				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			}
@@ -1138,8 +1157,10 @@ class Level extends Phaser.Scene {
 				bounce: 0.05,
 				duration: 500,
 				onComplete: () => {
+					this.intialposX = 650 + (this.currentStrip * 110);
+					this.intialposY = -78;
 					this.findConclusion()
-					this.count++
+
 					this.hoverCoin.setTexture("yellow");
 					var sequence = this.checkSequence(this.resultMatrix);
 					if (!sequence) {
@@ -1147,7 +1168,7 @@ class Level extends Phaser.Scene {
 						this.glowRight.setVisible(false)
 						this.glowLeft.setVisible(true)
 					}
-					if (this[`array${arrayIndex + 1}Y`] < 7) {
+					if (this[`array${arrayIndex + 1}Y`] < 7 && enableBot == false) {
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
 					place.packedCoin = "red";
@@ -1160,13 +1181,13 @@ class Level extends Phaser.Scene {
 				}
 			});
 		} else {
-
+			this.count = 0
 			// console.log("player1")
 			// console.log(enableBot)
 			if (enableBot == true) {
 				this.botMove();
 			}
-			if(this.isSound==true){
+			if (this.isSound == true) {
 				console.log("in the sound")
 				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			}
@@ -1181,8 +1202,10 @@ class Level extends Phaser.Scene {
 				bounce: 0.1,
 				duration: 500,
 				onComplete: () => {
+					this.intialposX = 650 + (this.currentStrip * 110);
+					this.intialposY = -78;
 					this.findConclusion()
-					this.count = 0
+
 					// console.log("coin updated");
 					this.hoverCoin.setTexture("red");
 					var sequence = this.checkSequence(this.resultMatrix);
@@ -1191,7 +1214,7 @@ class Level extends Phaser.Scene {
 						this.glowRight.setVisible(true)
 						this.glowLeft.setVisible(false)
 					}
-					if (this[`array${arrayIndex + 1}Y`] < 7) {
+					if (this[`array${arrayIndex + 1}Y`] < 7 && enableBot == false) {
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
 					// console.log(this.targets == this.coin);
@@ -1199,6 +1222,10 @@ class Level extends Phaser.Scene {
 					this.colorCode = 2;
 					place.packed = true;
 					// console.log(place);
+					this[`row1_Space`].setInteractive()
+					for (let i = 1; i <= 6; i++) {
+						this[`row1_Space_${i}`].setInteractive()
+					}
 				}
 			});
 		}
@@ -1215,14 +1242,16 @@ class Level extends Phaser.Scene {
 		// Check if the randomly selected row is filled
 		const columnIndex = Math.floor(Math.random() * 7);
 		console.log("Bot Column Index", columnIndex)
+		this.previoStrip = this.currentStrip;
+		this.currentStrip = columnIndex;
 		if (this[`array${columnIndex + 1}Y`] <= 6) {
 			var sequence = this.checkSequence(this.resultMatrix);
 			if (!sequence) {
 				setTimeout(() => {
-					// console.log(columnIndex);
 					this.intialposX = 650 + (columnIndex * 110);
 					this.intialposY = -78;
 					this.coinUpdate1(columnIndex);
+					this.stripHover();
 				}, 1000);
 			}
 		} else {
@@ -1230,7 +1259,6 @@ class Level extends Phaser.Scene {
 			for (let i = 0; i < 7; i++) {
 				if (this[`array${i + 1}Y`] < 6) {
 					setTimeout(() => {
-						// console.log(i);
 						this.coinUpdate1(i);
 					}, 1000);
 					break; // Exit the loop after finding an available row
@@ -1421,20 +1449,20 @@ class Level extends Phaser.Scene {
 				duration: 300,
 				onComplete: () => {
 					this.info_Button.setInteractive();
-					var flag=0;
+					var flag = 0;
 					this.sound_Button.setInteractive().on("pointerdown", () => {
 
 						if (this.sound_Button.texture.key == "Sound-Button") {
-							this.sound_Button.setScale(0.9,0.9)
+							this.sound_Button.setScale(0.9, 0.9)
 							this.sound_Button.setTexture("Sound-Button-Off");
-							this.isSound=false;
+							this.isSound = false;
 							flag++
 							console.log("im in buttonnnnnnnn")
 						}
 						else {
-							this.sound_Button.setScale(0.9,0.9)
+							this.sound_Button.setScale(0.9, 0.9)
 							this.sound_Button.setTexture("Sound-Button");
-							this.isSound=true;
+							this.isSound = true;
 						}
 					});
 				}
@@ -1442,7 +1470,7 @@ class Level extends Phaser.Scene {
 		})
 
 
-		this.sound_Button.on("pointerdown",()=>{
+		this.sound_Button.on("pointerdown", () => {
 
 		})
 	}

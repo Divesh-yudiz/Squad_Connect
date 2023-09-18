@@ -2,16 +2,6 @@
     "section1": {
         "files": [
             {
-                "url": "assets/images/bgImage.jpg",
-                "type": "image",
-                "key": "bgImage"
-            },
-            {
-                "url": "assets/images/Board (1).png",
-                "type": "image",
-                "key": "Board (1)"
-            },
-            {
                 "url": "assets/images/Brown-Stone-Cover.png",
                 "type": "image",
                 "key": "Brown-Stone-Cover"
@@ -30,11 +20,6 @@
                 "url": "assets/images/Character-2.png",
                 "type": "image",
                 "key": "Character-2"
-            },
-            {
-                "url": "assets/images/Clipping-Mask-For-Character.png",
-                "type": "image",
-                "key": "Clipping-Mask-For-Character"
             },
             {
                 "url": "assets/animations/coinAdd.json",
@@ -138,24 +123,19 @@
                 "key": "PAC-FONT"
             },
             {
-                "url": "assets/images/playAgainButton2x.png",
+                "url": "assets/images/Player-1.png",
                 "type": "image",
-                "key": "playAgainButton2x"
-            },
-            {
-                "url": "assets/images/player_1-removebg-preview.png",
-                "type": "image",
-                "key": "player_1"
-            },
-            {
-                "url": "assets/images/player_2-removebg-preview.png",
-                "type": "image",
-                "key": "player_2"
+                "key": "Player-1"
             },
             {
                 "url": "assets/images/Player-1-Won.png",
                 "type": "image",
                 "key": "Player-1-Won"
+            },
+            {
+                "url": "assets/images/Player-2.png",
+                "type": "image",
+                "key": "Player-2"
             },
             {
                 "url": "assets/images/Player-2-Won.png",
@@ -181,16 +161,6 @@
                 "url": "assets/images/Brown-Stone.png",
                 "type": "image",
                 "key": "red"
-            },
-            {
-                "url": "assets/images/red.png",
-                "type": "image",
-                "key": "red"
-            },
-            {
-                "url": "assets/images/resultbg.jpg",
-                "type": "image",
-                "key": "resultbg"
             },
             {
                 "url": "assets/images/Setting-Button.png",

@@ -925,6 +925,7 @@
             "type": "Image",
             "id": "41736e77-c7c0-487a-8f04-aeceb68317b1",
             "label": "you",
+            "scope": "CLASS",
             "components": [],
             "texture": {
                 "key": "You"
@@ -936,6 +937,7 @@
             "type": "Image",
             "id": "cb2622e0-886f-4cf3-b135-8bf4573dcc0a",
             "label": "opponent",
+            "scope": "CLASS",
             "components": [],
             "texture": {
                 "key": "Opponent"

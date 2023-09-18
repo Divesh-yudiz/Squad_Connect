@@ -14,7 +14,9 @@
             "id": "84b2da9e-3eeb-4c2a-a99d-2713401c2682",
             "label": "playAgainBtn",
             "scope": "CLASS",
-            "components": [],
+            "components": [
+                "PushOnClick"
+            ],
             "texture": {
                 "key": "Re-Play-Button"
             },
