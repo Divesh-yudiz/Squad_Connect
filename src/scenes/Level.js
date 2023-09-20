@@ -753,8 +753,6 @@ class Level extends Phaser.Scene {
 			// Push the column into the transposedMatrix array
 			this.resultMatrix.push(column);
 		}
-		// this.findConclusion();
-		// this.glowPlayer()
 		this.findPos();
 		this.coinHover(-300, -300);
 		this.coinUpdate();
@@ -763,9 +761,7 @@ class Level extends Phaser.Scene {
 		if (enableBot == false) {
 			this.you.setTexture("Player-1")
 			this.opponent.setTexture("Player-2")
-			// this.botMove();
 		}
-		// this.spritesheet0.play("sparkleAnims")
 	}
 
 	findConclusion() {
@@ -789,11 +785,7 @@ class Level extends Phaser.Scene {
 
 				playerWon = "player_2_Won"
 				setTimeout(() => {
-					// funCount++
-					// console.log(funCount)
 					this.scene.stop('Level');
-					// console.log("swich scene")
-
 					this.scene.start('ResultScene');
 
 				}, 3000);
@@ -812,8 +804,6 @@ class Level extends Phaser.Scene {
 				setTimeout(() => {
 					this.scene.stop('Level');
 					funCount++
-					// console.log(funCount)
-					// console.log("swich scene")
 					this.scene.start('ResultScene');
 				}, 3000);
 			}
@@ -1009,12 +999,8 @@ class Level extends Phaser.Scene {
 			for (let row = 0; row < matrix.length; row++) {
 				column.push(matrix[row][col]);
 			}
-
-			// Push the column into the transposedMatrix array
 			transposedMatrix.push(column);
 		}
-
-		// console.log(transposedMatrix);
 		this.mainArray = transposedMatrix;
 
 		for (let row = 0; row < transposedMatrix.length; row++) {
@@ -1024,7 +1010,6 @@ class Level extends Phaser.Scene {
 				element.isFilled = false;
 				element.setInteractive();
 				element.on('pointerdown', () => {
-					// console.log("row: ", row, "column: ", col)
 				});
 
 			}
@@ -1045,7 +1030,6 @@ class Level extends Phaser.Scene {
 				});
 			}
 		} else {
-
 			this.tweens.add({
 				targets: this.yellow0_5,
 				x: currentColumnX,
@@ -1090,14 +1074,12 @@ class Level extends Phaser.Scene {
 					this.intialposY = -78;
 				}
 			}).on('pointermove', () => {
-				// console.log(rowHandlers[index]);
 				if (this["array" + (index + 1) + "Y"] <= 6) {
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
 					this.intialposY = -78;
 				}
 			}).on('pointerup', () => {
-				// console.log(rowHandlers[index]);
 				if (this["array" + (index + 1) + "Y"] <= 6) {
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
@@ -1111,7 +1093,6 @@ class Level extends Phaser.Scene {
 	previoStrip
 
 	coinUpdate() {
-		// if(this.count!=0){
 		this[`row1_Space`].setInteractive().on('pointerdown', () => this.coinUpdate1(0), this);
 		for (let i = 1; i <= 6; i++) {
 			this[`row1_Space_${i}`].setInteractive().on('pointerdown', () => this.coinUpdate1(i), this);
@@ -1121,18 +1102,14 @@ class Level extends Phaser.Scene {
 	coinUpdate1(arrayIndex) {
 		if (this[`array${arrayIndex + 1}Y`] <= 6) {
 			this.desableInteraction()
-			// console.log(this)
 			this.currentStrip = arrayIndex;
 			this.intialposX = 650 + (arrayIndex * 110);
 			this.intialposY = -78;
-			// console.log(arrayIndex)
 			if (this["array" + (arrayIndex + 1) + "Y"] <= 6) {
 				this.addCoin(this, arrayIndex);
 				this.resultMatrix[arrayIndex][this[`array${arrayIndex + 1}Y`]] = this.colorCode;
 				this[`array${arrayIndex + 1}Y`]++;
-				// console.log(arrayIndex)
 				if (this.isSound == true) {
-					// console.log("in the sound")
 					this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 				}
 			}
@@ -1153,7 +1130,6 @@ class Level extends Phaser.Scene {
 	rotateCoin2;
 
 	addCoin(place, arrayIndex) {
-		// console.log("X", this.intialposX, "Y", this.intialposY)
 		this.redCoin = this.add.sprite(this.intialposX, this.intialposY, 'red');
 		this.redCoin.setDepth(2)
 		this.redCoin.setScale(0.33, 0.33)
@@ -1162,10 +1138,8 @@ class Level extends Phaser.Scene {
 		this.yellowCoin.setScale(0.33, 0.33)
 
 		if (this.count == 0) {
-			// console.log("player 2")
-
 			if (this.isSound == true) {
-				// console.log("in the sound")
+				
 				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			}
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
@@ -1208,7 +1182,6 @@ class Level extends Phaser.Scene {
 			});
 		} else {
 			if (this.isSound == true) {
-				// console.log("in the sound")
 				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			}
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
@@ -1239,7 +1212,6 @@ class Level extends Phaser.Scene {
 					if (this[`array${arrayIndex + 1}Y`] < 7 && enableBot == false) {
 						this.coinHover(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y);
 					}
-					// console.log(this.targets == this.coin);
 					place.packedCoin = "yello";
 					this.colorCode = 2;
 					place.packed = true;
@@ -1307,8 +1279,6 @@ class Level extends Phaser.Scene {
 
 	botMove() {
 		console.log("Bot move Called...");
-		
-		// Check if the randomly selected row is filled
 		const columnIndex = Math.floor(Math.random() * 7);
 		console.log("Bot Column Index", columnIndex);
 		this.previoStrip = this.currentStrip;
@@ -1320,25 +1290,22 @@ class Level extends Phaser.Scene {
 			if (this[`array${columnIndex + 1}Y`] <= 7) {
 				foundAvailableRow = true;
 				console.log("Found Available row")
-				break; // Exit the loop if an available row is found
+				break; 
 			}
-			columnIndex = (columnIndex + 1) % 7; // Try the next column in a circular manner
+			columnIndex = (columnIndex + 1) % 7;
 		}
 	
 		if (foundAvailableRow) {
-			// If an available row is found, perform the move
 			setTimeout(() => {
 				this.intialposX = 650 + (columnIndex * 110);
 				this.intialposY = -78;
 				this.coinUpdate1(columnIndex);
 				this.coinHover(this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].x, this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].y);
 				this.stripHover();
-			}, 1000);
+			}, 500);
 		} else {
 			console.log("No available rows.");
-			// Handle the case when there are no available rows (optional)
 		}
-	
 		this.isHumanTurn = true;
 	}
 	
@@ -1369,10 +1336,7 @@ class Level extends Phaser.Scene {
 				let col = sequence.position.col;
 
 				setTimeout(() => {
-					// this.mainArray[row][col].y
 					for (let i = col; i < col + 4; i++) {
-						// console.log("row: ", row, "Cols: ", col)
-						// console.log(i)
 						let leafCircle = this.add.sprite(this.mainArray[row][i].x, this.mainArray[row][i].y, "Leaf-Circle")
 						leafCircle.setScale(.44, .44)
 						leafCircle.setDepth(1)
@@ -1393,7 +1357,6 @@ class Level extends Phaser.Scene {
 
 				setTimeout(() => {
 					for (let i = row; i < row + 4; i++) {
-						// console.log("hhhhhhh")
 						let leafCircle = this.add.sprite(this.mainArray[i][col].x, this.mainArray[i][col].y, "Leaf-Circle")
 						leafCircle.setScale(.44, .44)
 						leafCircle.setDepth(1)
@@ -1416,7 +1379,7 @@ class Level extends Phaser.Scene {
 				setTimeout(() => {
 					if (sequence.direction == "top-left to bottom-right") {
 						for (let i = 0; i < 4; i++) {
-							// console.log("Diagonal: ", i);
+							
 							let leafCircle = this.add.sprite(this.mainArray[row + i][col + i].x, this.mainArray[row + i][col + i].y, "Leaf-Circle");
 							leafCircle.setScale(.44, .44);
 							leafCircle.setDepth(1);
@@ -1430,7 +1393,7 @@ class Level extends Phaser.Scene {
 						}
 					} else {
 						for (let i = 0; i < 4; i++) {
-							// console.log("Backward Diagonal: ", i);
+							
 							let leafCircle = this.add.sprite(this.mainArray[row + i][col - i].x, this.mainArray[row + i][col - i].y, "Leaf-Circle");
 							leafCircle.setScale(.44, .44);
 							leafCircle.setDepth(1);
@@ -1452,8 +1415,6 @@ class Level extends Phaser.Scene {
 	rotationTween2;
 
 	rotateCoin(player) {
-		// console.log("Player playing", player);
-
 		// Stop any existing rotation tweens for both players
 		if (this.rotationTween1) {
 			this.rotationTween1.stop();
@@ -1486,8 +1447,6 @@ class Level extends Phaser.Scene {
 		}
 	}
 
-	// settingButtonFun() {
-	// }
 	settingMaskAnimation() {
 
 		let settingShape = this.make.graphics();
@@ -1531,7 +1490,6 @@ class Level extends Phaser.Scene {
 							this.sound_Button.setTexture("Sound-Button-Off");
 							this.isSound = false;
 							flag++
-							console.log("im in buttonnnnnnnn")
 						}
 						else {
 							this.sound_Button.setScale(0.9, 0.9)
@@ -1584,6 +1542,13 @@ class Level extends Phaser.Scene {
 				this.red0_5.setVisible(false);
 				this.posX = this.yellow0_5.x
 				this.posY = this.yellow0_5.y
+			}
+		}
+		if(enableBot == true){
+			if (this.count == 0) {
+				this.hoverCoin.setVisible(false)
+			} else if (this.count == 1) {
+				this.hoverCoin.setVisible(true)
 			}
 		}
 		// console.log(this.colorCode);

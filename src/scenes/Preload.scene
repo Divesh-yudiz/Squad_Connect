@@ -36,6 +36,32 @@
             },
             "x": 960,
             "y": 540
+        },
+        {
+            "type": "Image",
+            "id": "e02887fa-4831-4451-b011-1bee196be661",
+            "label": "loading_Outside",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Loading-Outside"
+            },
+            "x": 960,
+            "y": 901
+        },
+        {
+            "type": "Image",
+            "id": "7874cbca-c253-4458-b598-c1de64c8f45c",
+            "label": "inside",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Inside"
+            },
+            "x": 516,
+            "y": 901,
+            "originX": 0,
+            "visible": false
         }
     ],
     "plainObjects": [],

@@ -12,6 +12,16 @@
                 "key": "Brown-Stone(for player)"
             },
             {
+                "url": "assets/images/Inside.png",
+                "type": "image",
+                "key": "Inside"
+            },
+            {
+                "url": "assets/images/Loading-Outside.png",
+                "type": "image",
+                "key": "Loading-Outside"
+            },
+            {
                 "url": "assets/images/Logo.png",
                 "type": "image",
                 "key": "Logo"
