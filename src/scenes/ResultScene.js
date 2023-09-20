@@ -35,39 +35,40 @@ class ResultScene extends Phaser.Scene {
 	// Write your code here
 
 	create() {
-
 		this.editorCreate();
+		
 		this.soundObj = new SoundManager(this);
+		console.log("hellooooo im create")
 		// this.soundObj.playSound(this.soundObj.winningSound, false);
 		// this.resultDeclaration.setStyle({ 'fontFamily': 'GameFont1' })
 		switch (playerWon) {
 			case "player_1_Won":
-			  var image = this.add.image(960, 500, 'You-Won');
-			  console.log("calling tween");
-			//   image.setVisible(false);
-			  this.callTween(image);
-			//   this.confetti();
-			this.startConfettiAnimation()
-			  break;
+				var image = this.add.image(960, 500, 'You-Won');
+				console.log("calling tween");
+				//   image.setVisible(false);
+				this.callTween(image);
+				  this.confetti();
+				// this.startConfettiAnimation()
+				break;
 			case "player_2_Won":
-			  var image = this.add.image(960, 500, 'Opponent-Won');
-			  console.log("calling tween");
-			//   image.setVisible(false);
-			  this.callTween(image);
-			//   this.confetti();
-			this.startConfettiAnimation()
-			  break;
+				var image = this.add.image(960, 500, 'Opponent-Won');
+				console.log("calling tween");
+				//   image.setVisible(false);
+				this.callTween(image);
+				  this.confetti();
+				// this.startConfettiAnimation();
+				break;
 			case "player_Draw":
-			  console.log("calling tween");
-			  var image = this.add.image(960, 500, 'Draw');
-			//   image.setVisible(false);
-			  this.callTween(image);
-			//   this.confetti();
-			this.startConfettiAnimation()
-			  break;
+				console.log("calling tween");
+				var image = this.add.image(960, 500, 'Draw');
+				//   image.setVisible(false);
+				this.callTween(image);
+				//   this.confetti();
+				// this.startConfettiAnimation()
+				break;
 			default:
-			  break;
-		  }
+				break;
+		}
 
 		// if(playerWon!="player_Draw"){
 
@@ -81,7 +82,7 @@ class ResultScene extends Phaser.Scene {
 				scaleY: "*=0.8",
 				duration: 80,
 				yoyo: true,
-				onComplete:()=>{
+				onComplete: () => {
 					location.reload();
 				}
 			});
@@ -96,74 +97,74 @@ class ResultScene extends Phaser.Scene {
 		this.add.tween({
 			targets: target,
 			scaleX: { from: 0, to: 1 },
-            scaleY: { from: 0, to: 1 },
-			duration: 100,
-			ease:"ease-in"
+			scaleY: { from: 0, to: 1 },
+			duration: 1000,
+			ease: "Sine.easeInOut"
 		});
 	}
 
-	// confetti() {
-	// 	const defaults = {
-	// 		spread: 360,
-	// 		ticks: 50,
-	// 		gravity: 0,
-	// 		decay: 0.94,
-	// 		startVelocity: 30,
-	// 		shapes: ["star"],
-	// 		colors: ["FFFF8F", "FFBF00", "FFEA00", "E4D00A"],
-	// 	};
+	confetti() {
+		const defaults = {
+			spread: 360,
+			ticks: 100,
+			gravity: 0,
+			decay: 0.94,
+			startVelocity: 30,
+			shapes: ["star"],
+			colors: ["FFFF8F", "FFBF00", "FFEA00", "E4D00A"],
+		};
 
-	// 	confetti({
-	// 		...defaults,
-	// 		particleCount: 1,
-	// 		scalar: 1,
-	// 	});
+		confetti({
+			...defaults,
+			particleCount: 50,
+			scalar: 2,
+		});
 
-	// 	confetti({
-	// 		...defaults,
-	// 		particleCount: 1,
-	// 		scalar: 2,
-	// 	});
+		confetti({
+			...defaults,
+			particleCount: 25,
+			scalar: 3,
+		});
 
-	// 	confetti({
-	// 		...defaults,
-	// 		particleCount: 1,
-	// 		scalar: 3,
-	// 	});
-	// }
+		confetti({
+			...defaults,
+			particleCount: 12,
+			scalar: 5,
+		});
+	}
 
 	startConfettiAnimation() {
 		console.log("in the confetti")
-		var duration = 2 * 1000;
+		var duration = 15 * 1000;
 		var animationEnd = Date.now() + duration;
-		var defaults = { startVelocity: 10, spread: 360, ticks: 2, zIndex: 0 };
-	
+		var defaults = { startVelocity: 30, spread: 360, ticks: 5, zIndex: 0 };
+
 		function randomInRange(min, max) {
-		  return Math.random() * (max - min) + min;
+			return Math.random() * (max - min) + min;
 		}
-	
-		this.interval = setInterval(function() {
-		  var timeLeft = animationEnd - Date.now();
-	
-		  if (timeLeft <= 0) {
-			return clearInterval(this.interval);
-		  }
-	
-		  var particleCount = 2 * (timeLeft / duration);
-		  confetti(
-			Object.assign({}, defaults, {
-			  particleCount,
-			  origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-			})
-		  );
-		  confetti(
-			Object.assign({}, defaults, {
-			  particleCount,
-			  origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-			})
-		  );
+
+		this.interval = setInterval(function () {
+			var timeLeft = animationEnd - Date.now();
+
+			if (timeLeft <= 0) {
+				return clearInterval(this.interval);
+			}
+
+			var particleCount = 30 * (timeLeft / duration);
+			confetti(
+				Object.assign({}, defaults, {
+					particleCount,
+					origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+				})
+			);
+			confetti(
+				Object.assign({}, defaults, {
+					particleCount,
+					origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+				})
+			);
 		}, 250);
-	  }
+	}
 
 	/* END-USER-CODE */
 }

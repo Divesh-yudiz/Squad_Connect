@@ -723,9 +723,11 @@ class Level extends Phaser.Scene {
 	create() {
 		this.editorCreate();
 
-		this.red0_5 = this.add.image(656, 892, 'red');
-		this.red0_5.setScale(0.33, 0.33)
-		this.red0_5.setAlpha(0.5)
+		if (enableBot == false) {
+			this.red0_5 = this.add.image(656, 892, 'red');
+			this.red0_5.setScale(0.33, 0.33)
+			this.red0_5.setAlpha(0.5)
+		}
 		this.yellow0_5 = this.add.image(773, 892, 'yellow');
 		this.yellow0_5.setScale(0.33, 0.33)
 		this.yellow0_5.setAlpha(0.5)
@@ -768,31 +770,50 @@ class Level extends Phaser.Scene {
 
 	findConclusion() {
 		const sequence = this.checkSequence(this.resultMatrix);
+
+		var funCount = 0;
 		if (sequence) {
 			// console.log(sequence)
+			this.desableInteraction();
 			if (sequence.sequence == 2) {
+				console.log("im findConclusion")
+
 				this.glowCoins();
-				this.red0_5.setVisible(false);
+				if (enableBot == false) {
+					this.red0_5.setVisible(false);
+				}
 				this.yellow0_5.setVisible(false);
 				setTimeout(() => {
 					this.scene.pause('Level')
-				}, 700)
+				}, 500)
 
 				playerWon = "player_2_Won"
 				setTimeout(() => {
+					// funCount++
+					// console.log(funCount)
 					this.scene.stop('Level');
+					// console.log("swich scene")
+
 					this.scene.start('ResultScene');
+
 				}, 3000);
 			} else if (sequence.sequence == 1) {
+				console.log("im findConclusion")
+
 				this.glowCoins();
-				this.red0_5.setVisible(false);
+				if (enableBot == false) {
+					this.red0_5.setVisible(false);
+				}
 				this.yellow0_5.setVisible(false);
 				setTimeout(() => {
 					this.scene.pause('Level')
-				}, 1000)
+				}, 500)
 				playerWon = "player_1_Won"
 				setTimeout(() => {
 					this.scene.stop('Level');
+					funCount++
+					// console.log(funCount)
+					// console.log("swich scene")
 					this.scene.start('ResultScene');
 				}, 3000);
 			}
@@ -802,7 +823,7 @@ class Level extends Phaser.Scene {
 			setTimeout(() => {
 				this.scene.stop('Level');
 				this.scene.start('ResultScene');
-			}, 3000);
+			}, 1500);
 		}
 	}
 
@@ -1095,44 +1116,44 @@ class Level extends Phaser.Scene {
 		for (let i = 1; i <= 6; i++) {
 			this[`row1_Space_${i}`].setInteractive().on('pointerdown', () => this.coinUpdate1(i), this);
 		}
-		// }
 	}
 
 	coinUpdate1(arrayIndex) {
-		this[`row1_Space`].disableInteractive();
-		for (let i = 1; i <= 6; i++) {
-			this[`row1_Space_${i}`].disableInteractive();
-		}
-		console.log(this)
-		this.currentStrip = arrayIndex;
-		this.intialposX = 650 + (arrayIndex * 110);
-		this.intialposY = -78;
-		// console.log(arrayIndex)
-		if (this["array" + (arrayIndex + 1) + "Y"] <= 6) {
-			this.addCoin(this, arrayIndex);
-			this.resultMatrix[arrayIndex][this[`array${arrayIndex + 1}Y`]] = this.colorCode;
-			this[`array${arrayIndex + 1}Y`]++;
+		if (this[`array${arrayIndex + 1}Y`] <= 6) {
+			this.desableInteraction()
+			// console.log(this)
+			this.currentStrip = arrayIndex;
+			this.intialposX = 650 + (arrayIndex * 110);
+			this.intialposY = -78;
 			// console.log(arrayIndex)
-			// this.coinHover(this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].x, this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].y);
-
-			if (this.isSound == true) {
-				console.log("in the sound")
-				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+			if (this["array" + (arrayIndex + 1) + "Y"] <= 6) {
+				this.addCoin(this, arrayIndex);
+				this.resultMatrix[arrayIndex][this[`array${arrayIndex + 1}Y`]] = this.colorCode;
+				this[`array${arrayIndex + 1}Y`]++;
+				// console.log(arrayIndex)
+				if (this.isSound == true) {
+					// console.log("in the sound")
+					this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+				}
+			}
+		} else {
+			console.log("im am fulled ", arrayIndex)
+			if (enableBot == true) {
+				this.botMove();
+			}
+			if (arrayIndex == 0) {
+				this[`row1_Space`].disableInteractive();
+			} else {
+				this[`row1_Space_${arrayIndex}`].disableInteractive();
 			}
 		}
 	}
 
-
 	rotateCoin1;
 	rotateCoin2;
 
-
-
 	addCoin(place, arrayIndex) {
-		// console.log(place);
-		// console.log("PLace",place)
-		// console.log("X : ",place.posX," Y :",place.posY)
-		console.log("X", this.intialposX, "Y", this.intialposY)
+		// console.log("X", this.intialposX, "Y", this.intialposY)
 		this.redCoin = this.add.sprite(this.intialposX, this.intialposY, 'red');
 		this.redCoin.setDepth(2)
 		this.redCoin.setScale(0.33, 0.33)
@@ -1141,10 +1162,10 @@ class Level extends Phaser.Scene {
 		this.yellowCoin.setScale(0.33, 0.33)
 
 		if (this.count == 0) {
-			this.count++
 			// console.log("player 2")
+
 			if (this.isSound == true) {
-				console.log("in the sound")
+				// console.log("in the sound")
 				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			}
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
@@ -1157,6 +1178,7 @@ class Level extends Phaser.Scene {
 				bounce: 0.05,
 				duration: 500,
 				onComplete: () => {
+					this.count++
 					this.intialposX = 650 + (this.currentStrip * 110);
 					this.intialposY = -78;
 					this.findConclusion()
@@ -1174,26 +1196,22 @@ class Level extends Phaser.Scene {
 					place.packedCoin = "red";
 					this.colorCode = 1;
 					place.packed = true;
-					this[`row1_Space`].setInteractive()
-					for (let i = 1; i <= 6; i++) {
-						this[`row1_Space_${i}`].setInteractive()
+					if (!sequence) {
+						setTimeout(() => {
+							this[`row1_Space`].setInteractive()
+							for (let i = 1; i <= 6; i++) {
+								this[`row1_Space_${i}`].setInteractive()
+							}
+						}, 500)
 					}
 				}
 			});
 		} else {
-			this.count = 0
-			// console.log("player1")
-			// console.log(enableBot)
-			if (enableBot == true) {
-				this.botMove();
-			}
 			if (this.isSound == true) {
-				console.log("in the sound")
+				// console.log("in the sound")
 				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
 			}
-
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
-
 			this.tweens.add({
 				targets: this.yellowCoin,
 				x: this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x,
@@ -1202,6 +1220,10 @@ class Level extends Phaser.Scene {
 				bounce: 0.1,
 				duration: 500,
 				onComplete: () => {
+					this.count = 0
+					if (enableBot == true) {
+						this.botMove();
+					}
 					this.intialposX = 650 + (this.currentStrip * 110);
 					this.intialposY = -78;
 					this.findConclusion()
@@ -1222,52 +1244,104 @@ class Level extends Phaser.Scene {
 					this.colorCode = 2;
 					place.packed = true;
 					// console.log(place);
-					this[`row1_Space`].setInteractive()
-					for (let i = 1; i <= 6; i++) {
-						this[`row1_Space_${i}`].setInteractive()
+					if (!sequence) {
+						setTimeout(() => {
+							this[`row1_Space`].setInteractive()
+							for (let i = 1; i <= 6; i++) {
+								this[`row1_Space_${i}`].setInteractive()
+							}
+						}, 500)
 					}
 				}
 			});
 		}
 	}
 
-
-
-	botMove() {
+	desableInteraction() {
 		this[`row1_Space`].disableInteractive();
 		for (let i = 1; i <= 6; i++) {
 			this[`row1_Space_${i}`].disableInteractive();
 		}
+	}
 
+	// botMove() {
+	// 	console.log("Bot move CAlled...")
+	// 	// Check if the randomly selected row is filled
+	// 	const columnIndex = Math.floor(Math.random() * 7);
+	// 	console.log("Bot Column Index", columnIndex)
+	// 	this.previoStrip = this.currentStrip;
+	// 	this.currentStrip = columnIndex;
+	// 	if (this[`array${columnIndex + 1}Y`] <= 7) {
+	// 		var sequence = this.checkSequence(this.resultMatrix);
+	// 		if (!sequence) {
+	// 			setTimeout(() => {
+	// 				this.intialposX = 650 + (columnIndex * 110);
+	// 				this.intialposY = -78;
+	// 				this.coinUpdate1(columnIndex);
+	// 				this.coinHover(this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].x, this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].y);
+	// 				this.stripHover();
+	// 			}, 1500);
+	// 		}
+	// 	} else {
+	// 		// If the randomly selected row is filled, check other rows
+	// 		for (let i = 0; i < 7; i++) {
+	// 			if (this[`array${i + 1}Y`] <= 6) {
+	// 				setTimeout(() => {
+	// 					this.coinUpdate1(i);
+	// 				}, 1000);
+	// 				if (i == 0) {
+	// 					console.log("disabling rowww")
+	// 					this[`row1_Space`].disableInteractive();
+	// 				} else {
+	// 					console.log("disabling rowww")
+	// 					this[`row1_Space_${i}`].disableInteractive();
+	// 				}
+	// 				break;
+	// 				// Exit the loop after finding an available row
+	// 			}
+	// 		}
+	// 	}
+
+	// 	this.isHumanTurn = true;
+	// }
+
+	botMove() {
+		console.log("Bot move Called...");
+		
 		// Check if the randomly selected row is filled
 		const columnIndex = Math.floor(Math.random() * 7);
-		console.log("Bot Column Index", columnIndex)
+		console.log("Bot Column Index", columnIndex);
 		this.previoStrip = this.currentStrip;
 		this.currentStrip = columnIndex;
-		if (this[`array${columnIndex + 1}Y`] <= 6) {
-			var sequence = this.checkSequence(this.resultMatrix);
-			if (!sequence) {
-				setTimeout(() => {
-					this.intialposX = 650 + (columnIndex * 110);
-					this.intialposY = -78;
-					this.coinUpdate1(columnIndex);
-					this.stripHover();
-				}, 1000);
+	
+		let foundAvailableRow = false;
+	
+		for (let i = 0; i < 7; i++) {
+			if (this[`array${columnIndex + 1}Y`] <= 7) {
+				foundAvailableRow = true;
+				console.log("Found Available row")
+				break; // Exit the loop if an available row is found
 			}
-		} else {
-			// If the randomly selected row is filled, check other rows
-			for (let i = 0; i < 7; i++) {
-				if (this[`array${i + 1}Y`] < 6) {
-					setTimeout(() => {
-						this.coinUpdate1(i);
-					}, 1000);
-					break; // Exit the loop after finding an available row
-				}
-			}
+			columnIndex = (columnIndex + 1) % 7; // Try the next column in a circular manner
 		}
-
+	
+		if (foundAvailableRow) {
+			// If an available row is found, perform the move
+			setTimeout(() => {
+				this.intialposX = 650 + (columnIndex * 110);
+				this.intialposY = -78;
+				this.coinUpdate1(columnIndex);
+				this.coinHover(this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].x, this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].y);
+				this.stripHover();
+			}, 1000);
+		} else {
+			console.log("No available rows.");
+			// Handle the case when there are no available rows (optional)
+		}
+	
 		this.isHumanTurn = true;
 	}
+	
 
 	glowBlast(x, y) {
 		var sequence = this.checkSequence(this.resultMatrix)
@@ -1446,7 +1520,7 @@ class Level extends Phaser.Scene {
 				targets: this.settingContainer,
 				y: this.y,
 				ease: "Power2",
-				duration: 300,
+				duration: 500,
 				onComplete: () => {
 					this.info_Button.setInteractive();
 					var flag = 0;
@@ -1480,8 +1554,17 @@ class Level extends Phaser.Scene {
 
 	update() {
 		// console.log(this.count)
+		console.log(this.count)
 
 		// console.log("Column 1",this.array1Y,"Column 2",this.array2Y,"Column 3",this.array3Y,"Column 4",this.array4Y,"Column 5",this.array5Y,"Column 6",this.array1Y,"Column 7",this.array7Y)
+		if (enableBot == true) {
+			if (this.count == 0) {
+				this[`row1_Space`].disableInteractive();
+				for (let i = 1; i <= 6; i++) {
+					this[`row1_Space_${i}`].disableInteractive();
+				}
+			}
+		}
 
 		//for Column Indicator
 		const mouseX = this.input.x;
@@ -1490,20 +1573,24 @@ class Level extends Phaser.Scene {
 		const clampedX = Phaser.Math.Clamp(mouseX, minX, maxX);
 		this.hoverCoin.x = clampedX;
 
-
-		if (this.count == 0) {
-			this.red0_5.setVisible(true);
-			this.yellow0_5.setVisible(false);
-			this.posX = this.red0_5.x
-			this.posY = this.red0_5.y
-		} else if (this.count == 1) {
-			this.yellow0_5.setVisible(true);
-			this.red0_5.setVisible(false);
-			this.posX = this.yellow0_5.x
-			this.posY = this.yellow0_5.y
+		if (enableBot == false) {
+			if (this.count == 0) {
+				this.red0_5.setVisible(true);
+				this.yellow0_5.setVisible(false);
+				this.posX = this.red0_5.x
+				this.posY = this.red0_5.y
+			} else if (this.count == 1) {
+				this.yellow0_5.setVisible(true);
+				this.red0_5.setVisible(false);
+				this.posX = this.yellow0_5.x
+				this.posY = this.yellow0_5.y
+			}
 		}
 		// console.log(this.colorCode);
-		this.findConclusion();
+		var sequence = this.checkSequence(this.resultMatrix);
+		if (!sequence) {
+			this.findConclusion();
+		}
 	}
 
 	/* END-USER-CODE */
