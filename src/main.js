@@ -24,6 +24,13 @@ const init = () => {
 		dom: {
 			createContainer: true,
 		},
+		physics: {
+			default: 'arcade',
+			arcade: {
+				gravity: { y: 0 },
+				debug: false // Set to true to see physics bodies
+			}
+		}
 	});
 
 	game.scene.add("Preload", Preload);

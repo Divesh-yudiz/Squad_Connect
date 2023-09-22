@@ -88,6 +88,13 @@ class ResultScene extends Phaser.Scene {
 			});
 		})
 
+		this.playAgainBtn.on("pointerover",()=>{
+			this.input.setDefaultCursor('pointer');
+		})
+		this.playAgainBtn.on("pointerout",()=>{
+			this.input.setDefaultCursor('default');
+		})
+
 
 	}
 

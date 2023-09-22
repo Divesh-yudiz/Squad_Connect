@@ -77,9 +77,24 @@
                 "key": "InputManager"
             },
             {
+                "url": "assets/images/Leaf-1.png",
+                "type": "image",
+                "key": "Leaf-1"
+            },
+            {
+                "url": "assets/images/Leaf-2.png",
+                "type": "image",
+                "key": "Leaf-2"
+            },
+            {
                 "url": "assets/images/Leaf-Circle.png",
                 "type": "image",
                 "key": "Leaf-Circle"
+            },
+            {
+                "url": "assets/images/Logo-2.png",
+                "type": "image",
+                "key": "Logo-2"
             },
             {
                 "url": "assets/images/Logo-With-Roap.png",
@@ -161,6 +176,16 @@
                 "url": "assets/images/Brown-Stone.png",
                 "type": "image",
                 "key": "red"
+            },
+            {
+                "url": "assets/images/Rope.png",
+                "type": "image",
+                "key": "Rope"
+            },
+            {
+                "url": "src/components/ScaleOnHoverComponent.js",
+                "type": "script",
+                "key": "ScaleOnHoverComponent"
             },
             {
                 "url": "assets/images/Setting-Button.png",

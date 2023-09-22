@@ -41,21 +41,37 @@
         },
         {
             "type": "Image",
-            "id": "efa3d7fa-b202-49a2-8e03-bd2dc43db844",
-            "label": "logo_With_Roap",
+            "id": "5e750a6a-8ed4-42ef-83ca-6cb5d5df5840",
+            "label": "rope_1",
             "components": [],
             "texture": {
-                "key": "Logo-With-Roap"
+                "key": "Rope"
             },
-            "x": 960,
-            "y": 510
+            "x": 743,
+            "y": 685,
+            "angle": 90,
+            "flipX": true
+        },
+        {
+            "type": "Image",
+            "id": "b34a1700-e164-42b4-9fff-3be3c5b5191a",
+            "label": "rope",
+            "components": [],
+            "texture": {
+                "key": "Rope"
+            },
+            "x": 1191,
+            "y": 674,
+            "angle": 90
         },
         {
             "type": "Image",
             "id": "b7d37f2b-18ba-4396-bc24-949811231ae5",
             "label": "player_VS_Computer",
             "scope": "CLASS",
-            "components": [],
+            "components": [
+                "ScaleOnHoverComponent"
+            ],
             "texture": {
                 "key": "Player-VS-Computer"
             },
@@ -67,12 +83,97 @@
             "id": "3176ea7c-9ebe-43f6-9086-bc05fb5e1d1e",
             "label": "player_VS_Player",
             "scope": "CLASS",
-            "components": [],
+            "components": [
+                "ScaleOnHoverComponent"
+            ],
             "texture": {
                 "key": "Player-VS-Player"
             },
             "x": 748,
             "y": 818
+        },
+        {
+            "type": "Image",
+            "id": "af042f0e-e7a5-469e-b70e-3fb0fd9c20e4",
+            "label": "silver_Stone_for_player_",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Silver-Stone(for player)"
+            },
+            "x": 1339,
+            "y": 370,
+            "scaleX": 0.8,
+            "scaleY": 0.8
+        },
+        {
+            "type": "Image",
+            "id": "68f708c9-0d3f-4044-afbb-07891b0b63e1",
+            "label": "brown_Stone_for_player_",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Brown-Stone(for player)"
+            },
+            "x": 603,
+            "y": 397,
+            "scaleX": 0.8,
+            "scaleY": 0.8
+        },
+        {
+            "type": "Image",
+            "id": "78a72101-eb4d-4f22-84d5-4a7bbcfc899a",
+            "label": "logo_2",
+            "components": [],
+            "texture": {
+                "key": "Logo-2"
+            },
+            "x": 970,
+            "y": 424,
+            "scaleX": 0.9,
+            "scaleY": 0.9
+        },
+        {
+            "type": "Image",
+            "id": "efa3d7fa-b202-49a2-8e03-bd2dc43db844",
+            "label": "logo_With_Roap",
+            "components": [],
+            "texture": {
+                "key": "Logo-With-Roap"
+            },
+            "x": 960,
+            "y": 510,
+            "visible": false
+        },
+        {
+            "type": "Image",
+            "id": "20a13707-5366-4798-8978-57c35eb91cd0",
+            "label": "leaf_1",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Leaf-1"
+            },
+            "x": 734,
+            "y": 346,
+            "scaleX": 0.8,
+            "scaleY": 0.8,
+            "originX": 0
+        },
+        {
+            "type": "Image",
+            "id": "d587c2fa-395f-49dc-9b08-7e41a1bf0246",
+            "label": "leaf_2",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Leaf-2"
+            },
+            "x": 1207,
+            "y": 528,
+            "scaleX": 0.8,
+            "scaleY": 0.8,
+            "originX": 1
         }
     ],
     "plainObjects": [],

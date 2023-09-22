@@ -1068,6 +1068,7 @@ class Level extends Phaser.Scene {
 
 		rows.forEach((row, index) => {
 			row.setInteractive().on('pointerover', () => {
+				this.input.setDefaultCursor('pointer');
 				if (this["array" + (index + 1) + "Y"] <= 6) {
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
@@ -1085,7 +1086,9 @@ class Level extends Phaser.Scene {
 					this.intialposX = 650 + (index * 110);
 					this.intialposY = -78;
 				}
-			});
+			}).on("pointerout",()=>{
+				this.input.setDefaultCursor('default');
+			})
 		});
 	}
 
@@ -1236,47 +1239,6 @@ class Level extends Phaser.Scene {
 		}
 	}
 
-	// botMove() {
-	// 	console.log("Bot move CAlled...")
-	// 	// Check if the randomly selected row is filled
-	// 	const columnIndex = Math.floor(Math.random() * 7);
-	// 	console.log("Bot Column Index", columnIndex)
-	// 	this.previoStrip = this.currentStrip;
-	// 	this.currentStrip = columnIndex;
-	// 	if (this[`array${columnIndex + 1}Y`] <= 7) {
-	// 		var sequence = this.checkSequence(this.resultMatrix);
-	// 		if (!sequence) {
-	// 			setTimeout(() => {
-	// 				this.intialposX = 650 + (columnIndex * 110);
-	// 				this.intialposY = -78;
-	// 				this.coinUpdate1(columnIndex);
-	// 				this.coinHover(this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].x, this.mainArray[this.previoStrip][this[`array${this.previoStrip + 1}Y`]].y);
-	// 				this.stripHover();
-	// 			}, 1500);
-	// 		}
-	// 	} else {
-	// 		// If the randomly selected row is filled, check other rows
-	// 		for (let i = 0; i < 7; i++) {
-	// 			if (this[`array${i + 1}Y`] <= 6) {
-	// 				setTimeout(() => {
-	// 					this.coinUpdate1(i);
-	// 				}, 1000);
-	// 				if (i == 0) {
-	// 					console.log("disabling rowww")
-	// 					this[`row1_Space`].disableInteractive();
-	// 				} else {
-	// 					console.log("disabling rowww")
-	// 					this[`row1_Space_${i}`].disableInteractive();
-	// 				}
-	// 				break;
-	// 				// Exit the loop after finding an available row
-	// 			}
-	// 		}
-	// 	}
-
-	// 	this.isHumanTurn = true;
-	// }
-
 	botMove() {
 		console.log("Bot move Called...");
 		const columnIndex = Math.floor(Math.random() * 7);
@@ -1348,7 +1310,7 @@ class Level extends Phaser.Scene {
 							repeat: -1, // -1 means loop indefinitely
 						});
 					}
-				}, 700)
+				}, 50)
 
 			}
 			else if (sequence.type == "column") {
@@ -1368,7 +1330,7 @@ class Level extends Phaser.Scene {
 							repeat: -1, // -1 means loop indefinitely
 						});
 					}
-				}, 700)
+				}, 50)
 
 			}
 			else if (sequence.type == "diagonal") {
@@ -1406,7 +1368,7 @@ class Level extends Phaser.Scene {
 							});
 						}
 					}
-				}, 700)
+				}, 50)
 			}
 		}
 	}
@@ -1448,13 +1410,38 @@ class Level extends Phaser.Scene {
 	}
 
 	settingMaskAnimation() {
+		this.setting_Button.setInteractive();
+		this.setting_Button.on("pointerover",()=>{
+			this.input.setDefaultCursor('pointer');
+		})
+		this.setting_Button.on("pointerout",()=>{
+			this.input.setDefaultCursor("default");
+		})
+
+		this.info_Button.setInteractive();
+		this.info_Button.on("pointerover",()=>{
+			this.input.setDefaultCursor('pointer');
+		})
+		this.info_Button.on("pointerout",()=>{
+			this.input.setDefaultCursor("default");
+		})
+
+		this.sound_Button.setInteractive();
+		this.sound_Button.on("pointerover",()=>{
+			this.input.setDefaultCursor('pointer');
+		})
+		this.sound_Button.on("pointerout",()=>{
+			this.input.setDefaultCursor("default");
+		})
+
+
 
 		let settingShape = this.make.graphics();
 		settingShape.fillEllipse(1615, 200, 200, 180, 32);
 		const settingMask = settingShape.createGeometryMask();
 		this.settingContainer.setMask(settingMask);
 
-		this.setting_Button.setInteractive();
+		
 		this.setting_Button.on("pointerdown", () => {
 			if (this.settingContainer.y == 145) {
 				this.y = -18;
