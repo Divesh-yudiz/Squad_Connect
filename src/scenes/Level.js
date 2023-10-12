@@ -1246,6 +1246,7 @@ class Level extends Phaser.Scene {
 								}
 							}
 							if (enableBot == true) {
+								console.log("enabling player 1...")
 								this.character_1.setInteractive();
 							}
 						}, 500)
@@ -1557,7 +1558,6 @@ class Level extends Phaser.Scene {
 							this.isSound = false;
 							// this.soundObj.stopSound(this.soundObj.backgroundSound, true)
 							// this.sound.mute();
-							
 							console.log(firstScene);
 							if (firstScene) {
 								if (backgroundMusic1) {
@@ -1600,13 +1600,10 @@ class Level extends Phaser.Scene {
 			for (let i = 1; i <= 6; i++) {
 				this[`row1_Space_${i}`].disableInteractive();
 			}
-
 			this.letftArrowBtn.setInteractive();
 			this.rightArrowBtn.setInteractive();
-
 			// Add event listeners to the left arrow button
 			this.letftArrowBtn.on('pointerdown', () => {
-
 				if (index >= 0 && index <= 6) {
 					// if (this[`array${index+1}Y`] <= 6) {
 					if (index != 0) {
@@ -1616,13 +1613,23 @@ class Level extends Phaser.Scene {
 						this.soundObj.playSound(this.soundObj.hover, false);
 					}
 					console.log("left button clicked")
-					console.log("index : ", index)
-					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					console.log("Condition check ", this.mainArray[index][this["array" + (index + 1) + "Y"]])
+					if(this.mainArray[index][this["array" + (index + 1) + "Y"]]){
+						this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					}else{
+						console.log("in the elese part")
+						if(index!=0){
+							index--;
+						}
+						this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					}
+					// this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
 					this.intialposY = -78;
 					console.log("index : ", index)
 					this.hoverCoin.x = this.mainArray[index][this["array" + (index + 1) + "Y"]].x
 				}
+				console.log("index",index)
 				// }
 				// Move control to the left row (row1)
 				// this.moveToRow(1);
@@ -1642,7 +1649,15 @@ class Level extends Phaser.Scene {
 					if (this.isSound == true) {
 						this.soundObj.playSound(this.soundObj.hover, false);
 					}
-					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					if(this.mainArray[index][this["array" + (index + 1) + "Y"]]){
+						this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					}else{
+						console.log("in the elese part")
+						if(index!=0){
+							index++;
+						}
+						this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					}
 					this.intialposX = 650 + (index * 110);
 					this.intialposY = -78;
 					console.log("index : ", index)
@@ -1652,8 +1667,9 @@ class Level extends Phaser.Scene {
 			});
 
 			this.character_1.setInteractive().on("pointerdown", () => {
-				this.character_1.disableInteractive();
+				console.log("player 1 clickeed")
 				if (this[`array${index + 1}Y`] <= 6) {
+					this.character_1.disableInteractive();
 					if (joystick == true) {
 						this.coinUpdate1(index)
 					}
@@ -1666,12 +1682,15 @@ class Level extends Phaser.Scene {
 				}
 			})
 			this.character_2.on("pointerdown", () => {
+				console.log("player 1 clickeed")
 				if (this[`array${index + 1}Y`] <= 6) {
 					if (joystick == true) {
 						this.coinUpdate1(index)
 					}
 					this.character_2.disableInteractive();
-					// this.character_1.setInteractive();
+					if (enableBot != true) {
+						this.character_1.setInteractive();
+					}
 				} else {
 					console.log("row is already filled")
 				}
@@ -1712,7 +1731,7 @@ class Level extends Phaser.Scene {
 
 		if (enableBot == false) {
 			if (this.count == 0) {
-				this.character_1.disableInteractive();
+				// this.character_1.disableInteractive();
 				this.red0_5.setVisible(true);
 				this.yellow0_5.setVisible(false);
 				this.posX = this.red0_5.x
