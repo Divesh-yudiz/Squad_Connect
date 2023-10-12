@@ -400,31 +400,31 @@ class Level extends Phaser.Scene {
 		brown_Stone_Cover.scaleY = 0.7;
 
 		// row1_Space
-		const row1_Space = this.add.rectangle(656, 608, 95, 910);
+		const row1_Space = this.add.rectangle(656, 558, 95, 800);
 		row1_Space.isFilled = true;
 
 		// row1_Space_1
-		const row1_Space_1 = this.add.rectangle(772, 608, 90, 910);
+		const row1_Space_1 = this.add.rectangle(772, 558, 90, 800);
 		row1_Space_1.isFilled = true;
 
 		// row1_Space_2
-		const row1_Space_2 = this.add.rectangle(880, 608, 90, 910);
+		const row1_Space_2 = this.add.rectangle(880, 558, 90, 800);
 		row1_Space_2.isFilled = true;
 
 		// row1_Space_3
-		const row1_Space_3 = this.add.rectangle(990, 608, 90, 910);
+		const row1_Space_3 = this.add.rectangle(990, 558, 90, 800);
 		row1_Space_3.isFilled = true;
 
 		// row1_Space_4
-		const row1_Space_4 = this.add.rectangle(1095, 608, 85, 910);
+		const row1_Space_4 = this.add.rectangle(1095, 558, 85, 800);
 		row1_Space_4.isFilled = true;
 
 		// row1_Space_5
-		const row1_Space_5 = this.add.rectangle(1197, 608, 85, 910);
+		const row1_Space_5 = this.add.rectangle(1197, 558, 85, 800);
 		row1_Space_5.isFilled = true;
 
 		// row1_Space_6
-		const row1_Space_6 = this.add.rectangle(1299, 608, 85, 910);
+		const row1_Space_6 = this.add.rectangle(1299, 558, 85, 800);
 		row1_Space_6.isFilled = true;
 
 		// hoverCoin
@@ -474,6 +474,13 @@ class Level extends Phaser.Scene {
 		const setting_Button = this.add.image(1644, 100, "Setting-Button");
 		setting_Button.scaleX = 0.7;
 		setting_Button.scaleY = 0.7;
+
+		// letftArrowBtn
+		const letftArrowBtn = this.add.image(300, 920, "Arrow-Button");
+		letftArrowBtn.flipX = true;
+
+		// rightArrowBtn
+		const rightArrowBtn = this.add.image(1632, 918, "Arrow-Button");
 
 		// sound_Button (components)
 		new PushOnClick(sound_Button);
@@ -546,10 +553,14 @@ class Level extends Phaser.Scene {
 		this.spritesheet0 = spritesheet0;
 		this.you = you;
 		this.opponent = opponent;
+		this.character_1 = character_1;
+		this.character_2 = character_2;
 		this.settingContainer = settingContainer;
 		this.sound_Button = sound_Button;
 		this.info_Button = info_Button;
 		this.setting_Button = setting_Button;
+		this.letftArrowBtn = letftArrowBtn;
+		this.rightArrowBtn = rightArrowBtn;
 
 		this.events.emit("scene-awake");
 	}
@@ -684,6 +695,10 @@ class Level extends Phaser.Scene {
 	you;
 	/** @type {Phaser.GameObjects.Image} */
 	opponent;
+	/** @type {Phaser.GameObjects.Image} */
+	character_1;
+	/** @type {Phaser.GameObjects.Image} */
+	character_2;
 	/** @type {Phaser.GameObjects.Container} */
 	settingContainer;
 	/** @type {Phaser.GameObjects.Image} */
@@ -692,6 +707,10 @@ class Level extends Phaser.Scene {
 	info_Button;
 	/** @type {Phaser.GameObjects.Image} */
 	setting_Button;
+	/** @type {Phaser.GameObjects.Image} */
+	letftArrowBtn;
+	/** @type {Phaser.GameObjects.Image} */
+	rightArrowBtn;
 
 	/* START-USER-CODE */
 
@@ -719,10 +738,11 @@ class Level extends Phaser.Scene {
 	hoverY;
 	isHumanTurn = false;
 	isSound = true;
+	// joystick;
 	//this is comment
 	create() {
 		this.editorCreate();
-
+		console.log("joystick status: ", joystick)
 		if (enableBot == false) {
 			this.red0_5 = this.add.image(656, 892, 'red');
 			this.red0_5.setScale(0.33, 0.33)
@@ -762,6 +782,7 @@ class Level extends Phaser.Scene {
 			this.you.setTexture("Player-1")
 			this.opponent.setTexture("Player-2")
 		}
+		this.joyStickEvents()
 	}
 
 	findConclusion() {
@@ -772,8 +793,6 @@ class Level extends Phaser.Scene {
 			// console.log(sequence)
 			this.desableInteraction();
 			if (sequence.sequence == 2) {
-				console.log("im findConclusion")
-
 				this.glowCoins();
 				if (enableBot == false) {
 					this.red0_5.setVisible(false);
@@ -785,13 +804,20 @@ class Level extends Phaser.Scene {
 
 				playerWon = "player_2_Won"
 				setTimeout(() => {
+					this.count = 1;
+					this.colorCode = 1;
+					this.array1Y = 0;
+					this.array2Y = 0;
+					this.array3Y = 0;
+					this.array4Y = 0;
+					this.array5Y = 0;
+					this.array6Y = 0;
+					this.array7Y = 0;
 					this.scene.stop('Level');
 					this.scene.start('ResultScene');
 
 				}, 3000);
 			} else if (sequence.sequence == 1) {
-				console.log("im findConclusion")
-
 				this.glowCoins();
 				if (enableBot == false) {
 					this.red0_5.setVisible(false);
@@ -802,6 +828,15 @@ class Level extends Phaser.Scene {
 				}, 500)
 				playerWon = "player_1_Won"
 				setTimeout(() => {
+					this.count = 1;
+					this.colorCode = 1;
+					this.array1Y = 0;
+					this.array2Y = 0;
+					this.array3Y = 0;
+					this.array4Y = 0;
+					this.array5Y = 0;
+					this.array6Y = 0;
+					this.array7Y = 0;
 					this.scene.stop('Level');
 					funCount++
 					this.scene.start('ResultScene');
@@ -811,6 +846,15 @@ class Level extends Phaser.Scene {
 		} else if (this.array1Y == 7 && this.array2Y == 7 && this.array3Y == 7 && this.array4Y == 7 && this.array5Y == 7 && this.array6Y == 7 && this.array7Y == 7) {
 			playerWon = "player_Draw"
 			setTimeout(() => {
+				this.count = 1;
+				this.colorCode = 1;
+				this.array1Y = 0;
+				this.array2Y = 0;
+				this.array3Y = 0;
+				this.array4Y = 0;
+				this.array5Y = 0;
+				this.array6Y = 0;
+				this.array7Y = 0;
 				this.scene.stop('Level');
 				this.scene.start('ResultScene');
 			}, 1500);
@@ -1070,6 +1114,10 @@ class Level extends Phaser.Scene {
 			row.setInteractive().on('pointerover', () => {
 				this.input.setDefaultCursor('pointer');
 				if (this["array" + (index + 1) + "Y"] <= 6) {
+					// console.log("strtippp", "array" + (index + 1) + "Y")
+					if (this.isSound == true) {
+						this.soundObj.playSound(this.soundObj.hover, false);
+					}
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
 					this.intialposY = -78;
@@ -1085,11 +1133,26 @@ class Level extends Phaser.Scene {
 					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
 					this.intialposX = 650 + (index * 110);
 					this.intialposY = -78;
+					// this.moveToRow(index + 1);
 				}
-			}).on("pointerout",()=>{
+			}).on("pointerout", () => {
 				this.input.setDefaultCursor('default');
 			})
 		});
+	}
+
+	moveToRow(targetRow) {
+		// Make sure targetRow is within valid range (1-6)
+		if (targetRow >= 1 && targetRow <= 6) {
+			// Update your game logic here to handle the row transition
+			// For example, you can perform actions specific to the target row
+			// and update the position or behavior of your game elements.
+
+			// Example: Set the current row to targetRow
+			this.currentRow = targetRow;
+
+			// You can add more logic here based on the targetRow
+		}
 	}
 
 	currentStrip;
@@ -1103,6 +1166,8 @@ class Level extends Phaser.Scene {
 	}
 
 	coinUpdate1(arrayIndex) {
+
+		console.log("Array Index: ", arrayIndex)
 		if (this[`array${arrayIndex + 1}Y`] <= 6) {
 			this.desableInteraction()
 			this.currentStrip = arrayIndex;
@@ -1113,7 +1178,7 @@ class Level extends Phaser.Scene {
 				this.resultMatrix[arrayIndex][this[`array${arrayIndex + 1}Y`]] = this.colorCode;
 				this[`array${arrayIndex + 1}Y`]++;
 				if (this.isSound == true) {
-					this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+					this.soundObj.playSound(this.soundObj.onBtnClick, false);
 				}
 			}
 		} else {
@@ -1142,8 +1207,7 @@ class Level extends Phaser.Scene {
 
 		if (this.count == 0) {
 			if (this.isSound == true) {
-				
-				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+				this.soundObj.playSound(this.soundObj.onBtnClick, false);
 			}
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 
@@ -1175,9 +1239,14 @@ class Level extends Phaser.Scene {
 					place.packed = true;
 					if (!sequence) {
 						setTimeout(() => {
-							this[`row1_Space`].setInteractive()
-							for (let i = 1; i <= 6; i++) {
-								this[`row1_Space_${i}`].setInteractive()
+							if (joystick != true) {
+								this[`row1_Space`].setInteractive()
+								for (let i = 1; i <= 6; i++) {
+									this[`row1_Space_${i}`].setInteractive()
+								}
+							}
+							if (enableBot == true) {
+								this.character_1.setInteractive();
 							}
 						}, 500)
 					}
@@ -1185,7 +1254,7 @@ class Level extends Phaser.Scene {
 			});
 		} else {
 			if (this.isSound == true) {
-				this.soundObj.playSound(this.soundObj.coinPlacedSound, false);
+				this.soundObj.playSound(this.soundObj.onBtnClick, false);
 			}
 			this.glowBlast(this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].x, this.mainArray[arrayIndex][this[`array${arrayIndex + 1}Y`]].y)
 			this.tweens.add({
@@ -1221,15 +1290,18 @@ class Level extends Phaser.Scene {
 					// console.log(place);
 					if (!sequence) {
 						setTimeout(() => {
-							this[`row1_Space`].setInteractive()
-							for (let i = 1; i <= 6; i++) {
-								this[`row1_Space_${i}`].setInteractive()
+							if (joystick != true) {
+								this[`row1_Space`].setInteractive()
+								for (let i = 1; i <= 6; i++) {
+									this[`row1_Space_${i}`].setInteractive()
+								}
 							}
 						}, 500)
 					}
 				}
 			});
 		}
+		console.log("result matrix : ", this.resultMatrix)
 	}
 
 	desableInteraction() {
@@ -1245,18 +1317,18 @@ class Level extends Phaser.Scene {
 		console.log("Bot Column Index", columnIndex);
 		this.previoStrip = this.currentStrip;
 		this.currentStrip = columnIndex;
-	
+
 		let foundAvailableRow = false;
-	
+
 		for (let i = 0; i < 7; i++) {
 			if (this[`array${columnIndex + 1}Y`] <= 7) {
 				foundAvailableRow = true;
 				console.log("Found Available row")
-				break; 
+				break;
 			}
 			columnIndex = (columnIndex + 1) % 7;
 		}
-	
+
 		if (foundAvailableRow) {
 			setTimeout(() => {
 				this.intialposX = 650 + (columnIndex * 110);
@@ -1268,9 +1340,10 @@ class Level extends Phaser.Scene {
 		} else {
 			console.log("No available rows.");
 		}
+		// this.character_1.setInteractive();
 		this.isHumanTurn = true;
 	}
-	
+
 
 	glowBlast(x, y) {
 		var sequence = this.checkSequence(this.resultMatrix)
@@ -1293,6 +1366,9 @@ class Level extends Phaser.Scene {
 		const sequence = this.checkSequence(this.resultMatrix);
 		// console.log(sequence)
 		if (sequence) {
+			if (this.isSound == true) {
+				this.soundObj.playSound(this.soundObj.fourConnected, false);
+			}
 			if (sequence.type == "row") {
 				let row = sequence.position.row;
 				let col = sequence.position.col;
@@ -1341,7 +1417,7 @@ class Level extends Phaser.Scene {
 				setTimeout(() => {
 					if (sequence.direction == "top-left to bottom-right") {
 						for (let i = 0; i < 4; i++) {
-							
+
 							let leafCircle = this.add.sprite(this.mainArray[row + i][col + i].x, this.mainArray[row + i][col + i].y, "Leaf-Circle");
 							leafCircle.setScale(.44, .44);
 							leafCircle.setDepth(1);
@@ -1355,7 +1431,7 @@ class Level extends Phaser.Scene {
 						}
 					} else {
 						for (let i = 0; i < 4; i++) {
-							
+
 							let leafCircle = this.add.sprite(this.mainArray[row + i][col - i].x, this.mainArray[row + i][col - i].y, "Leaf-Circle");
 							leafCircle.setScale(.44, .44);
 							leafCircle.setDepth(1);
@@ -1411,26 +1487,26 @@ class Level extends Phaser.Scene {
 
 	settingMaskAnimation() {
 		this.setting_Button.setInteractive();
-		this.setting_Button.on("pointerover",()=>{
+		this.setting_Button.on("pointerover", () => {
 			this.input.setDefaultCursor('pointer');
 		})
-		this.setting_Button.on("pointerout",()=>{
+		this.setting_Button.on("pointerout", () => {
 			this.input.setDefaultCursor("default");
 		})
 
 		this.info_Button.setInteractive();
-		this.info_Button.on("pointerover",()=>{
+		this.info_Button.on("pointerover", () => {
 			this.input.setDefaultCursor('pointer');
 		})
-		this.info_Button.on("pointerout",()=>{
+		this.info_Button.on("pointerout", () => {
 			this.input.setDefaultCursor("default");
 		})
 
 		this.sound_Button.setInteractive();
-		this.sound_Button.on("pointerover",()=>{
+		this.sound_Button.on("pointerover", () => {
 			this.input.setDefaultCursor('pointer');
 		})
-		this.sound_Button.on("pointerout",()=>{
+		this.sound_Button.on("pointerout", () => {
 			this.input.setDefaultCursor("default");
 		})
 
@@ -1441,7 +1517,7 @@ class Level extends Phaser.Scene {
 		const settingMask = settingShape.createGeometryMask();
 		this.settingContainer.setMask(settingMask);
 
-		
+
 		this.setting_Button.on("pointerdown", () => {
 			if (this.settingContainer.y == 145) {
 				this.y = -18;
@@ -1471,16 +1547,29 @@ class Level extends Phaser.Scene {
 					this.info_Button.setInteractive();
 					var flag = 0;
 					this.sound_Button.setInteractive().on("pointerdown", () => {
-
+						const firstScene = this.scene.get("MenuScene");
+						const backgroundMusic1 = firstScene.backgroundMusic;
 						if (this.sound_Button.texture.key == "Sound-Button") {
+							var menuScreen = new MenuScene();
+							console.log(menuScreen.soundManagerObj)
 							this.sound_Button.setScale(0.9, 0.9)
 							this.sound_Button.setTexture("Sound-Button-Off");
 							this.isSound = false;
+							// this.soundObj.stopSound(this.soundObj.backgroundSound, true)
+							// this.sound.mute();
+							
+							console.log(firstScene);
+							if (firstScene) {
+								if (backgroundMusic1) {
+									backgroundMusic1.stop();
+								}
+							}
 							flag++
 						}
 						else {
 							this.sound_Button.setScale(0.9, 0.9)
 							this.sound_Button.setTexture("Sound-Button");
+							backgroundMusic1.play();
 							this.isSound = true;
 						}
 					});
@@ -1494,12 +1583,111 @@ class Level extends Phaser.Scene {
 		})
 	}
 
+	joyStickEvents() {
+		let index = 3;
+		const rows = [
+			this.row1_Space,
+			this.row1_Space_1,
+			this.row1_Space_2,
+			this.row1_Space_3,
+			this.row1_Space_4,
+			this.row1_Space_5,
+			this.row1_Space_6,
+		];
+
+		if (joystick == true) {
+			this[`row1_Space`].disableInteractive();
+			for (let i = 1; i <= 6; i++) {
+				this[`row1_Space_${i}`].disableInteractive();
+			}
+
+			this.letftArrowBtn.setInteractive();
+			this.rightArrowBtn.setInteractive();
+
+			// Add event listeners to the left arrow button
+			this.letftArrowBtn.on('pointerdown', () => {
+
+				if (index >= 0 && index <= 6) {
+					// if (this[`array${index+1}Y`] <= 6) {
+					if (index != 0) {
+						index--
+					}
+					if (this.isSound == true) {
+						this.soundObj.playSound(this.soundObj.hover, false);
+					}
+					console.log("left button clicked")
+					console.log("index : ", index)
+					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					this.intialposX = 650 + (index * 110);
+					this.intialposY = -78;
+					console.log("index : ", index)
+					this.hoverCoin.x = this.mainArray[index][this["array" + (index + 1) + "Y"]].x
+				}
+				// }
+				// Move control to the left row (row1)
+				// this.moveToRow(1);
+			});
+
+			// Add event listeners to the right arrow button
+			this.rightArrowBtn.on('pointerdown', () => {
+				// console.log("index : ", index)
+				// console.log("right button clicked")
+				if (index >= 0 && index <= 6) {
+					console.log("index ", index)
+					// if (this[`array${index+1}Y`] <= 7) {
+					console.log("inside the Condition")
+					if (index != 6) {
+						index++
+					}
+					if (this.isSound == true) {
+						this.soundObj.playSound(this.soundObj.hover, false);
+					}
+					this.coinHover(this.mainArray[index][this["array" + (index + 1) + "Y"]].x, this.mainArray[index][this["array" + (index + 1) + "Y"]].y);
+					this.intialposX = 650 + (index * 110);
+					this.intialposY = -78;
+					console.log("index : ", index)
+					this.hoverCoin.x = this.mainArray[index][this["array" + (index + 1) + "Y"]].x
+				}
+				// }
+			});
+
+			this.character_1.setInteractive().on("pointerdown", () => {
+				this.character_1.disableInteractive();
+				if (this[`array${index + 1}Y`] <= 6) {
+					if (joystick == true) {
+						this.coinUpdate1(index)
+					}
+					// this.character_1.disableInteractive();
+					if (enableBot != true) {
+						this.character_2.setInteractive();
+					}
+				} else {
+					console.log("row is already filled")
+				}
+			})
+			this.character_2.on("pointerdown", () => {
+				if (this[`array${index + 1}Y`] <= 6) {
+					if (joystick == true) {
+						this.coinUpdate1(index)
+					}
+					this.character_2.disableInteractive();
+					// this.character_1.setInteractive();
+				} else {
+					console.log("row is already filled")
+				}
+			})
+		} else {
+			this.rightArrowBtn.visible = false
+			this.letftArrowBtn.visible = false
+		}
+	}
+
 
 
 
 	update() {
 		// console.log(this.count)
-		console.log(this.count)
+		// console.log(this.count)
 
 		// console.log("Column 1",this.array1Y,"Column 2",this.array2Y,"Column 3",this.array3Y,"Column 4",this.array4Y,"Column 5",this.array5Y,"Column 6",this.array1Y,"Column 7",this.array7Y)
 		if (enableBot == true) {
@@ -1508,30 +1696,39 @@ class Level extends Phaser.Scene {
 				for (let i = 1; i <= 6; i++) {
 					this[`row1_Space_${i}`].disableInteractive();
 				}
+			} else {
+
 			}
 		}
 
-		//for Column Indicator
-		const mouseX = this.input.x;
-		const minX = 656;
-		const maxX = 1305;
-		const clampedX = Phaser.Math.Clamp(mouseX, minX, maxX);
-		this.hoverCoin.x = clampedX;
+		if (joystick != true) {
+			//for Column Indicator
+			const mouseX = this.input.x;
+			const minX = 656;
+			const maxX = 1305;
+			const clampedX = Phaser.Math.Clamp(mouseX, minX, maxX);
+			this.hoverCoin.x = clampedX;
+		}
 
 		if (enableBot == false) {
 			if (this.count == 0) {
+				this.character_1.disableInteractive();
 				this.red0_5.setVisible(true);
 				this.yellow0_5.setVisible(false);
 				this.posX = this.red0_5.x
 				this.posY = this.red0_5.y
+				// this.character_2.setInteractive();
+				// this.character_1.disableInteractive();
 			} else if (this.count == 1) {
 				this.yellow0_5.setVisible(true);
 				this.red0_5.setVisible(false);
 				this.posX = this.yellow0_5.x
 				this.posY = this.yellow0_5.y
+				// this.character_1.setInteractive();
+				// this.character_2.disableInteractive();
 			}
 		}
-		if(enableBot == true){
+		if (enableBot == true) {
 			if (this.count == 0) {
 				this.hoverCoin.setVisible(false)
 			} else if (this.count == 1) {

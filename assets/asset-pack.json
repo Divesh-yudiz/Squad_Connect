@@ -2,9 +2,26 @@
     "section1": {
         "files": [
             {
+                "url": "assets/images/—Pngtree—vector left arrow icon_4239647 (1) (1).png",
+                "type": "image",
+                "key": "—Pngtree—vector left arrow icon_4239647 (1) (1)"
+            },
+            {
+                "url": "assets/images/Arrow-Button.png",
+                "type": "image",
+                "key": "Arrow-Button"
+            },
+            {
                 "url": "assets/images/Brown-Stone-Cover.png",
                 "type": "image",
                 "key": "Brown-Stone-Cover"
+            },
+            {
+                "url": [
+                    "assets/sounds/Button Taps.mp3"
+                ],
+                "type": "audio",
+                "key": "Button Taps"
             },
             {
                 "url": "assets/images/Button-Holder.png",
@@ -37,6 +54,13 @@
                 "key": "font"
             },
             {
+                "url": [
+                    "assets/sounds/four dots connected.mp3"
+                ],
+                "type": "audio",
+                "key": "four dots connected"
+            },
+            {
                 "url": "assets/images/Game-Board-2.png",
                 "type": "image",
                 "key": "Game-Board-2"
@@ -65,6 +89,13 @@
                 "url": "assets/images/Highlighted-Ring.png",
                 "type": "image",
                 "key": "Highlighted-Ring"
+            },
+            {
+                "url": [
+                    "assets/sounds/Hover.mp3"
+                ],
+                "type": "audio",
+                "key": "Hover"
             },
             {
                 "url": "assets/images/Info-Button.png",
@@ -168,6 +199,13 @@
                 "key": "Player-VS-Player"
             },
             {
+                "url": [
+                    "assets/sounds/quad connect.mp3"
+                ],
+                "type": "audio",
+                "key": "quad connect"
+            },
+            {
                 "url": "assets/images/Re-Play-Button.png",
                 "type": "image",
                 "key": "Re-Play-Button"
@@ -252,6 +290,13 @@
                 "url": "assets/images/White-Highlight.png",
                 "type": "image",
                 "key": "White-Highlight"
+            },
+            {
+                "url": [
+                    "assets/sounds/Winning-Screen.mp3"
+                ],
+                "type": "audio",
+                "key": "Winning-Screen"
             },
             {
                 "url": "assets/images/Silver-Stone.png",

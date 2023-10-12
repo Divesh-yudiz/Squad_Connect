@@ -107,17 +107,21 @@ class MenuScene extends Phaser.Scene {
 
 	// Write your code here
 
+	soundManager;
 	create() {
 
 		this.editorCreate();
-
-
+		this.soundManagerObj = new SoundManager(this);
+		// this.soundManagerObj.stopSound(this.soundManagerObj.backgroundSound, false);
+		// this.soundManagerObj.playSound(this.soundManagerObj.backgroundSound, true);
+		this.backgroundMusic = this.sound.add('quad connect', { loop: true });
+        this.backgroundMusic.play();
 		// player_VS_Computer
 		// this.player_VS_Computer = this.physics.add.image(1205, 818, "Player-VS-Computer");
 
 		// // player_VS_Player
 		// this.player_VS_Player = this.physics.add.image(748, 818, "Player-VS-Player");
-
+		// console.log("level object", levelScene.joystick)
 		this.growLeafForword(this.leaf_1)
 		this.growLeafForword(this.leaf_2)
 		this.blowFun(this.player_VS_Player)
@@ -128,6 +132,7 @@ class MenuScene extends Phaser.Scene {
 		this.player_VS_Computer.setInteractive();
 		this.player_VS_Player.setInteractive();
 		this.player_VS_Computer.on("pointerdown", () => {
+			this.soundManagerObj.playSound(this.soundManagerObj.onBtnClick, false);
 			this.tweens.add({
 				targets: this.player_VS_Computer,
 				duration: 100,
@@ -144,6 +149,7 @@ class MenuScene extends Phaser.Scene {
 			});
 		})
 		this.player_VS_Player.on("pointerdown", () => {
+			this.soundManagerObj.playSound(this.soundManagerObj.onBtnClick, false);
 			this.tweens.add({
 				targets: this.player_VS_Player,
 				duration: 100,
@@ -175,10 +181,15 @@ class MenuScene extends Phaser.Scene {
 			this.pvsC_Highlight.setScale(0.9)
 		})
 
+		if(window.innerWidth<450){
+			joystick=true;
+		}
+
 	}
 
 	blowFun(gameObject){
 		gameObject.setInteractive().on("pointerover", () => {
+			this.soundManagerObj.playSound(this.soundManagerObj.hover, false);
 			this.input.setDefaultCursor('pointer');
 			console.log("im in the component")
 			if(gameObject==this.player_VS_Player){

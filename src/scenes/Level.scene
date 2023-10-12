@@ -817,10 +817,10 @@
             "scope": "CLASS",
             "components": [],
             "x": 656,
-            "y": 608,
+            "y": 558,
             "isFilled": true,
             "width": 95,
-            "height": 910
+            "height": 800
         },
         {
             "type": "Rectangle",
@@ -829,10 +829,10 @@
             "scope": "CLASS",
             "components": [],
             "x": 772,
-            "y": 608,
+            "y": 558,
             "isFilled": true,
             "width": 90,
-            "height": 910
+            "height": 800
         },
         {
             "type": "Rectangle",
@@ -841,10 +841,10 @@
             "scope": "CLASS",
             "components": [],
             "x": 880,
-            "y": 608,
+            "y": 558,
             "isFilled": true,
             "width": 90,
-            "height": 910
+            "height": 800
         },
         {
             "type": "Rectangle",
@@ -853,10 +853,10 @@
             "scope": "CLASS",
             "components": [],
             "x": 990,
-            "y": 608,
+            "y": 558,
             "isFilled": true,
             "width": 90,
-            "height": 910
+            "height": 800
         },
         {
             "type": "Rectangle",
@@ -865,10 +865,10 @@
             "scope": "CLASS",
             "components": [],
             "x": 1095,
-            "y": 608,
+            "y": 558,
             "isFilled": true,
             "width": 85,
-            "height": 910
+            "height": 800
         },
         {
             "type": "Rectangle",
@@ -877,10 +877,10 @@
             "scope": "CLASS",
             "components": [],
             "x": 1197,
-            "y": 608,
+            "y": 558,
             "isFilled": true,
             "width": 85,
-            "height": 910
+            "height": 800
         },
         {
             "type": "Rectangle",
@@ -889,10 +889,10 @@
             "scope": "CLASS",
             "components": [],
             "x": 1299,
-            "y": 608,
+            "y": 558,
             "isFilled": true,
             "width": 85,
-            "height": 910
+            "height": 800
         },
         {
             "type": "Image",
@@ -949,6 +949,7 @@
             "type": "Image",
             "id": "d9b8e071-f110-4e8c-88c2-faa1271bbade",
             "label": "character_1",
+            "scope": "CLASS",
             "components": [],
             "texture": {
                 "key": "Character-1"
@@ -962,6 +963,7 @@
             "type": "Image",
             "id": "6c72b76a-6274-4557-91c0-5439fcca2c70",
             "label": "character_2",
+            "scope": "CLASS",
             "components": [],
             "texture": {
                 "key": "Character-2"
@@ -1036,6 +1038,31 @@
             "y": 100,
             "scaleX": 0.7,
             "scaleY": 0.7
+        },
+        {
+            "type": "Image",
+            "id": "73f252a6-bc04-4df8-9cf3-962ef0327cdc",
+            "label": "letftArrowBtn",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Arrow-Button"
+            },
+            "x": 300,
+            "y": 920,
+            "flipX": true
+        },
+        {
+            "type": "Image",
+            "id": "b56754a1-fc9e-4691-99c1-5df6a226f68b",
+            "label": "rightArrowBtn",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "Arrow-Button"
+            },
+            "x": 1632,
+            "y": 918
         }
     ],
     "plainObjects": [],
